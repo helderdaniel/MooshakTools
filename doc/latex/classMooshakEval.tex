@@ -1,0 +1,87 @@
+\hypertarget{classMooshakEval}{}\doxysection{Mooshak\+Eval Class Reference}
+\label{classMooshakEval}\index{MooshakEval@{MooshakEval}}
+
+
+{\ttfamily \#include $<$Mooshak\+Eval.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMooshakEval_a507f1bde86eb5231509f5e3b042fa2c5}{Mooshak\+Eval}} (const string \&execute\+Path, const string \&input\+Fn=D\+F\+L\+T\+I\+N\+P\+U\+T\+FN, const string \&output\+Fn=D\+F\+L\+T\+O\+U\+T\+P\+U\+T\+FN)
+\item 
+string \mbox{\hyperlink{classMooshakEval_a743c7dead7b99253b6a7922c3b815c02}{run}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+ostream \& \mbox{\hyperlink{classMooshakEval_a4e2ee2ce619c8cfdabf4f6a0bf953c75}{operator$<$$<$}} (ostream \&os, const \mbox{\hyperlink{classMooshakEval}{Mooshak\+Eval}} \&meval)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Perform Mooshak like executable evaluation 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classMooshakEval_a507f1bde86eb5231509f5e3b042fa2c5}\label{classMooshakEval_a507f1bde86eb5231509f5e3b042fa2c5}} 
+\index{MooshakEval@{MooshakEval}!MooshakEval@{MooshakEval}}
+\index{MooshakEval@{MooshakEval}!MooshakEval@{MooshakEval}}
+\doxysubsubsection{\texorpdfstring{MooshakEval()}{MooshakEval()}}
+{\footnotesize\ttfamily Mooshak\+Eval\+::\+Mooshak\+Eval (\begin{DoxyParamCaption}\item[{const string \&}]{execute\+Path,  }\item[{const string \&}]{input\+Fn = {\ttfamily DFLTINPUTFN},  }\item[{const string \&}]{output\+Fn = {\ttfamily DFLTOUTPUTFN} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em execute\+Path} & path to executable \\
+\hline
+{\em input\+Fn} & path to input file name \\
+\hline
+{\em output\+Fn} & path to output file name \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classMooshakEval_a743c7dead7b99253b6a7922c3b815c02}\label{classMooshakEval_a743c7dead7b99253b6a7922c3b815c02}} 
+\index{MooshakEval@{MooshakEval}!run@{run}}
+\index{run@{run}!MooshakEval@{MooshakEval}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily string Mooshak\+Eval\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Perform expression evaluation
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classMooshakEval_a4e2ee2ce619c8cfdabf4f6a0bf953c75}\label{classMooshakEval_a4e2ee2ce619c8cfdabf4f6a0bf953c75}} 
+\index{MooshakEval@{MooshakEval}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!MooshakEval@{MooshakEval}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{ostream \&}]{os,  }\item[{const \mbox{\hyperlink{classMooshakEval}{Mooshak\+Eval}} \&}]{meval }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Inserts in output stream os a string representing the Evaluation expression in the form\+:
+
+diff\+: ($<$executable$>$ $<$ $<$input filename$>$ , $<$output filename$>$)
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & output stream \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+os \&\& meval 
+\end{DoxyPrecond}
+
+\begin{DoxyParams}{Parameters}
+{\em meval} & \mbox{\hyperlink{classMooshakEval}{Mooshak\+Eval}} object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+os stream with evaluation expression inserted 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/hdaniel/\+Dropbox/01-\/\+Apps/\+Mooshak/tools/\+C/\+Mooshak\+Tools/src/\mbox{\hyperlink{MooshakEval_8hpp}{Mooshak\+Eval.\+hpp}}\end{DoxyCompactItemize}

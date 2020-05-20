@@ -1,0 +1,26 @@
+#OUTPUT_DIRECTORY       = @CMAKE_CURRENT_BINARY_DIR@/../doc
+#OUTPUT_DIRECTORY       = ../@DOC@
+OUTPUT_DIRECTORY       = ../doc
+
+#INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@/../src/\
+#                         @CMAKE_CURRENT_SOURCE_DIR@/../examples\
+#INPUT                   = ../src \
+#                          ../examples
+INPUT                  = ../@SRC@ \
+                         ../@EXAMPLES@ \
+                         ../@TEST@
+
+PROJECT_NAME           = "@CMAKE_PROJECT_NAME@"
+#PROJECT_NUMBER         = @VERSION_MAJOR@.@VERSION_MINOR@.@VERSION_PATCH@
+
+#FILE_PATTERNS          = *.h \
+#                         *.hpp\
+#                         *.c\
+#                         *.ccp
+
+#generate also for *.cpp not only *.hpp
+EXTRACT_ALL            = YES
+
+RECURSIVE              = YES
+
+#USE_MDFILE_AS_MAINPAGE = @doxy_main_page@
