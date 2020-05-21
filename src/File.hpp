@@ -1,16 +1,21 @@
 /**
- * Compare files
+ * File utilities
  * hdaniel@ualg.pt may 2020
  */
 
-#ifndef MOOSHAKTOOLS_FILECOMPARE_H
-#define MOOSHAKTOOLS_FILECOMPARE_H
+#ifndef MOOSHAKTOOLS_FILE_H
+#define MOOSHAKTOOLS_FILE_H
 
 #include <unistd.h>
 #include <fcntl.h>
 #include <cstring>
+#include <filesystem>
+#include <regex>
 
-class FileCompare {
+namespace fs = std::filesystem;
+
+
+class File {
 	static const int bufsize = 4096;  //4k page size
 	static const int maxLinesize = 256;
 
@@ -30,7 +35,7 @@ public:
 	 * @param  fn1 filename of file to compare against
 	 * @return true if files are equal
 	 */
-	static bool binary(const char *fn0, const char *fn1) {
+	static bool cmpbin(const char *fn0, const char *fn1) {
 		char buf0[bufsize];
 		char buf1[bufsize];
 		bool ret = true;
@@ -70,7 +75,7 @@ public:
 	 * 				<fn0 line>
 	 * 				<fn1 line>
 	 */
-	static std::string text(const char *fn0, const char *fn1) {
+	static std::string cmptext(const char *fn0, const char *fn1) {
 		char buf0[maxLinesize];
 		char buf1[maxLinesize];
 		std::string ret ="";
@@ -140,7 +145,25 @@ public:
 		fclose(sf1);
 		return ret;
 	}
+
+
+	/**
+	 *
+	 * @param dir    root dir to search
+	 * @param regex  filename regex
+	 * @return vector of pth that mathces regex form directory dir
+	 */
+	static std::vector<fs::path> search(const char *dir, const char *regex) {
+		std::vector<fs::path> v;
+
+		for(auto& p: fs::recursive_directory_iterator(dir)) {
+			if (std::regex_match(p.path().filename().c_str(), std::regex(regex)))
+				v.push_back(p.path());
+
+		}
+		return v;
+	}
 };
 
 
-#endif //MOOSHAKTOOLS_FILECOMPARE_H
+#endif //MOOSHAKTOOLS_FILE_H

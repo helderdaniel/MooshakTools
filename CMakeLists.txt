@@ -59,7 +59,7 @@ set(UNITTEST0 "testEval")
 add_executable(${UNITTEST0} ${TEST}/${UNITTEST0}.cpp)
 target_link_libraries(${UNITTEST0} Catch2)
 
-set(UNITTEST1 "testFC")
+set(UNITTEST1 "testFile")
 add_executable(${UNITTEST1} ${TEST}/${UNITTEST1}.cpp)
 target_link_libraries(${UNITTEST1} Catch2)
 

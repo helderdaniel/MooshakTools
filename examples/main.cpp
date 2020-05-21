@@ -1,8 +1,8 @@
 
 
-#include <fstream>
 #include <iostream>
 #include <filesystem>
+#include <regex>
 
 namespace fs = std::filesystem;
 
@@ -13,9 +13,15 @@ namespace fs = std::filesystem;
  * @return
  */
 int main(int argc, char** argv) {
-	//std::ofstream("sandbox/file1.txt");
-	//fs::create_symlink("a", "sandbox/syma");
-	for(auto& p: fs::recursive_directory_iterator(".."))
-		std::cout << p.path() << '\n';
+std::vector<fs::path> v;
+
+	for (const auto& p: fs::recursive_directory_iterator(".."))
+		if (std::regex_match(p.path().filename().c_str(), std::regex( "(.*)(.txt)"))) {
+			v.push_back(p.path());
+	}
+
+	for (const auto& p : v)
+		std::cout << p << '\n';
+
 	std::cout << "ended\n";
 }
