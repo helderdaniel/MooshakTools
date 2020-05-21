@@ -1,0 +1,74 @@
+\hypertarget{classFile}{}\doxysection{File Class Reference}
+\label{classFile}\index{File@{File}}
+
+
+{\ttfamily \#include $<$File.\+hpp$>$}
+
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{classFile_a3f8940d0b81d0c4685a596257756594a}{cmpbin}} (const char $\ast$fn0, const char $\ast$fn1)
+\item 
+static std\+::string \mbox{\hyperlink{classFile_af32a15ac6f0154e920964638e7d0c513}{cmptext}} (const char $\ast$fn0, const char $\ast$fn1)
+\item 
+static std\+::vector$<$ fs\+::path $>$ \mbox{\hyperlink{classFile_adac8160bae148b42bad41fea44b33215}{search}} (const char $\ast$dir, const char $\ast$regex)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classFile}{File}} utilities \href{mailto:hdaniel@ualg.pt}{\texttt{ hdaniel@ualg.\+pt}} may 2020 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classFile_a3f8940d0b81d0c4685a596257756594a}\label{classFile_a3f8940d0b81d0c4685a596257756594a}} 
+\index{File@{File}!cmpbin@{cmpbin}}
+\index{cmpbin@{cmpbin}!File@{File}}
+\doxysubsubsection{\texorpdfstring{cmpbin()}{cmpbin()}}
+{\footnotesize\ttfamily static bool File\+::cmpbin (\begin{DoxyParamCaption}\item[{const char $\ast$}]{fn0,  }\item[{const char $\ast$}]{fn1 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em fn0} & filename of a file to compare \\
+\hline
+{\em fn1} & filename of file to compare against \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if files are equal 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFile_af32a15ac6f0154e920964638e7d0c513}\label{classFile_af32a15ac6f0154e920964638e7d0c513}} 
+\index{File@{File}!cmptext@{cmptext}}
+\index{cmptext@{cmptext}!File@{File}}
+\doxysubsubsection{\texorpdfstring{cmptext()}{cmptext()}}
+{\footnotesize\ttfamily static std\+::string File\+::cmptext (\begin{DoxyParamCaption}\item[{const char $\ast$}]{fn0,  }\item[{const char $\ast$}]{fn1 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em fn0} & filename of a file to compare \\
+\hline
+{\em fn1} & filename of file to compare against \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string with differences $<$line$>$\+: $<$fn0 line$>$ $<$fn1 line$>$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFile_adac8160bae148b42bad41fea44b33215}\label{classFile_adac8160bae148b42bad41fea44b33215}} 
+\index{File@{File}!search@{search}}
+\index{search@{search}!File@{File}}
+\doxysubsubsection{\texorpdfstring{search()}{search()}}
+{\footnotesize\ttfamily static std\+::vector$<$fs\+::path$>$ File\+::search (\begin{DoxyParamCaption}\item[{const char $\ast$}]{dir,  }\item[{const char $\ast$}]{regex }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em dir} & root dir to search \\
+\hline
+{\em regex} & filename regex \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector of pth that mathces regex form directory dir 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/hdaniel/\+Dropbox/01-\/\+Apps/\+Mooshak/tools/\+C/\+Mooshak\+Tools/src/\mbox{\hyperlink{File_8hpp}{File.\+hpp}}\end{DoxyCompactItemize}
