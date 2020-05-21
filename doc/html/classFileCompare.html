@@ -62,32 +62,71 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classFileCompare-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">FileCompare Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="FileCompare_8hpp_source.html">FileCompare.hpp</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:afb161ce486e6b9b1a17d29e058be4aad"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFileCompare.html#afb161ce486e6b9b1a17d29e058be4aad">FileCompare</a> (int f0, int f1)</td></tr>
-<tr class="separator:afb161ce486e6b9b1a17d29e058be4aad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a401e17a0e8917bfd86089575d9e37064"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFileCompare.html#a401e17a0e8917bfd86089575d9e37064">fileComp</a> (int f0, int f1)</td></tr>
-<tr class="separator:a401e17a0e8917bfd86089575d9e37064"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a24f18f604960349b06388bd5e58243de"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFileCompare.html#a24f18f604960349b06388bd5e58243de">binary</a> (const char *fn0, const char *fn1)</td></tr>
+<tr class="separator:a24f18f604960349b06388bd5e58243de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8cd55790e268ad2aedb7aa18acbf6ee"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFileCompare.html#aa8cd55790e268ad2aedb7aa18acbf6ee">text</a> (const char *fn0, const char *fn1)</td></tr>
+<tr class="separator:aa8cd55790e268ad2aedb7aa18acbf6ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl class="params"><dt>Parameters</dt><dd>
+<div class="textblock"><p>Compare files <a href="#" onclick="location.href='mai'+'lto:'+'hda'+'ni'+'el@'+'ua'+'lg.'+'pt'; return false;">hdani<span style="display: none;">.nosp@m.</span>el@u<span style="display: none;">.nosp@m.</span>alg.p<span style="display: none;">.nosp@m.</span>t</a> may 2020 </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a24f18f604960349b06388bd5e58243de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24f18f604960349b06388bd5e58243de">&#9670;&nbsp;</a></span>binary()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool FileCompare::binary </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>fn0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>fn1</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">f0</td><td>first file to compare descriptor PRE: f0 &gt; 0 </td></tr>
-    <tr><td class="paramname">f1</td><td></td></tr>
+    <tr><td class="paramname">fn0</td><td>filename of a file to compare </td></tr>
+    <tr><td class="paramname">fn1</td><td>filename of file to compare against </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Compares two files </dd></dl>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="afb161ce486e6b9b1a17d29e058be4aad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afb161ce486e6b9b1a17d29e058be4aad">&#9670;&nbsp;</a></span>FileCompare()</h2>
+<dl class="section return"><dt>Returns</dt><dd>true if files are equal </dd></dl>
+
+</div>
+</div>
+<a id="aa8cd55790e268ad2aedb7aa18acbf6ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8cd55790e268ad2aedb7aa18acbf6ee">&#9670;&nbsp;</a></span>text()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -96,16 +135,16 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">FileCompare::FileCompare </td>
+          <td class="memname">static std::string FileCompare::text </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>f0</em>, </td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>fn0</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>f1</em>&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>fn1</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -115,52 +154,23 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a401e17a0e8917bfd86089575d9e37064"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a401e17a0e8917bfd86089575d9e37064">&#9670;&nbsp;</a></span>fileComp()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string FileCompare::fileComp </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>f0</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>f1</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fn0</td><td>filename of a file to compare </td></tr>
+    <tr><td class="paramname">fn1</td><td>filename of file to compare against </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>string with differences &lt;line&gt;: &lt;fn0 line&gt; &lt;fn1 line&gt; </dd></dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/hdaniel/Dropbox/01-Apps/Mooshak/tools/C/MooshakTools/examples/<a class="el" href="cmp_8cpp.html">cmp.cpp</a></li>
+<li>/home/hdaniel/Dropbox/01-Apps/Mooshak/tools/C/MooshakTools/src/<a class="el" href="FileCompare_8hpp_source.html">FileCompare.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

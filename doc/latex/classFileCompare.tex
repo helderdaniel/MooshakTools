@@ -1,45 +1,56 @@
 \hypertarget{classFileCompare}{}\doxysection{File\+Compare Class Reference}
 \label{classFileCompare}\index{FileCompare@{FileCompare}}
-\doxysubsection*{Public Member Functions}
+
+
+{\ttfamily \#include $<$File\+Compare.\+hpp$>$}
+
+\doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classFileCompare_afb161ce486e6b9b1a17d29e058be4aad}{File\+Compare}} (int f0, int f1)
+static bool \mbox{\hyperlink{classFileCompare_a24f18f604960349b06388bd5e58243de}{binary}} (const char $\ast$fn0, const char $\ast$fn1)
 \item 
-string \mbox{\hyperlink{classFileCompare_a401e17a0e8917bfd86089575d9e37064}{file\+Comp}} (int f0, int f1)
+static std\+::string \mbox{\hyperlink{classFileCompare_aa8cd55790e268ad2aedb7aa18acbf6ee}{text}} (const char $\ast$fn0, const char $\ast$fn1)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
+Compare files \href{mailto:hdaniel@ualg.pt}{\texttt{ hdaniel@ualg.\+pt}} may 2020 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classFileCompare_a24f18f604960349b06388bd5e58243de}\label{classFileCompare_a24f18f604960349b06388bd5e58243de}} 
+\index{FileCompare@{FileCompare}!binary@{binary}}
+\index{binary@{binary}!FileCompare@{FileCompare}}
+\doxysubsubsection{\texorpdfstring{binary()}{binary()}}
+{\footnotesize\ttfamily static bool File\+Compare\+::binary (\begin{DoxyParamCaption}\item[{const char $\ast$}]{fn0,  }\item[{const char $\ast$}]{fn1 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
 
 \begin{DoxyParams}{Parameters}
-{\em f0} & first file to compare descriptor P\+RE\+: f0 $>$ 0 \\
+{\em fn0} & filename of a file to compare \\
 \hline
-{\em f1} & \\
+{\em fn1} & filename of file to compare against \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Compares two files 
+true if files are equal 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classFileCompare_aa8cd55790e268ad2aedb7aa18acbf6ee}\label{classFileCompare_aa8cd55790e268ad2aedb7aa18acbf6ee}} 
+\index{FileCompare@{FileCompare}!text@{text}}
+\index{text@{text}!FileCompare@{FileCompare}}
+\doxysubsubsection{\texorpdfstring{text()}{text()}}
+{\footnotesize\ttfamily static std\+::string File\+Compare\+::text (\begin{DoxyParamCaption}\item[{const char $\ast$}]{fn0,  }\item[{const char $\ast$}]{fn1 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
-\doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classFileCompare_afb161ce486e6b9b1a17d29e058be4aad}\label{classFileCompare_afb161ce486e6b9b1a17d29e058be4aad}} 
-\index{FileCompare@{FileCompare}!FileCompare@{FileCompare}}
-\index{FileCompare@{FileCompare}!FileCompare@{FileCompare}}
-\doxysubsubsection{\texorpdfstring{FileCompare()}{FileCompare()}}
-{\footnotesize\ttfamily File\+Compare\+::\+File\+Compare (\begin{DoxyParamCaption}\item[{int}]{f0,  }\item[{int}]{f1 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-\doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classFileCompare_a401e17a0e8917bfd86089575d9e37064}\label{classFileCompare_a401e17a0e8917bfd86089575d9e37064}} 
-\index{FileCompare@{FileCompare}!fileComp@{fileComp}}
-\index{fileComp@{fileComp}!FileCompare@{FileCompare}}
-\doxysubsubsection{\texorpdfstring{fileComp()}{fileComp()}}
-{\footnotesize\ttfamily string File\+Compare\+::file\+Comp (\begin{DoxyParamCaption}\item[{int}]{f0,  }\item[{int}]{f1 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
+\begin{DoxyParams}{Parameters}
+{\em fn0} & filename of a file to compare \\
+\hline
+{\em fn1} & filename of file to compare against \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string with differences $<$line$>$\+: $<$fn0 line$>$ $<$fn1 line$>$ 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-/home/hdaniel/\+Dropbox/01-\/\+Apps/\+Mooshak/tools/\+C/\+Mooshak\+Tools/examples/\mbox{\hyperlink{cmp_8cpp}{cmp.\+cpp}}\end{DoxyCompactItemize}
+/home/hdaniel/\+Dropbox/01-\/\+Apps/\+Mooshak/tools/\+C/\+Mooshak\+Tools/src/\mbox{\hyperlink{FileCompare_8hpp}{File\+Compare.\+hpp}}\end{DoxyCompactItemize}

@@ -13,7 +13,7 @@ set(DOC "doc")
 set(CMAKE_CXX_STANDARD 20)
 #set(CMAKE_C_COMPILER /usr/bin/gcc-7)
 #set(CMAKE_C_COMPILER /usr/bin/clang-7)
-set(CMAKE_CXX_COMPILER:FILEPATH /usr/bin/g++-8)
+#set(CMAKE_CXX_COMPILER:FILEPATH /usr/bin/g++-9)
 #set(CMAKE_CXX_COMPILER /usr/bin/clang++-7)  #clang++-8 NOT available in ubuntu 15 apr 2019
 
 #set(GCC_EXTRA_COMPILE_FLAGS "-Ofast -fopenmp")
@@ -53,14 +53,18 @@ set(TARGET "main")
 add_executable(${TARGET} ${EXAMPLES}/${TARGET}.cpp)
 #target_link_libraries(${TARGET})
 
-set(TARGET "cmp")
-add_executable(${TARGET} ${EXAMPLES}/${TARGET}.cpp)
 
 #Unit tests
-set(UNITTEST "tests")
-add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
-target_link_libraries(${UNITTEST} Catch2)
+set(UNITTEST0 "testEval")
+add_executable(${UNITTEST0} ${TEST}/${UNITTEST0}.cpp)
+target_link_libraries(${UNITTEST0} Catch2)
 
+set(UNITTEST1 "testFC")
+add_executable(${UNITTEST1} ${TEST}/${UNITTEST1}.cpp)
+target_link_libraries(${UNITTEST1} Catch2)
+
+add_test(NAME t0 COMMAND UNITTEST0)
+add_test(NAME t1 COMMAND UNITTEST1)
 
 #Doxygen
 #https://vicrucann.github.io/tutorials/quick-cmake-doxygen/

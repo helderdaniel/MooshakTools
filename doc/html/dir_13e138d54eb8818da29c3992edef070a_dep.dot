@@ -2,7 +2,11 @@ digraph "/home/hdaniel/Dropbox/01-Apps/Mooshak/tools/C/MooshakTools/test" {
   compound=true
   node [ fontsize="10", fontname="Helvetica"];
   edge [ labelfontsize="10", labelfontname="Helvetica"];
-  dir_13e138d54eb8818da29c3992edef070a [shape=box, label="test", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_13e138d54eb8818da29c3992edef070a.html"];
+  subgraph clusterdir_13e138d54eb8818da29c3992edef070a {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_13e138d54eb8818da29c3992edef070a.html"];
+    dir_13e138d54eb8818da29c3992edef070a [shape=plaintext label="test"];
+    dir_fd5c207eccd4d0b6e1184b6e68627397 [shape=box label="samples" color="red" fillcolor="white" style="filled" URL="dir_fd5c207eccd4d0b6e1184b6e68627397.html"];
+  }
   dir_68267d1309a1af8e8297ef4c3efbcdba [shape=box label="src" URL="dir_68267d1309a1af8e8297ef4c3efbcdba.html"];
-  dir_13e138d54eb8818da29c3992edef070a->dir_68267d1309a1af8e8297ef4c3efbcdba [headlabel="1", labeldistance=1.5 headhref="dir_000002_000001.html"];
+  dir_13e138d54eb8818da29c3992edef070a->dir_68267d1309a1af8e8297ef4c3efbcdba [headlabel="2", labeldistance=1.5 headhref="dir_000002_000001.html"];
 }
