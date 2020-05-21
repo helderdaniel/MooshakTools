@@ -5,22 +5,45 @@
 #include "../src/File.hpp"
 #include <cstring>
 
+std::string searchPathToString(const char *dir, const char *regex) {
+	std::vector<fs::path> v;
+	std::string ret = "";
+
+	v = File::search(dir, regex);
+	sort(v.begin(), v.end());
+	for (const auto& p : v) {
+		ret += p;
+		ret += '\n';
+	}
+	return ret;
+}
+
 TEST_CASE( "Search" "[File]" ) {
 	std::vector<fs::path> fv0;
 	std::string s = "";
-	std::string exp = "../test/samples/files/file0.txt\n"
+	std::string exp0 = "";
+	std::string expA = "../test/samples/files/file0.txt\n"
 				      "../test/samples/files/file1.txt\n"
-		  			  "../test/samples/files/inner/file0.txt\n"
 		 			  "../test/samples/files/file2.txt\n"
 					  "../test/samples/files/file2n.txt\n";
+	std::string expB = "../test/samples/files/inner/file0.txt\n";
+	std::string exp1 = expA + expB;
 
-	fv0 = File::search("../test/samples/files", "file[0-2](.*)");
-	for (const auto& p : fv0) {
-		s += p;
-		s += '\n';
-	}
+	std::string exp2 = expA +
+					   "../test/samples/files/file3.txt\n"
+					   "../test/samples/files/file3e.txt\n"
+					   "../test/samples/files/file3n.txt\n"
+					   "../test/samples/files/file4.txt\n"
+					   + expB;
 
-	REQUIRE(exp == s);
+	s=searchPathToString("../test/samples/files", "");
+	REQUIRE(exp0 == s);
+
+	s=searchPathToString("../test/samples/files", "file[0-2](.*)");
+	REQUIRE(exp1 == s);
+
+	s=searchPathToString("../test/samples/files", "(.*)txt");
+	REQUIRE(exp2 == s);
 }
 
 TEST_CASE( "Compare" "[File]" ) {
