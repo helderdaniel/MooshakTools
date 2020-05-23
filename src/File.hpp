@@ -94,7 +94,12 @@ public:
 	/**
 	 * @param  fn0 filename of a file to compare
 	 * @param  fn1 filename of file to compare against
-	 * @return true if files fn0 and fn1 are equal
+	 * @return if files equal return empty string ""
+	 * 		   if NOT returns a string with both files preceded by tags:
+	 * 				Expected:
+	 * 				<fn0>
+	 * 				Actual:
+	 * 				<fn0>
 	 */
 	static std::string test(const std::string& expected, const std::string& actual) {
 		std::array<char, bufsize> buffer;
