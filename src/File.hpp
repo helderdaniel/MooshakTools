@@ -24,44 +24,143 @@ class File {
 	 *
 	 * @param fname name of file NOT found
 	 */
-	static void fileNotFound(std::string fname) {
+	static void fileNotFound(const std::string& fname) {
 		throw std::invalid_argument(fname + "Not found");
 	}
+
+	/**
+	 *
+	 * @param fn0 filename of a file to open
+ 	 * @param fn1 filename of another file to open
+	 * @param sf0 first opened file descriptor
+	 * @param sf1 second opened file descriptor
+	 */
+	static void openFiles(const std::string& fn0, const std::string& fn1, FILE* & sf0, FILE* & sf1) {
+		sf0 = fopen(fn0.c_str(), "r");
+		if (!sf0) fileNotFound(fn0);
+
+		sf1 = fopen(fn1.c_str(), "r");
+		if (!sf1) fileNotFound(fn0);
+	}
+
+	/**
+	 *
+	 * @param sf0 first opened file descriptor
+	 * @param sf1 second opened file descriptor
+	 */
+	static void closeFiles(FILE* sf0, FILE* sf1) {
+		fclose(sf0);
+		fclose(sf1);
+	}
+
+	/**
+	 * @param  sf0 a file descriptor
+  	 * @param  sf1 another file descriptor
+ 	 * @return true if both file sizes are equal
+ 	 */
+	static bool _cmpsize(FILE* sf0, FILE* sf1) {
+
+		//get fn0 size
+		fseek(sf0, 0L, SEEK_END);
+		long long sz0 = ftell(sf0);
+		fseek(sf0, 0L, SEEK_SET);
+
+		//get fn0 size
+		fseek(sf1, 0L, SEEK_END);
+		long long sz1 = ftell(sf1);
+		fseek(sf1, 0L, SEEK_SET);
+
+		return sz0==sz1;
+	}
+
 
 public:
 
 	/**
+	 * @param  fn0 filename of a file
+ 	 * @param  fn1 filename of another file to compare against
+	 * @return true if both file sizes are equal
+	 */
+	static bool cmpsize(const std::string& fn0, const std::string& fn1) {
+		FILE *sf0, *sf1;
+
+		openFiles(fn0, fn1, sf0, sf1);
+		bool ret = _cmpsize(sf0, sf1);
+		closeFiles(sf0, sf1);
+		return ret;
+	}
+
+
+	/**
 	 * @param  fn0 filename of a file to compare
 	 * @param  fn1 filename of file to compare against
-	 * @return true if files are equal
+	 * @return true if files fn0 and fn1 are equal
 	 */
-	static bool cmpbin(const char *fn0, const char *fn1) {
-		char buf0[bufsize];
-		char buf1[bufsize];
+	static std::string test(const std::string& expected, const std::string& actual) {
+		std::array<char, bufsize> buffer;
+		std::string ret = "";
+		size_t count;
+		FILE *sfexp, *sfactual;
+
+		openFiles(expected, actual, sfexp, sfactual);
+
+		//if size differs return both files
+		if (!_cmpsize(sfexp, sfactual)) {
+			ret += "Expected:\n";
+			do {
+				count = fread(buffer.data(), 1, bufsize, sfexp);
+				ret.insert(ret.end(), std::begin(buffer), std::next(std::begin(buffer), count));
+			} while (count>0);
+
+			ret += "Actual:\n";
+			do {
+				count = fread(buffer.data(), 1, bufsize, sfactual);
+				ret.insert(ret.end(), std::begin(buffer), std::next(std::begin(buffer), count));
+			} while (count>0);
+		}
+
+		closeFiles(sfexp, sfactual);
+		return ret;
+	}
+
+
+
+	/**
+	 * @param  fn0 filename of a file to compare
+	 * @param  fn1 filename of file to compare against
+	 * @return true if files fn0 and fn1 are equal
+	 */
+	static bool cmpbin(const std::string& fn0, const std::string& fn1) {
+		std::array<char, bufsize> buf0;
+		std::array<char, bufsize> buf1;
 		bool ret = true;
-		int lf0, lf1;
+		size_t count0, count1;
+		FILE *sf0, *sf1;
 
-		int f0 = open(fn0, O_RDONLY);
-		if (f0 < 0) fileNotFound(fn0);
+		openFiles(fn0, fn1, sf0, sf1);
 
-		int f1 = open(fn1, O_RDONLY);
-		if (f1 < 0) fileNotFound(fn1);
+		//false if size differs
+		if (!_cmpsize(sf0, sf1)) return false;
 
+		//files are same size if reaches here
 		do {
-			lf0 = read(f0, buf0, bufsize);
-			lf1 = read(f1, buf1, bufsize);
+			count0 = fread(buf0.data(), 1, bufsize, sf0);
+			count1 = fread(buf1.data(), 1, bufsize, sf1);
 
-			if (lf0 != lf1)
-				{ ret = false; break; }
+			//Something wrong when reading
+			//since files have same size here
+			if (count0!=count1) throw std::runtime_error("fread() error: " + std::to_string(errno));
 
-			for (int i=0; i < lf0; i++)
-				if (buf0[i] != buf1[i])
-					{ ret = false; break; }
+			for (int i=0; i < count0; i++)
+				if (buf0[i] != buf1[i])	{
+					ret = false;
+					break;
+				}
 
-		} while (lf0>0);
+		} while (count0>0);
 
-		close(f0);
-		close(f1);
+
+		closeFiles(sf0, sf1);
 		return ret;
 	}
 
@@ -70,79 +169,46 @@ public:
 	 *
 	 * @param fn0 filename of a file to compare
 	 * @param fn1 filename of file to compare against
-	 * @return string with differences
+	 * @return string with differences in both files:
 	 * 				<line>:
 	 * 				<fn0 line>
 	 * 				<fn1 line>
 	 */
-	static std::string cmptext(const char *fn0, const char *fn1) {
-		char buf0[maxLinesize];
-		char buf1[maxLinesize];
-		std::string ret ="";
+	static std::string cmptext(const std::string& fn0, const std::string& fn1) {
+		std::array<char, maxLinesize> buf0;
+		std::array<char, maxLinesize> buf1;
+		std::string ret = "";
 		int line = 0;
+		char *str0, *str1;
+		FILE *sf0, *sf1;
 
-		FILE *sf0 = fopen(fn0, "r");
-		if (!sf0) fileNotFound(fn0);
-
-		FILE *sf1 = fopen(fn1, "r");
-		if (!sf1) fileNotFound(fn0);
-
-		char *lf0, *lf1;
-		/* OLD implementation:
-		do {
-			lf0 = fgets(buf0, maxLinesize, sf0);
-			lf1 = fgets(buf1, maxLinesize, sf1);
-
-			//default false (if one is NULL is false)
-			int equal=0;
-
-			//General case (both NOT null)
-			if (lf0 && lf1) equal = !strcmp(lf0, lf1);
-
-			//both null (empty files are equal)
-			if (!lf0 && !lf1) equal = 1;
-
-			//if different
-			if (!equal) {
-				char head[10];
-				sprintf(head, "%d:\n", line);
-				ret += head;
-				if (lf0 != NULL) ret += buf0;
-				if (lf1 != NULL) ret += buf1;
-			}
-
-			++line;
-
-		} while (lf0 || lf1);  //while one is not null
-		*/
-
+		openFiles(fn0, fn1, sf0, sf1);
 		for(;;) {
-			lf0 = fgets(buf0, maxLinesize, sf0);
-			lf1 = fgets(buf1, maxLinesize, sf1);
+			str0 = fgets(buf0.data(), maxLinesize, sf0);
+			str1 = fgets(buf1.data(), maxLinesize, sf1);
 
 			//both NULL end (empty files are equal)
-			if (!lf0 && !lf1) break;
+			if (!str0 && !str1) break;
 
 			//default false (if one is null)
 			int equal=0;
 
 			//General case (both NOT null)
-			if (lf0 && lf1) equal = !strcmp(lf0, lf1);
+			if (str0 && str1) equal = !strcmp(str0, str1);
 
 			//if different
 			if (!equal) {
 				char head[10];
 				sprintf(head, "%d:\n", line);
 				ret += head;
-				if (lf0 != NULL) ret += buf0;
-				if (lf1 != NULL) ret += buf1;
+				if (str0 != NULL) ret += buf0.data();
+				if (str1 != NULL) ret += buf1.data();
 			}
 
 			++line;
 		}
 
-		fclose(sf0);
-		fclose(sf1);
+		closeFiles(sf0, sf1);
 		return ret;
 	}
 
@@ -151,9 +217,9 @@ public:
 	 *
 	 * @param dir    root dir to search
 	 * @param regex  filename regex
-	 * @return vector of pth that mathces regex form directory dir
+	 * @return vector of paths that matches regex, form root directory dir
 	 */
-	static std::vector<fs::path> search(const char *dir, const char *regex) {
+	static std::vector<fs::path> search(const std::string& dir, const std::string& regex) {
 		std::vector<fs::path> v;
 
 		for(auto& p: fs::recursive_directory_iterator(dir)) {
@@ -163,6 +229,7 @@ public:
 		}
 		return v;
 	}
+
 };
 
 

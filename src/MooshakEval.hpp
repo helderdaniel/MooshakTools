@@ -6,6 +6,8 @@
 #ifndef MOOSHAKTOOLS_MOOSHAKEVAL_H
 #define MOOSHAKTOOLS_MOOSHAKEVAL_H
 
+#include <array>
+
 using namespace std;
 
 /**
@@ -36,8 +38,8 @@ public:
 	 * @param outputFn 		path to output file name
 	 *
 	 */
-	MooshakEval(const string &executePath, const string &inputFn=DFLTINPUTFN,
-				const string &outputFn=DFLTOUTPUTFN) : 	inputFN(inputFn),
+	MooshakEval(const std::string& executePath, const string& inputFn=DFLTINPUTFN,
+				const string& outputFn=DFLTOUTPUTFN) : 	inputFN(inputFn),
 			    										outputFN(outputFn),
 														executePath(executePath) {}
 	/**
@@ -46,7 +48,8 @@ public:
 	 * @return
 	 */
 	string run() const {
-		string ret = "";
+
+		std::string ret = "";
 
 		string c = cmd();
 
@@ -61,8 +64,9 @@ public:
 	 * diff: (<executable> < <input filename> , <output filename>)
 	 *
 	 * @param os 	output stream
-	 * @pre			os && meval
 	 * @param meval MooshakEval object
+	 * @pre			os
+	 *
 	 * @return 		os stream with evaluation expression inserted
 	 */
 	friend ostream& operator<<(ostream& os, const MooshakEval& meval);

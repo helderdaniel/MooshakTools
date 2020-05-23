@@ -63,8 +63,13 @@ set(UNITTEST1 "testFile")
 add_executable(${UNITTEST1} ${TEST}/${UNITTEST1}.cpp)
 target_link_libraries(${UNITTEST1} Catch2)
 
+set(UNITTEST2 "testShell")
+add_executable(${UNITTEST2} ${TEST}/${UNITTEST2}.cpp)
+target_link_libraries(${UNITTEST2} Catch2)
+
 add_test(NAME t0 COMMAND UNITTEST0)
 add_test(NAME t1 COMMAND UNITTEST1)
+add_test(NAME t2 COMMAND UNITTEST2)
 
 #Doxygen
 #https://vicrucann.github.io/tutorials/quick-cmake-doxygen/

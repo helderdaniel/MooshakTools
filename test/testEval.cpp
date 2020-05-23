@@ -8,20 +8,22 @@
 
 
 TEST_CASE( "Mooshak Evaluation", "[MooshakEval]" ) {
-	MooshakEval e0("run.sh");
-	MooshakEval e1("run.sh", "inputf", "outputf");
+	const int cases = 2;
+	const MooshakEval e[] =
+			{ MooshakEval("run.sh"),
+			  MooshakEval("run.sh", "inputf", "outputf") };
 
-	string se0 = "diff: (run.sh < input , output)";
-	string se1 = "diff: (run.sh < inputf , outputf)";
+	const std::string se[] =
+			{ "diff: (run.sh < input , output)",
+		      "diff: (run.sh < inputf , outputf)" };
 
+	stringstream out;
 
 	SECTION("Constructor") {
-		stringstream out;
-		out << e0;
-		REQUIRE(out.str() == se0);
-
-		out.str("");
-		out << e1;
-		REQUIRE(out.str() == se1);
+		for (int i = 0; i < cases; ++i) {
+			out.str("");
+			out << e[i];
+			REQUIRE(out.str() == se[i]);
+		}
 	}
 }
