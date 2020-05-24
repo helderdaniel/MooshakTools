@@ -11,6 +11,8 @@
 #include <cstring>
 #include <filesystem>
 #include <regex>
+#include <istream>
+#include <fstream>
 
 namespace fs = std::filesystem;
 
@@ -25,8 +27,9 @@ class File {
 	 * @param fname name of file NOT found
 	 */
 	static void fileNotFound(const std::string& fname) {
-		throw std::invalid_argument(fname + "Not found");
+		throw std::invalid_argument(fname + " not found");
 	}
+
 
 	/**
 	 *
@@ -40,109 +43,83 @@ class File {
 		if (!sf0) fileNotFound(fn0);
 
 		sf1 = fopen(fn1.c_str(), "r");
-		if (!sf1) fileNotFound(fn0);
+		if (!sf1) fileNotFound(fn1);
 	}
+
 
 	/**
 	 *
 	 * @param sf0 first opened file descriptor
 	 * @param sf1 second opened file descriptor
 	 */
-	static void closeFiles(FILE* sf0, FILE* sf1) {
+	static void closeFiles(FILE* const sf0, FILE* const sf1) {
 		fclose(sf0);
 		fclose(sf1);
 	}
+
+
+	/**
+	 *
+	 * @param sf0 first opened file descriptor
+	 * @param sf1 second opened file descriptor
+	 */
+	static void rwdFiles(FILE* const sf0, FILE* const sf1) {
+		fseek(sf0, 0L, SEEK_SET);
+		fseek(sf1, 0L, SEEK_SET);
+	}
+
+
+	/**
+	 *
+	 * @param sf file to read
+	 * @return the contents of sf as a string
+	 */
+	static std::string _read(FILE* const sf) {
+		std::array<char, bufsize> buffer;
+		int count;
+		std::string ret;
+
+		do {
+			count = fread(buffer.data(), 1, bufsize, sf);
+			ret.insert(ret.end(), std::begin(buffer), std::next(std::begin(buffer), count));
+		} while (count>0);
+
+		return ret;
+	}
+
 
 	/**
 	 * @param  sf0 a file descriptor
   	 * @param  sf1 another file descriptor
  	 * @return true if both file sizes are equal
  	 */
-	static bool _cmpsize(FILE* sf0, FILE* sf1) {
+	static bool _cmpsize(FILE* const sf0, FILE* const sf1) {
 
 		//get fn0 size
 		fseek(sf0, 0L, SEEK_END);
 		long long sz0 = ftell(sf0);
-		fseek(sf0, 0L, SEEK_SET);
 
 		//get fn0 size
 		fseek(sf1, 0L, SEEK_END);
 		long long sz1 = ftell(sf1);
-		fseek(sf1, 0L, SEEK_SET);
+
+		//rewind files
+		rwdFiles(sf0, sf1);
 
 		return sz0==sz1;
 	}
 
 
-public:
-
 	/**
-	 * @param  fn0 filename of a file
- 	 * @param  fn1 filename of another file to compare against
-	 * @return true if both file sizes are equal
+	 * @param  sf0 a file descriptor
+  	 * @param  sf1 another file descriptor
+ 	 * @return true if files sf0 and sf1 reference files with equal contents
 	 */
-	static bool cmpsize(const std::string& fn0, const std::string& fn1) {
-		FILE *sf0, *sf1;
-
-		openFiles(fn0, fn1, sf0, sf1);
-		bool ret = _cmpsize(sf0, sf1);
-		closeFiles(sf0, sf1);
-		return ret;
-	}
-
-
-	/**
-	 * @param  fn0 filename of a file to compare
-	 * @param  fn1 filename of file to compare against
-	 * @return if files equal return empty string ""
-	 * 		   if NOT returns a string with both files preceded by tags:
-	 * 				Expected:
-	 * 				<fn0>
-	 * 				Actual:
-	 * 				<fn0>
-	 */
-	static std::string test(const std::string& expected, const std::string& actual) {
-		std::array<char, bufsize> buffer;
-		std::string ret = "";
-		size_t count;
-		FILE *sfexp, *sfactual;
-
-		openFiles(expected, actual, sfexp, sfactual);
-
-		//if size differs return both files
-		if (!_cmpsize(sfexp, sfactual)) {
-			ret += "Expected:\n";
-			do {
-				count = fread(buffer.data(), 1, bufsize, sfexp);
-				ret.insert(ret.end(), std::begin(buffer), std::next(std::begin(buffer), count));
-			} while (count>0);
-
-			ret += "Actual:\n";
-			do {
-				count = fread(buffer.data(), 1, bufsize, sfactual);
-				ret.insert(ret.end(), std::begin(buffer), std::next(std::begin(buffer), count));
-			} while (count>0);
-		}
-
-		closeFiles(sfexp, sfactual);
-		return ret;
-	}
-
-
-
-	/**
-	 * @param  fn0 filename of a file to compare
-	 * @param  fn1 filename of file to compare against
-	 * @return true if files fn0 and fn1 are equal
-	 */
-	static bool cmpbin(const std::string& fn0, const std::string& fn1) {
+	static bool _cmpbin(FILE* const sf0, FILE* const sf1) {
 		std::array<char, bufsize> buf0;
 		std::array<char, bufsize> buf1;
 		bool ret = true;
 		size_t count0, count1;
-		FILE *sf0, *sf1;
-
-		openFiles(fn0, fn1, sf0, sf1);
 
 		//false if size differs
 		if (!_cmpsize(sf0, sf1)) return false;
@@ -164,7 +141,125 @@ public:
 
 		} while (count0>0);
 
+		return ret;
+	}
 
+	/**
+	 * @param  sf0 a stream
+  	 * @param  sf1 is another stream to compare against
+ 	 * @return true if streams sf0 and sf1 have equal contents
+	 */
+	static bool _cmpbin(std::istream sf0, std::istream sf1) {
+		std::array<char, bufsize> buf0;
+		std::array<char, bufsize> buf1;
+		bool ret = true;
+
+		std::streamsize count0, count1;
+
+		//can not get length of all stream types
+		//must always compare
+		do {
+			sf0.read(buf0.data(), bufsize);
+			count0 = sf0.gcount();
+			sf1.read(buf1.data(), bufsize);
+			count1 = sf1.gcount();
+
+			//streams have different length
+			if (count0!=count1) { ret = false; break; }
+
+			//compare stream contents
+			for (int i=0; i < count0; i++)
+				if (buf0[i] != buf1[i])	{ ret = false; break; }
+
+		} while (count0>0);
+
+		return ret;
+	}
+
+
+	/**
+	 * @param expected 	a stream
+	 * @param actual 	another stream to compare against
+	 * @return if stream contents are equal returns empty string ""
+	 * 		   if NOT returns a string with both streams' contents, preceded by tags:
+	 * 				Expected:
+	 * 				<fn0>
+	 * 				Actual:
+	 * 				<fn0>
+	 */
+	static std::string _test(std::istream& expected, std::istream& actual) {
+		std::string sexp = File::read(expected);
+		std::string sact = File::read(actual);
+		std::string ret;
+
+		//if strings differ
+		if (sexp != sact)
+			ret = "Expected:\n" + sexp + "Actual:\n" + sact;
+		return ret;
+	}
+
+
+public:
+	/**
+	 *
+	 * @param fn filename of file to read
+	 * @return the contents of fn as a string
+	 */
+	static std::string read(const std::string& fn) {
+		FILE* const sf = fopen(fn.c_str(), "r");
+		return _read(sf);
+	}
+
+
+	/**
+	 *
+	 * @param sf stream to read
+	 * @return the contents of sf as a string
+	 */
+	static std::string read(std::istream& sf) {
+		return { std::istreambuf_iterator<char>(sf), std::istreambuf_iterator<char>() };
+		//low level way
+		/*
+		std::array<char, bufsize> buffer;
+		std::streamsize count;
+		std::string ret;
+		do {
+			sf.read(buffer.data(), bufsize);
+			count = sf.gcount();
+			ret.insert(ret.end(), std::begin(buffer), std::next(std::begin(buffer), count));
+		} while (count>0);
+
+		return ret;
+		*/
+
+	}
+
+
+	/**
+	 * @param  fn0 filename of a file
+	 * @param  fn1 filename of another file to compare against
+	 * @return true if both file sizes are equal
+	 */
+	static bool cmpsize(const std::string& fn0, const std::string& fn1) {
+		FILE * sf0, *sf1;
+
+		openFiles(fn0, fn1, sf0, sf1);
+		bool ret = _cmpsize(sf0, sf1);
+		closeFiles(sf0, sf1);
+		return ret;
+	}
+
+
+	/**
+	 * @param  fn0 filename of a file to compare
+	 * @param  fn1 filename of file to compare against
+	 * @return true if files fn0 and fn1 are equal
+	 */
+	static bool cmpbin(const std::string& fn0, const std::string& fn1) {
+		FILE *sf0, *sf1;
+
+		openFiles(fn0, fn1, sf0, sf1);
+		bool ret = _cmpbin(sf0, sf1);
 		closeFiles(sf0, sf1);
 		return ret;
 	}
@@ -182,7 +277,7 @@ public:
 	static std::string cmptext(const std::string& fn0, const std::string& fn1) {
 		std::array<char, maxLinesize> buf0;
 		std::array<char, maxLinesize> buf1;
-		std::string ret = "";
+		std::string ret;
 		int line = 0;
 		char *str0, *str1;
 		FILE *sf0, *sf1;
@@ -215,6 +310,63 @@ public:
 
 		closeFiles(sf0, sf1);
 		return ret;
+	}
+
+
+	/*
+	static std::string test(const std::string& expected, const std::string& actual) {
+		std::string ret;
+		FILE *sfexp, *sfact;
+
+		openFiles(expected, actual, sfexp, sfact);
+
+		//if size differs return both files
+		if (!_cmpbin(sfexp, sfact)) {
+			//rewind files
+			rwdFiles(sfexp, sfact);
+
+			ret += "Expected:\n";
+			ret += _read(sfexp);
+			ret += "Actual:\n";
+			ret += _read(sfact);
+		}
+
+		closeFiles(sfexp, sfact);
+		return ret;
+	}
+	*/
+
+	/**
+	 * @param expected filename of a file to compare
+	 * @param actual   filename of file to compare against
+	 * @return if files equal returns empty string ""
+	 * 		   if NOT returns a string with both files preceded by tags:
+	 * 				Expected:
+	 * 				<fn0>
+	 * 				Actual:
+	 * 				<fn0>
+	 */
+	static std::string test(const std::string& expected, const std::string& actual) {
+		std::ifstream exp (expected, std::ifstream::binary);
+		std::ifstream act (actual,std::ofstream::binary);
+		return _test(exp, act);
+	}
+
+
+	/**
+	 * @param expected 	a filename
+	 * @param actual 	a string
+	 * @return if contents of filename are equal to string actual returns empty string ""
+	 * 		   if NOT returns a string with file and string contents, preceded by tags:
+	 * 				Expected:
+	 * 				<fn0>
+	 * 				Actual:
+	 * 				<fn0>
+	 */
+	static std::string teststr(const std::string& expected, const std::string& actual) {
+		std::ifstream exp (expected, std::ifstream::binary);
+		std::stringstream act (actual);
+		return _test(exp, act);
 	}
 
 

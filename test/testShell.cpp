@@ -20,6 +20,7 @@ TEST_CASE( "Shell utilities", "[Shell]" ) {
 				"file2n.txt\n"
 				"file2.txt\n"
 				"file3e.txt\n"
+				"file3nes.txt\n"
 				"file3n.txt\n"
 				"file3.txt\n"
 				"file4.txt\n"

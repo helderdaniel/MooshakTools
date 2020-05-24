@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.2)
 #project(MooshakTools)
 
 set(SRC "src")
-set(EXAMPLES "examples")
+set(APPS "apps")
 set(TEST "test")
 set(BIN "bin")
 set(DOC "doc")
@@ -49,10 +49,9 @@ add_library(Catch2 ${CATCH2LIBSRC})
 #target_link_libraries(Catch2)
 
 #targets
-set(TARGET "main")
-add_executable(${TARGET} ${EXAMPLES}/${TARGET}.cpp)
+set(TARGET "evaluate")
+add_executable(${TARGET} ${APPS}/${TARGET}.cpp)
 #target_link_libraries(${TARGET})
-
 
 #Unit tests
 set(UNITTEST0 "testEval")
@@ -65,7 +64,7 @@ target_link_libraries(${UNITTEST1} Catch2)
 
 set(UNITTEST2 "testShell")
 add_executable(${UNITTEST2} ${TEST}/${UNITTEST2}.cpp)
-target_link_libraries(${UNITTEST2} Catch2)
+target_link_libraries(${UNITTEST2} bin/libCatch2.a) #Catch2)
 
 add_test(NAME t0 COMMAND UNITTEST0)
 add_test(NAME t1 COMMAND UNITTEST1)
@@ -101,4 +100,4 @@ else (DOXYGEN_FOUND)
     message("Doxygen need to be installed to generate the doxygen documentation")
 endif (DOXYGEN_FOUND)
 
-#add_executable(doc ${EXAMPLES}/main.cpp)
+

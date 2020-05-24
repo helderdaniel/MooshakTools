@@ -35,7 +35,7 @@ public:
 		size_t count;
 		do {
 			if ((count = fread(buffer.data(), 1, bufsize, pipe)) > 0) {
-				output.insert(output.end(), std::begin(buffer), std::next(std::begin(buffer), count-1));
+				output.insert(output.end(), std::begin(buffer), std::next(std::begin(buffer), count));
 			}
 		} while(count > 0);
 

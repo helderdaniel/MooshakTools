@@ -5,10 +5,21 @@
 #include "../src/File.hpp"
 
 const std::string path   = "../test/samples/files/";
+const std::string file0    = path + "file0.txt";
+const std::string file1    = path + "file1.txt";
+const std::string file2    = path + "file2.txt";
+const std::string file2n   = path + "file2n.txt";
+const std::string file3    = path + "file3.txt";
+const std::string file3e   = path + "file3e.txt";
+const std::string file3n   = path + "file3n.txt";
+const std::string file3nes = path + "file3nes.txt";
+const std::string file4    = path + "file4.txt";
+const std::string fileNE   = "__NotExist__";
+const std::string fileNull;
 
 std::string searchPathToString(const std::string& dir, const std::string& regex) {
 	std::vector<fs::path> v;
-	std::string ret = "";
+	std::string ret;
 
 	v = File::search(dir, regex);
 	sort(v.begin(), v.end());
@@ -18,6 +29,20 @@ std::string searchPathToString(const std::string& dir, const std::string& regex)
 	}
 	return ret;
 }
+
+
+TEST_CASE( "Read" "[File]" ) {
+	const std::string s3 =
+					"one\n"
+					"two\n"
+					"three\n";
+
+	REQUIRE(File::read(file3) == s3);
+
+	std::ifstream sf (file3);
+	REQUIRE(File::read(sf) == s3);
+}
+
 
 TEST_CASE( "Search" "[File]" ) {
 	const std::string expA =
@@ -36,6 +61,7 @@ TEST_CASE( "Search" "[File]" ) {
 					   	"../test/samples/files/file3.txt\n"
 					   	"../test/samples/files/file3e.txt\n"
 					   	"../test/samples/files/file3n.txt\n"
+		 				"../test/samples/files/file3nes.txt\n"
 					   	"../test/samples/files/file4.txt\n"
 					   	+ expB };
 
@@ -52,69 +78,53 @@ TEST_CASE( "Search" "[File]" ) {
 
 
 TEST_CASE( "Compare" "[File]" ) {
-	const std::string file0  = path + "file0.txt";
-	const std::string file1  = path + "file1.txt";
-	const std::string file2  = path + "file2.txt";
-	const std::string file2n = path + "file2n.txt";
-	const std::string file3  = path + "file3.txt";
-	const std::string file3e = path + "file3e.txt";
-	const std::string file3n = path + "file3n.txt";
-	const std::string file4  = path + "file4.txt";
-	const std::string fileNE = "__NotExist__";
-	const std::string fileNull = "";
 
 	SECTION("Not found") {
 		REQUIRE_THROWS_AS(
 				File::cmpbin(fileNull, file0),
 				std::invalid_argument);
+		REQUIRE_THROWS_WITH(File::cmpbin(fileNull, file0), " not found");
+
 		REQUIRE_THROWS_AS(
 				File::cmpbin(file0, fileNull),
 				std::invalid_argument);
+		REQUIRE_THROWS_WITH(File::cmpbin(file0, fileNull), " not found");
+
 		REQUIRE_THROWS_AS(
 				File::cmpbin(fileNull, fileNull),
 				std::invalid_argument);
+		REQUIRE_THROWS_WITH(File::cmpbin(fileNull, fileNull), " not found");
+
 		REQUIRE_THROWS_AS(
 				File::cmpbin(fileNE, file0),
 				std::invalid_argument);
+		REQUIRE_THROWS_WITH(File::cmpbin(fileNE, file0), fileNE + " not found");
+
 		REQUIRE_THROWS_AS(
 				File::cmpbin(file0, fileNE),
 				std::invalid_argument);
+		REQUIRE_THROWS_WITH(File::cmpbin(file0, fileNE), fileNE + " not found");
+
 		REQUIRE_THROWS_AS(
 				File::cmpbin(fileNE, fileNE),
 				std::invalid_argument);
-
-		REQUIRE_THROWS_AS(
-				File::cmptext(fileNull, file0),
-				std::invalid_argument);
-		REQUIRE_THROWS_AS(
-				File::cmptext(file0, fileNull),
-				std::invalid_argument);
-		REQUIRE_THROWS_AS(
-				File::cmptext(fileNull, fileNull),
-				std::invalid_argument);
-		REQUIRE_THROWS_AS(
-				File::cmptext(fileNE, file0),
-				std::invalid_argument);
-		REQUIRE_THROWS_AS(
-				File::cmptext(file0, fileNE),
-				std::invalid_argument);
-		REQUIRE_THROWS_AS(
-				File::cmptext(fileNE, fileNE),
-				std::invalid_argument);
+		REQUIRE_THROWS_WITH(File::cmpbin(fileNE, fileNE), fileNE + " not found");
 	}
 
 	SECTION("Size") {
 		REQUIRE(File::cmpsize(file0, file0));
 		REQUIRE(File::cmpsize(file3, file3e));
-		REQUIRE(File::cmpsize(file0, file1) == false);
-		REQUIRE(File::cmpsize(file2, file2n) == false);
+		REQUIRE(File::cmpsize(file3, file3nes));
+		REQUIRE(!File::cmpsize(file0, file1));
+		REQUIRE(!File::cmpsize(file2, file2n));
 	}
 
 	SECTION("Binary") {
 		REQUIRE(File::cmpbin(file0, file0));
 		REQUIRE(File::cmpbin(file3, file3e));
-		REQUIRE(File::cmpbin(file0, file1) == false);
-		REQUIRE(File::cmpbin(file2, file2n) == false);
+		REQUIRE(!File::cmpbin(file0, file1));
+		REQUIRE(!File::cmpbin(file2, file2n));
+		REQUIRE(!File::cmpbin(file3, file3nes));
 	}
 
 	SECTION("Text") {
@@ -128,6 +138,14 @@ TEST_CASE( "Compare" "[File]" ) {
 							"1:\n"
 					       	"two\n"
 						   	"two!\n";
+		const std::string s33nes =
+							"1:\n"
+							"two\n"
+							"txo\n";
+		const std::string s3nes3 =
+							"1:\n"
+							"txo\n"
+							"two\n";
 		const std::string s13n =
 							"1:\n"
 						   	"two\n"
@@ -153,8 +171,8 @@ TEST_CASE( "Compare" "[File]" ) {
 		 				   	"four\n";
 
 	   	//Equal files
-		REQUIRE(File::cmptext(file0, file0) == "");
-		REQUIRE(File::cmptext(file3, file3e) == "");
+		REQUIRE(File::cmptext(file0, file0).empty());
+		REQUIRE(File::cmptext(file3, file3e).empty());
 
 		//Different files
 		REQUIRE(File::cmptext(file0, file1) == s01);
@@ -165,6 +183,9 @@ TEST_CASE( "Compare" "[File]" ) {
 
 		REQUIRE(File::cmptext(file1, file3) == s13n);
 		REQUIRE(File::cmptext(file3, file1) == s13n);
+
+		REQUIRE(File::cmptext(file3, file3nes) == s33nes);
+		REQUIRE(File::cmptext(file3nes, file3) == s3nes3);
 
 		//Different files and different report if diff order
 		REQUIRE(File::cmptext(file3, file4) == s34n);
@@ -200,17 +221,59 @@ TEST_CASE( "Compare" "[File]" ) {
 				"one\n"
 				"two\n"
 				"three\n";
+		const std::string s33nes =
+				"Expected:\n"
+				"one\n"
+				"two\n"
+				"three\n"
+				"Actual:\n"
+				"one\n"
+				"txo\n"
+				"three\n";
+		const std::string s3nes3 =
+				"Expected:\n"
+				"one\n"
+				"txo\n"
+				"three\n"
+				"Actual:\n"
+				"one\n"
+				"two\n"
+				"three\n";
 
-		//Equal files
-		REQUIRE(File::test(file0, file0) == "");
-		REQUIRE(File::test(file3, file3e) == "");
+		SECTION("test") {
+			//Equal files
+			REQUIRE(File::test(file0, file0).empty());
+			REQUIRE(File::test(file3, file3e).empty());
 
-		//Different files
-		REQUIRE(File::test(file0, file1) == s01);
-		REQUIRE(File::test(file1, file0) == s10);
+			//Different files
+			REQUIRE(File::test(file0, file1) == s01);
+			REQUIRE(File::test(file1, file0) == s10);
 
-		//Different files and different report if diff order
-		REQUIRE(File::test(file3, file4) == s34n);
-		REQUIRE(File::test(file4, file3) == s43n);
+			//Different files and different report if diff order
+			REQUIRE(File::test(file3, file3nes) == s33nes);
+			REQUIRE(File::test(file3nes, file3) == s3nes3);
+
+			//Different files and different report if diff order
+			REQUIRE(File::test(file3, file4) == s34n);
+			REQUIRE(File::test(file4, file3) == s43n);
+		}
+
+		SECTION("teststr") {
+			//Equal files
+			REQUIRE(File::teststr(file0, File::read(file0)).empty());
+			REQUIRE(File::teststr(file3, File::read(file3e)).empty());
+
+			//Different files
+			REQUIRE(File::teststr(file0, File::read(file1)) == s01);
+			REQUIRE(File::teststr(file1, File::read(file0)) == s10);
+
+			//Different files and different report if diff order
+			REQUIRE(File::teststr(file3, File::read(file3nes)) == s33nes);
+			REQUIRE(File::teststr(file3nes, File::read(file3)) == s3nes3);
+
+			//Different files and different report if diff order
+			REQUIRE(File::teststr(file3, File::read(file4)) == s34n);
+			REQUIRE(File::teststr(file4, File::read(file3)) == s43n);
+		}
 	}
 }
