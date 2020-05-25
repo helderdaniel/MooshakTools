@@ -24,9 +24,9 @@ TEST_CASE( "Shell utilities", "[Shell]" ) {
 				"file3n.txt\n"
 				"file3.txt\n"
 				"file4.txt\n"
-				"inner",
+				"inner\n",
 
-				"sh: 1: _DoNotExist_: not found" };
+				"sh: 1: _DoNotExist_: not found\n" };
 
 	int error[] = { 0, 0x7F00 };
 

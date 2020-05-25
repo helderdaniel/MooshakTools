@@ -1,6 +1,13 @@
 //
 // Created by hdaniel on 19/05/2020.
 //
+
+/**
+ * Too enable catch2 benchmarking
+ * it is needed to be defined here before the inclusion of the <cathc.hpp>
+ * and also in the file where is defined: CATCH_CONFIG_MAIN if NOT here
+ */
+#define CATCH_CONFIG_ENABLE_BENCHMARKING
 #include <catch2/catch.hpp>
 #include <sstream>
 #include "../src/MooshakEval.hpp"
@@ -28,6 +35,8 @@ TEST_CASE( "Mooshak Evaluation", "[MooshakEval]" ) {
 	}
 
 	SECTION("test") {
+		std::string testexe = "../test/samples/apps/conv";
+		std::string testspath = "../test/samples/tests";
 		std::string expected =
 				"../test/samples/apps/conv < ../test/samples/tests/T0/input\n"
 				"../test/samples/apps/conv < ../test/samples/tests/T1/input\n"
@@ -56,15 +65,16 @@ TEST_CASE( "Mooshak Evaluation", "[MooshakEval]" ) {
 
 		const int cases = 3;
 		const MooshakEval e0[] = {
-					MooshakEval("../test/samples/apps/conv", "../test"),
-					MooshakEval("../test/samples/apps/conv", "../test", "input", "output"),
-					MooshakEval("../test/samples/apps/conv", "../test", "inp(.*)", "out(.*)") };
+					MooshakEval(testexe, testspath),
+					MooshakEval(testexe, testspath, "input", "output"),
+					MooshakEval(testexe, testspath, "inp(.*)", "out(.*)")
+					};
 
 		const int excases = 3;
 		const MooshakEval e1[] = {
-					MooshakEval("../test/samples/apps/conv", "../test", "input", "__NonExistant__"),
-					MooshakEval("../test/samples/apps/conv", "../test", "__NonExistant__", "output"),
-					MooshakEval("../test/samples/apps/conv", "../test", "__NonExistant__", "__NonExistant__") };
+					MooshakEval(testexe, testspath, "input", "__NonExistant__"),
+					MooshakEval(testexe, testspath, "__NonExistant__", "output"),
+					MooshakEval(testexe, testspath, "__NonExistant__", "__NonExistant__") };
 
 		for (int i = 0; i < cases; ++i) {
 			REQUIRE(e0[i].run()==expected);
@@ -76,6 +86,11 @@ TEST_CASE( "Mooshak Evaluation", "[MooshakEval]" ) {
 		}
 
 		REQUIRE_THROWS_AS(e1[2].run(), std::runtime_error);
-		REQUIRE_THROWS_WITH(e1[2].run(), "No tests found, with given regexs: \"__NonExistant__\" and \"__NonExistant__\" from root dir: ../test");
+		REQUIRE_THROWS_WITH(e1[2].run(), "No tests found, with given regexs: \"__NonExistant__\" and \"__NonExistant__\" from root dir: " + testspath);
+/*
+		BENCHMARK("test2") {
+			return 1;
+		};
+*/
 	}
 }

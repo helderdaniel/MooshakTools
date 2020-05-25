@@ -41,12 +41,12 @@ set(INCLUDE "/home/hdaniel/Dropbox/01-libs/cpp") # "/usr/local/cuda-9.0/include"
 include_directories(. ${INCLUDE} )
 
 #catch2 lib
+#compiling in a lib prevents recompiling with test unit everytime
 set(CATCH2LIB "${BIN}/tests-main.o")
 set(CATCH2LIBSRC "${INCLUDE}/catch2/tests-main.cpp")
 
 #Compile catch2 lib
 add_library(Catch2 ${CATCH2LIBSRC})
-#target_link_libraries(Catch2)
 
 #targets
 set(TARGET "evaluate")
@@ -64,11 +64,12 @@ target_link_libraries(${UNITTEST1} Catch2)
 
 set(UNITTEST2 "testShell")
 add_executable(${UNITTEST2} ${TEST}/${UNITTEST2}.cpp)
-target_link_libraries(${UNITTEST2} bin/libCatch2.a) #Catch2)
+target_link_libraries(${UNITTEST2} Catch2)
 
-add_test(NAME t0 COMMAND UNITTEST0)
-add_test(NAME t1 COMMAND UNITTEST1)
-add_test(NAME t2 COMMAND UNITTEST2)
+set(UNITTESTX "testAll")
+add_executable(${UNITTESTX} ${TEST}/${UNITTESTX}.cpp)
+target_link_libraries(${UNITTESTX} Catch2)
+
 
 #Doxygen
 #https://vicrucann.github.io/tutorials/quick-cmake-doxygen/

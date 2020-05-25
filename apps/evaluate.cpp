@@ -3,6 +3,18 @@
  *
  * hdaniel@ualg.pt
  * 24th May 2020
+ *
+ * Perform mooshak like evaluation tests.
+ * call with:
+ *
+ * evaluate <path to executable> <path to root of tests>
+ * [<input fname regex=input> <output fname regex=output>]
+ *
+ * <path to executable>		executable or script to be evaluated
+ * <path to root of tests>  root folder to search for test files
+ * <input fname regex>		input test file name regex. By default "input"
+ * <output fname regex>		output test file name regex. By default "output"
+ * Last 2 parameters are optional by group: pass them both or none!
  */
 
 #include <iostream>

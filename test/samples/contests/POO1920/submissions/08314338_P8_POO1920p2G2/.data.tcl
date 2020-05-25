@@ -1,0 +1,17 @@
+set         Date 1589062278
+set         Time 8314338
+set      Problem P8
+set         Team POO1920p2G2
+set     Classify {Compile Time Error}
+set         Mark 0
+set         Size 10739
+set Observations {}
+set    Execution -1
+set        State pending
+set     Language {Java zipped}
+set      Program src.zip
+set       Report 1.html
+set      Elapsed 0
+set          CPU 0
+set       Memory 0
+set     Feedback {Observações\ de\ <b>Erro\ de\ Compilação</b>\ <pre>src/BoardLivingCells.java:2:\ error:\ cannot\ find\ symbol\nclass\ BoardLivingCells\ extends\ Board\ implements\ IBoardLivingCells\{\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ^\n\ \ symbol:\ class\ IBoardLivingCells\nsrc/BoardLivingCells.java:2:\ error:\ constructor\ Board\ in\ class\ Board\ cannot\ be\ applied\ to\ given\ types\;\nclass\ BoardLivingCells\ extends\ Board\ implements\ IBoardLivingCells\{\n^\n\ \ required:\ String\[\],int\n\ \ found:\ \ \ \ no\ arguments\n\ \ reason:\ actual\ and\ formal\ argument\ lists\ differ\ in\ length\nsrc/BoardLivingCells.java:7:\ error:\ columns\ has\ private\ access\ in\ Board\n\t\tfor(int\ c\ =\ 0\;\ c\ <\ (columns+2)*(rows+2)\;\ c++)\n\t\t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ^\nsrc/BoardLivingCells.java:7:\ error:\ rows\ has\ private\ access\ in\ Board\n\t\tfor(int\ c\ =\ 0\;\ c\ <\ (columns+2)*(rows+2)\;\ c++)\n\t\t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ^\nsrc/BoardLivingCells.java:9:\ error:\ columns\ has\ private\ access\ in\ Board\n\t\t\tint\ j\ =\ c%(columns+2)\;\n\t\t\t\ \ \ \ \ \ \ \ \ \ \ ^\nsrc/BoardLivingCells.java:10:\ error:\ columns\ has\ private\ access\ in\ Board\n\t\t\tint\ i\ =\ c/(columns+2)\;\n\t\t\t\ \ \ \ \ \ \ \ \ \ \ ^\nsrc/BoardLivingCells.java:11:\ error:\ rows\ has\ private\ access\ in\ Board\n\t\t\tif(i\ ==\ 0\ ||\ i\ ==\ rows+2\ ||\ j\ ==\ 0\ ||\ j\ ==\ columns+2)\ \{\ m\[i\]\[j\]\ =\ 0\;\}\n\t\t\t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ^\nsrc/BoardLivingCells.java:11:\ error:\ columns\ has\ private\ access\ in\ Board\n\t\t\tif(i\ ==\ 0\ ||\ i\ ==\ rows+2\ ||\ j\ ==\ 0\ ||\ j\ ==\ columns+2)\ \{\ m\[i\]\[j\]\ =\ 0\;\}\n\t\t\t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ^\nsrc/BoardLivingCells.java:12:\ error:\ matrix\ has\ private\ access\ in\ Board\n\t\t\telse\ \{\ m\[i\]\[j\]\ =\ matrix\[i\]\[j\]\;\ \}\n\t\t\t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ^\nsrc/BoardLivingCells.java:23:\ error:\ rows\ has\ private\ access\ in\ Board\n\t\t\tif(i\ >=\ 0\ &&\ i\ <\ rows+2\ &&\ j\ >=\ 0\ &&\ j\ <\ columns+2)\n\t\t\t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ^\nsrc/BoardLivingCells.java:23:\ error:\ columns\ has\ private\ access\ in\ Board\n\t\t\tif(i\ >=\ 0\ &&\ i\ <\ rows+2\ &&\ j\ >=\ 0\ &&\ j\ <\ columns+2)\n\t\t\t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ^\nsrc/BoardLivingCells.java:35:\ error:\ columns\ has\ private\ access\ in\ Board\n\t\twhile(c\ !=\ (columns+2)*(rows+2))\n\t\t\ \ \ \ \ \ \ \ \ \ \ \ ^\nsrc/BoardLivingCells.java:35:\ error:\ rows\ has\ private\ access\ in\ Board\n\t\twhile(c\ !=\ (columns+2)*(rows+2))\n\t\t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ^\nsrc/BoardLivingCells.java:37:\ error:\ columns\ has\ private\ access\ in\ Board\n\t\t\tint\ j\ =\ c%(columns+2)\;\n\t\t\t\ \ \ \ \ \ \ \ \ \ \ ^\nsrc/BoardLivingCells.java:38:\ error:\ columns\ has\ private\ access\ in\ Board\n\t\t\tint\ i\ =\ c/(columns+2)\;\n\t\t\t\ \ \ \ \ \ \ \ \ \ \ ^\n15\ errors</pre>}
