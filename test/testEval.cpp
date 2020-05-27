@@ -2,30 +2,24 @@
 // Created by hdaniel on 19/05/2020.
 //
 
-/**
- * Too enable catch2 benchmarking
- * it is needed to be defined here before the inclusion of the <cathc.hpp>
- * and also in the file where is defined: CATCH_CONFIG_MAIN if NOT here
- */
-#define CATCH_CONFIG_ENABLE_BENCHMARKING
 #include <catch2/catch.hpp>
-#include <sstream>
-#include "../src/MooshakEval.hpp"
+#include "../src/Evaluate.hpp"
 
+using namespace mooshak;
 
-TEST_CASE( "Mooshak Evaluation", "[MooshakEval]" ) {
+TEST_CASE( "Mooshak Evaluation", "[Evaluate]" ) {
 
 	SECTION("Constructor") {
 		const int cases = 2;
-		const MooshakEval e[] = {
-				MooshakEval("run.sh", "."),
-				MooshakEval("run.sh", ".", "inputf", "outputf") };
+		const Evaluate e[] = {
+				Evaluate("run.sh", "."),
+				Evaluate("run.sh", ".", "inputf", "outputf") };
 
 		const std::string se[] = {
 				"diff: (run.sh (./input, ./output)",
 				"diff: (run.sh (./inputf, ./outputf)" };
 
-		stringstream out;
+		std::stringstream out;
 
 		for (int i = 0; i < cases; ++i) {
 			out.str("");
@@ -64,17 +58,17 @@ TEST_CASE( "Mooshak Evaluation", "[MooshakEval]" ) {
 				"../test/samples/apps/conv < ../test/samples/tests/T8/input\n";
 
 		const int cases = 3;
-		const MooshakEval e0[] = {
-					MooshakEval(testexe, testspath),
-					MooshakEval(testexe, testspath, "input", "output"),
-					MooshakEval(testexe, testspath, "inp(.*)", "out(.*)")
+		const Evaluate e0[] = {
+				Evaluate(testexe, testspath),
+				Evaluate(testexe, testspath, "input", "output"),
+				Evaluate(testexe, testspath, "inp(.*)", "out(.*)")
 					};
 
 		const int excases = 3;
-		const MooshakEval e1[] = {
-					MooshakEval(testexe, testspath, "input", "__NonExistant__"),
-					MooshakEval(testexe, testspath, "__NonExistant__", "output"),
-					MooshakEval(testexe, testspath, "__NonExistant__", "__NonExistant__") };
+		const Evaluate e1[] = {
+				Evaluate(testexe, testspath, "input", "__NonExistant__"),
+				Evaluate(testexe, testspath, "__NonExistant__", "output"),
+				Evaluate(testexe, testspath, "__NonExistant__", "__NonExistant__") };
 
 		for (int i = 0; i < cases; ++i) {
 			REQUIRE(e0[i].run()==expected);
@@ -87,10 +81,5 @@ TEST_CASE( "Mooshak Evaluation", "[MooshakEval]" ) {
 
 		REQUIRE_THROWS_AS(e1[2].run(), std::runtime_error);
 		REQUIRE_THROWS_WITH(e1[2].run(), "No tests found, with given regexs: \"__NonExistant__\" and \"__NonExistant__\" from root dir: " + testspath);
-/*
-		BENCHMARK("test2") {
-			return 1;
-		};
-*/
 	}
 }

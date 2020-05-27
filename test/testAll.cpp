@@ -5,8 +5,15 @@
  * 25th may 2020
  */
 
-#include "testShell.cpp"
-#include "testFile.cpp"
+/**
+ * Too enable catch2 benchmarking
+ * it is needed to be defined here before the inclusion of the <cathc.hpp>
+ * and also in the file where is defined: CATCH_CONFIG_MAIN if NOT here
+ */
+#define CATCH_CONFIG_ENABLE_BENCHMARKING
+
 #include "testEval.cpp"
+#include "testContest.cpp"
+#include "testSubmission.cpp"
 
 

@@ -1,10 +1,9 @@
 /**
- * Evaluate executable like Mooshak
+ * Perform mooshak like evaluation tests.
  *
  * hdaniel@ualg.pt
  * 24th May 2020
  *
- * Perform mooshak like evaluation tests.
  * call with:
  *
  * evaluate <path to executable> <path to root of tests>
@@ -18,7 +17,7 @@
  */
 
 #include <iostream>
-#include "../src/MooshakEval.hpp"
+#include "src/Evaluate.hpp"
 
 int main(int argc, char** argv) {
 std::string input="input";
@@ -34,7 +33,7 @@ std::string output="output";
 		output=argv[4];
 	}
 
-	MooshakEval eval(argv[1], argv[2], input, output);
+	Evaluate eval(argv[1], argv[2], input, output);
 	std::cout << eval.run();
 	return 0;
 }

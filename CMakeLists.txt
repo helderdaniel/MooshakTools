@@ -1,14 +1,5 @@
 cmake_minimum_required(VERSION 3.2)
 
-#Project name
-#project(MooshakTools)
-
-set(SRC "src")
-set(APPS "apps")
-set(TEST "test")
-set(BIN "bin")
-set(DOC "doc")
-
 #CXX Setup
 set(CMAKE_CXX_STANDARD 20)
 #set(CMAKE_C_COMPILER /usr/bin/gcc-7)
@@ -32,6 +23,13 @@ set(CMAKE_EXE_LINKER_FLAGS  ${GCC_EXTRA_LINK_FLAGS})
 #Must be after set compiler paths
 project(MooshakTools)
 
+#Project folders
+set(SRC "src")
+set(APPS "apps")
+set(TEST "test")
+set(BIN "bin")
+set(DOC "doc")
+
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ../${BIN})
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ../${BIN})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ../${BIN})
@@ -40,36 +38,36 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ../${BIN})
 set(INCLUDE "/home/hdaniel/Dropbox/01-libs/cpp") # "/usr/local/cuda-9.0/include")
 include_directories(. ${INCLUDE} )
 
-#catch2 lib
-#compiling in a lib prevents recompiling with test unit everytime
-set(CATCH2LIB "${BIN}/tests-main.o")
-set(CATCH2LIBSRC "${INCLUDE}/catch2/tests-main.cpp")
-
-#Compile catch2 lib
-add_library(Catch2 ${CATCH2LIBSRC})
+#Catch2 lib
+set(CATCH2LIB "${INCLUDE}/catch2/libCatch2.a")
 
 #targets
 set(TARGET "evaluate")
 add_executable(${TARGET} ${APPS}/${TARGET}.cpp)
-#target_link_libraries(${TARGET})
+
+set(TARGET "submissions")
+add_executable(${TARGET} ${APPS}/${TARGET}.cpp)
 
 #Unit tests
-set(UNITTEST0 "testEval")
-add_executable(${UNITTEST0} ${TEST}/${UNITTEST0}.cpp)
-target_link_libraries(${UNITTEST0} Catch2)
+set(UNITTEST "testEval")
+add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
+target_link_libraries(${UNITTEST} Catch2)
 
-set(UNITTEST1 "testFile")
-add_executable(${UNITTEST1} ${TEST}/${UNITTEST1}.cpp)
-target_link_libraries(${UNITTEST1} Catch2)
+set(UNITTEST "testContest")
+add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
+target_link_libraries(${UNITTEST} ${CATCH2LIB})
 
-set(UNITTEST2 "testShell")
-add_executable(${UNITTEST2} ${TEST}/${UNITTEST2}.cpp)
-target_link_libraries(${UNITTEST2} Catch2)
+set(UNITTEST "benchContest")
+add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
+target_link_libraries(${UNITTEST} ${CATCH2LIB})
 
-set(UNITTESTX "testAll")
-add_executable(${UNITTESTX} ${TEST}/${UNITTESTX}.cpp)
-target_link_libraries(${UNITTESTX} Catch2)
+set(UNITTEST "testSubmission")
+add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
+target_link_libraries(${UNITTEST} ${CATCH2LIB})
 
+set(UNITTEST "testAll")
+add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
+target_link_libraries(${UNITTEST} ${CATCH2LIB})
 
 #Doxygen
 #https://vicrucann.github.io/tutorials/quick-cmake-doxygen/
