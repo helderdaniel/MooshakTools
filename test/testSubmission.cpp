@@ -11,61 +11,28 @@
 using namespace mooshak;
 
 TEST_CASE( "Mooshak Submission", "[Submission]" ) {
-	/*
-	std::string contestPath = "../test/samples/contests/POO1920";
-	bool filterNames = true;
 
 	SECTION("Constructor") {
 		const int cases = 2;
-		const Contest c[] = {
-				Contest (contestPath),
-				Contest (contestPath, filterNames) };
-
-		std::string contest0 = "0\n";
-		std::string contest1 = "1\n";
-		std::string baseContest =
-				"../test/samples/contests/POO1920/problems\n"
- 				"../test/samples/contests/POO1920/submissions\n"
-				"P1 A\n"
-				"P2 B\n"
-				"P3 C\n"
-				"P4 D\n"
-				"P5 E\n"
-				"P6 F\n"
-				"P7 G\n"
-				"P8 H\n";
-
-		const std::string sc[] = {
-				contestPath + '\n' + contest0 + baseContest,
-				contestPath + '\n' + contest1 + baseContest	};
-
-		std::stringstream out;
+		const string  p[] = { "A", "X" };
+		const string  t[] = { "Team0", "Team1" };
+		const Results c[] = { Accepted, WrongAnswer };
+		const States  s[] = { Pending, Final };
+		const Submission subs[] = {
+				Submission(p[0], t[0], c[0], s[0]),
+				Submission(p[1], t[1], c[1], s[1])
+		};
+		const string ec[] = { ResultsString[c[0]], ResultsString[c[1]] };
+		const string es[] = { StatesString[s[0]], StatesString[s[1]] };
 
 		for (int i = 0; i < cases; ++i) {
-			out.str("");
-			out << c[i];
-			REQUIRE(out.str() == sc[i]);
+			REQUIRE(subs[i].problem() == p[i]);
+			REQUIRE(subs[i].team() == t[i]);
+			REQUIRE(subs[i].classify() == c[i]);
+			REQUIRE(subs[i].classifys() == ec[i]);
+			REQUIRE(subs[i].state() == s[i]);
+			REQUIRE(subs[i].states() == es[i]);
 		}
 	}
 
-	SECTION("All") {
-		Contest contest (contestPath, true);
-		std::string output;
-		std::string POOAll = "../test/samples/subscsv/POOAll.csv";
-		std::string POOA   = "../test/samples/subscsv/POOA.csv";
-		std::string POOAF  = "../test/samples/subscsv/POOAF.csv";
-
-		//All
-		output = contest.All();
-		REQUIRE(File::teststr(POOAll, output).empty());
-
-		//Accepted
-		output = contest.Accepted();
-		REQUIRE(File::teststr(POOA, output).empty());
-
-		//Accepted final
-		output = contest.AcceptedFinal();
-		REQUIRE(File::teststr(POOAF, output).empty());
-	}
-	 */
 }

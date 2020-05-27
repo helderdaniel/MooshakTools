@@ -17,35 +17,40 @@
 #include <string/String.hpp>
 
 using namespace had;
+using std::cout;
+using std::map;
+using std::string;
+using std::vector;
+using std::ostream;
 
 namespace mooshak {
 
 	class Contest {
 		static const char fieldSep = ',';
-		static inline std::string folderSep = "/";
-		static inline std::string datafile = ".data.tcl";
-		static inline std::string problemsFN = "problems";
-		static inline std::string submissionsFN = "submissions";
+		static inline string folderSep = "/";
+		static inline string datafile = ".data.tcl";
+		static inline string problemsFN = "problems";
+		static inline string submissionsFN = "submissions";
 
-		static inline std::string Problem = "Problem ";
-		static inline std::string Team = "Team ";
-		static inline std::string Classify = "Classify ";
-		static inline std::string ClassifyAccepted = "Classify Accepted";
-		static inline std::string ClassifyFinal = "State final";
-		static inline std::string Final = "Final";
+		static inline string Problem = "Problem ";
+		static inline string Team = "Team ";
+		static inline string Classify = "Classify ";
+		static inline string ClassifyAccepted = "Classify Accepted";
+		static inline string ClassifyFinal = "State final";
+		static inline string Final = "Final";
 
-		std::string contestFolder;
+		string contestFolder;
 		bool filterNames;
-		std::string problemsFolder;
-		std::string submissionsFolder;
-		std::map<const std::string, const std::string> problemName;
+		string problemsFolder;
+		string submissionsFolder;
+		map<const string, const string> problemName;
 
 
 		/**
 		 * Create map with problem directory name as key and Mooshak problem name as value
 		 */
 		void _getProblemNames() {
-			std::string buf, key, value;
+			string buf, key, value;
 
 			auto probInfo = File::search(problemsFolder, datafile);
 			for (auto pi : probInfo) {
@@ -71,7 +76,7 @@ namespace mooshak {
 		 * @param in string to parse
 		 * @return string transformed according to filter code (better if dynamic)
 		 */
-		std::string _filter(const std::string &in) {
+		string _filter(const string &in) {
 			if (in[0] == 'a') return in.substr(1);
 			if (in == "G1POO1920P1G15") return "POO1920P1G15";
 			if (in == "POO1920g1p07") return "POO1920P1G7";
@@ -99,10 +104,10 @@ namespace mooshak {
 		 *  B,13456,Accepted
 		 *  (...)
 		 */
-		std::vector<std::string> _search(bool accepted, bool final) {
-			std::string file, row, buf;
+		vector<string> _search(bool accepted, bool final) {
+			string file, row, buf;
 			ulong idx;
-			std::vector<std::string> ret;
+			vector<string> ret;
 
 			auto subfiles = File::search(submissionsFolder, datafile, 1);
 			for (auto sf : subfiles) {
@@ -117,14 +122,14 @@ namespace mooshak {
 				//get only Accepted and Final if required
 				if (accepted && final) {
 					idx = file.find(ClassifyAccepted);
-					if (idx == std::string::npos) continue;
+					if (idx == string::npos) continue;
 					idx = file.find(ClassifyFinal, idx);
-					if (idx == std::string::npos) continue;
+					if (idx == string::npos) continue;
 				}
 
 				//get only Accepted if required
 				if (accepted)
-					if (file.find(ClassifyAccepted) == std::string::npos)
+					if (file.find(ClassifyAccepted) == string::npos)
 						continue;
 
 				//clear row
@@ -162,7 +167,7 @@ namespace mooshak {
 		 * @param contestFolder Mooshak contest root folder
 		 * @param fileterNames      Filter Team names if true
 		 */
-		Contest(const std::string &contestFolder, const bool &filterNames = false) :
+		Contest(const string &contestFolder, const bool &filterNames = false) :
 				contestFolder(contestFolder), filterNames(filterNames) {
 
 			problemsFolder = contestFolder + folderSep + problemsFN;
@@ -176,40 +181,40 @@ namespace mooshak {
 		 *
 		 * @return all submissions
 		 */
-		std::string All() {
-			std::vector<std::string> v = _search(false, false);
+		string All() {
+			vector<string> v = _search(false, false);
 			sort(v.begin(), v.end());
 
-			return std::accumulate(v.begin(), v.end(), std::string{});
+			return accumulate(v.begin(), v.end(), string{});
 		}
 
 		/**
 		 *
 		 * @return all submissions Accepted
 		 */
-		std::string Accepted() {
-			std::vector<std::string> v = _search(true, false);
+		string Accepted() {
+			vector<string> v = _search(true, false);
 			sort(v.begin(), v.end());
 
-			return std::accumulate(v.begin(), v.end(), std::string{});
+			return accumulate(v.begin(), v.end(), string{});
 		}
 
 		/**
 		 *
 		 * @return all submissions Accepted and Final
 		 */
-		std::string AcceptedFinal() {
-			std::vector<std::string> v = _search(true, true);
+		string AcceptedFinal() {
+			vector<string> v = _search(true, true);
 			sort(v.begin(), v.end());
 
-			return std::accumulate(v.begin(), v.end(), std::string{});
+			return accumulate(v.begin(), v.end(), string{});
 		}
 
-		friend std::ostream &operator<<(std::ostream &os, const Contest &mcnt);
+		friend ostream &operator<<(ostream &os, const Contest &mcnt);
 	};
 
 
-	std::ostream &operator<<(std::ostream &os, const Contest &mcnt) {
+	ostream &operator<<(ostream &os, const Contest &mcnt) {
 		os << mcnt.contestFolder + '\n' <<
 		   mcnt.filterNames << '\n' <<
 		   mcnt.problemsFolder << '\n' <<
