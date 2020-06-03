@@ -6,44 +6,39 @@
  * 25/05/2020.
  */
 
-#ifndef MOOSHAKTOOLS_SUBMISSION_H
-#define MOOSHAKTOOLS_SUBMISSION_H
-
+#ifndef MOOSHAKTOOLS_CONTEST_H
+#define MOOSHAKTOOLS_CONTEST_H
 
 #include <map>
 #include <iostream>
 #include <numeric>
 #include <file/File.hpp>
 #include <string/String.hpp>
+#include "Submission.hpp"
 
-using namespace had;
 using std::cout;
 using std::map;
 using std::string;
 using std::vector;
 using std::ostream;
 
+using had::File;
+using had::String;
+
 namespace mooshak {
 
 	class Contest {
-		static const char fieldSep = ',';
 		static inline string folderSep = "/";
 		static inline string datafile = ".data.tcl";
 		static inline string problemsFN = "problems";
 		static inline string submissionsFN = "submissions";
-
-		static inline string Problem = "Problem ";
-		static inline string Team = "Team ";
-		static inline string Classify = "Classify ";
-		static inline string ClassifyAccepted = "Classify Accepted";
-		static inline string ClassifyFinal = "State final";
-		static inline string Final = "Final";
 
 		string contestFolder;
 		bool filterNames;
 		string problemsFolder;
 		string submissionsFolder;
 		map<const string, const string> problemName;
+		vector<Submission> submissions;
 
 
 		/**
@@ -89,25 +84,12 @@ namespace mooshak {
 		}
 
 		/**
-		 *
-		 * @param accepted
-		 * @param final
-		 * 					If accepted == true AND final == true Lists only submissions Accepted and Final
-		 * 					If accepted == true AND final == false Lists all submissions Accepted
-		 * 					Else lists all submissions
-		 *
-		 * @return vector in format as sample below:
-		 *
-		 *  A,12335,Accepted
-		 *  A,23456,Accepted
-		 *  A,23456,{Wrong Answer}
-		 *  B,13456,Accepted
-		 *  (...)
+		 *	Fills submission vector with every submission in contest
 		 */
-		vector<string> _search(bool accepted, bool final) {
-			string file, row, buf;
+		void _getSubmissions() {
+			string file, buf, name, team, classify, state;
+			Submission sub;
 			ulong idx;
-			vector<string> ret;
 
 			auto subfiles = File::search(submissionsFolder, datafile, 1);
 			for (auto sf : subfiles) {
@@ -119,45 +101,26 @@ namespace mooshak {
 				//read datafile
 				file = File::read(sf.c_str());
 
-				//get only Accepted and Final if required
-				if (accepted && final) {
-					idx = file.find(ClassifyAccepted);
-					if (idx == string::npos) continue;
-					idx = file.find(ClassifyFinal, idx);
-					if (idx == string::npos) continue;
-				}
-
-				//get only Accepted if required
-				if (accepted)
-					if (file.find(ClassifyAccepted) == string::npos)
-						continue;
-
-				//clear row
-				row = "";
-
 				//Add problem name
-				idx = String::firstSubstring(file, Problem, "\n", buf);
-				row += problemName[buf] + fieldSep;
+				idx = String::firstSubstring(file, Submission::Problem, "\n", buf);
+				name = problemName[buf];
 
 				//Add team
-				idx = String::firstSubstring(file, Team, "\n", buf, idx);
+				idx = String::firstSubstring(file, Submission::Team, "\n", buf, idx);
 
 				if (filterNames) buf = _filter(buf);
-				row += buf + fieldSep;
+				team = buf;
 
 				//Add classify
-				idx = String::firstSubstring(file, Classify, "\n", buf, idx);
-				row += buf;
+				idx = String::firstSubstring(file, Submission::Classify, "\n", buf, idx);
+				classify = buf;
 
-				//Add final if it is
-				String::firstSubstring(file, ClassifyFinal, "\n", buf, idx);
-				if (!buf.empty()) row += Final;
+				//Add state
+				String::firstSubstring(file, Submission::ClassifyFinal, "\n", buf, idx);
+				state = buf;
 
-				row += '\n';
-				ret.push_back(row);
+				submissions.push_back(Submission(name, team, classify, state));
 			}
-
-			return ret;
 		}
 
 
@@ -175,41 +138,76 @@ namespace mooshak {
 
 			//Get names of problems as displayed in Mooshak: A,B,C,...
 			_getProblemNames();
+
+			//Get submissions data
+			_getSubmissions();
+			sort(submissions.begin(), submissions.end());
 		}
 
 		/**
 		 *
-		 * @return all submissions
+		 * @return all submissions as a string with format:
+		 *
+		 *  A,12335,Accepted
+		 *  A,23456,Accepted
+		 *  A,23456,{Wrong Answer}
+		 *  B,13456,Accepted
+		 *  (...)
 		 */
 		string All() {
-			vector<string> v = _search(false, false);
-			sort(v.begin(), v.end());
+			string ret;
 
-			return accumulate(v.begin(), v.end(), string{});
+			///lambda way
+			for_each(submissions.begin(), submissions.end(),
+					[&](const Submission &s){ ret+=s.toString()+'\n'; } );
+			return ret;
 		}
 
 		/**
 		 *
-		 * @return all submissions Accepted
+		 * @return all submissions Accepted as a string with format:
+		 *
+		 *  A,12335,Accepted
+		 *  A,23456,Accepted
+		 *  A,23456,{Wrong Answer}
+		 *  B,13456,Accepted
+		 *  (...)
 		 */
 		string Accepted() {
-			vector<string> v = _search(true, false);
-			sort(v.begin(), v.end());
+			string ret;
 
-			return accumulate(v.begin(), v.end(), string{});
+			for (auto it = submissions.begin(); it != submissions.end(); ++it)
+				if (it->classify() == mooshak::Accepted)
+					ret += it->toString()+'\n';
+			return ret;
 		}
 
 		/**
 		 *
-		 * @return all submissions Accepted and Final
+		 * @return all submissions Accepted and Final as a string with format:
+		 *
+		 *  A,12335,Accepted
+		 *  A,23456,Accepted
+		 *  A,23456,{Wrong Answer}
+		 *  B,13456,Accepted
+		 *  (...)
 		 */
 		string AcceptedFinal() {
-			vector<string> v = _search(true, true);
-			sort(v.begin(), v.end());
+			string ret;
 
-			return accumulate(v.begin(), v.end(), string{});
+			for (auto it = submissions.begin(); it != submissions.end(); ++it)
+				if (it->classify() == mooshak::Accepted &&
+				    it->state() == mooshak::Final)
+					 ret += it->toString()+'\n';
+			return ret;
 		}
 
+		/**
+		 *
+		 * @param os    output stream
+		 * @param mcnt  mooshak contest
+		 * @return 		mooshak contest as string
+		 */
 		friend ostream &operator<<(ostream &os, const Contest &mcnt);
 	};
 
@@ -228,4 +226,4 @@ namespace mooshak {
 
 }
 
-#endif //MOOSHAKTOOLS_SUBMISSION_H
+#endif //MOOSHAKTOOLS_CONTEST_H

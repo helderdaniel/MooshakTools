@@ -51,7 +51,7 @@ add_executable(${TARGET} ${APPS}/${TARGET}.cpp)
 #Unit tests
 set(UNITTEST "testEval")
 add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
-target_link_libraries(${UNITTEST} Catch2)
+target_link_libraries(${UNITTEST} ${CATCH2LIB})
 
 set(UNITTEST "testContest")
 add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)

@@ -72,5 +72,6 @@ int main(int argc, char** argv) {
 	Contest contest("../test/samples/contests/POO1920", true);
 	std::cout << contest.AcceptedFinal();
 
+	std::cout << str << std::endl;
 	return 0;
 }

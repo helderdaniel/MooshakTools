@@ -11,8 +11,10 @@
 #include <file/File.hpp>
 #include <shell/Shell.hpp>
 
-using namespace std;
-using namespace had;
+using std::string;
+using std::runtime_error;
+using had::File;
+using had::Shell;
 
 /**
  *  Perform Mooshak like executable evaluation
@@ -37,7 +39,7 @@ namespace mooshak {
 		 * @param outputFn 		output file name
 		 *
 		 */
-		Evaluate(const std::string &executePath, const std::string &testsPath,
+		Evaluate(const string &executePath, const string &testsPath,
 				 const string &inputFN = DFLTINPUTFN,
 				 const string &outputFN = DFLTOUTPUTFN) : inputFN(inputFN),
 														  outputFN(outputFN),
@@ -49,17 +51,17 @@ namespace mooshak {
 		 *
 		 * @return
 		 */
-		std::string run() const {
-			std::string ret;
+		string run() const {
+			string ret;
 			auto inputs = File::search(testsPath, inputFN);
 			auto outputs = File::search(testsPath, outputFN);
 
 			if (inputs.size() != outputs.size())
-				throw std::runtime_error("Number of input and output files differ");
+				throw runtime_error("Number of input and output files differ");
 
 			//If inputs == outputs == 0
 			if (inputs.size() <= 0)
-				throw std::runtime_error("No tests found, with given regexs: \"" + inputFN +
+				throw runtime_error("No tests found, with given regexs: \"" + inputFN +
 										 "\" and \"" + outputFN + "\" from root dir: " + testsPath);
 
 			sort(inputs.begin(), inputs.end());
