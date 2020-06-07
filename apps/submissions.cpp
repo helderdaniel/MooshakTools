@@ -54,6 +54,8 @@
 #include <iostream>
 #include "src/Contest.hpp"
 
+using mooshak::Contest;
+
 int main(int argc, char** argv) {
 //std::string input="input";
 //std::string output="output";
@@ -69,9 +71,12 @@ int main(int argc, char** argv) {
 	}
 */
 
-	Contest contest("../test/samples/contests/POO1920", true);
+
+ 	Contest contest("../test/samples/contests/POO1920", "../test/samples/contests/filterPOO1920.txt");
 	std::cout << contest.AcceptedFinal();
 
-	std::cout << str << std::endl;
+
 	return 0;
 }
+
+

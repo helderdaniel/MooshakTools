@@ -20,6 +20,7 @@ using std::cout;
 using std::map;
 using std::string;
 using std::vector;
+using std::tuple;
 using std::ostream;
 
 using had::File;
@@ -40,6 +41,9 @@ namespace mooshak {
 		map<const string, const string> problemName;
 		vector<Submission> submissions;
 
+		typedef tuple<string,string> filterTuple;
+		typedef vector<filterTuple> customFilter;
+		customFilter fteam;
 
 		/**
 		 * Create map with problem directory name as key and Mooshak problem name as value
@@ -68,19 +72,21 @@ namespace mooshak {
 
 		/**
 		 *
-		 * @param in string to parse
-		 * @return string transformed according to filter code (better if dynamic)
+		 * @param str string to transform according to filter file specs
 		 */
-		string _filter(const string &in) {
-			if (in[0] == 'a') return in.substr(1);
-			if (in == "G1POO1920P1G15") return "POO1920P1G15";
-			if (in == "POO1920g1p07") return "POO1920P1G7";
-			if (in == "POO1920p02G05") return "POO1920P2G5";
-			if (in == "POO1920p1G02") return "POO1920P1G2";
-			if (in == "POO2019203G4") return "POO1920P3G4";
-			if (in == "POOP3G8") return "POO1920P3G8";
-			if (in == "POO1920p1G09") return "POO1920P1G9";
-			return in;
+		void _filter(string &str) {
+
+			for (customFilter::const_iterator i = fteam.begin(); i != fteam.end(); ++i) {
+				const string regexp(get<0>(*i));
+				const string replacement = get<1>(*i);
+
+				/* Same as:  str = regex_replace(str, regexp, replacement);
+				 * but determines if matched (when begin and end of iterator are NOT equal)
+				 * to abort further filter search
+				 */
+				if (String::regex_replace(str, regexp, replacement))
+					break;
+			}
 		}
 
 		/**
@@ -108,7 +114,7 @@ namespace mooshak {
 				//Add team
 				idx = String::firstSubstring(file, Submission::Team, "\n", buf, idx);
 
-				if (filterNames) buf = _filter(buf);
+				if (filterNames) _filter(buf);
 				team = buf;
 
 				//Add classify
@@ -128,16 +134,36 @@ namespace mooshak {
 		/**
 		 *
 		 * @param contestFolder Mooshak contest root folder
-		 * @param fileterNames      Filter Team names if true
+		 * @param filterNames   Filter Team names if true
 		 */
-		Contest(const string &contestFolder, const bool &filterNames = false) :
-				contestFolder(contestFolder), filterNames(filterNames) {
+		Contest(const string &contestFolder, const string &filterFN="") :
+				contestFolder(contestFolder) {
 
 			problemsFolder = contestFolder + folderSep + problemsFN;
 			submissionsFolder = contestFolder + folderSep + submissionsFN;
 
 			//Get names of problems as displayed in Mooshak: A,B,C,...
 			_getProblemNames();
+
+			//Get filter
+			if (filterFN.empty()) {
+				filterNames = false;
+			}
+			else {
+				filterNames = true;
+				ifstream input(filterFN);
+
+				for (;;) {
+					string rgx;
+					string rpl;
+
+					getline(input, rgx, ',');
+					if (input.eof()) break;
+					getline(input, rpl, '\n');
+					fteam.push_back(filterTuple(rgx, rpl));
+					if (input.eof()) throw std::runtime_error("bad filter format");
+				}
+			}
 
 			//Get submissions data
 			_getSubmissions();
