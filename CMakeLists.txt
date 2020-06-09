@@ -5,10 +5,10 @@ set(CMAKE_CXX_STANDARD 20)
 #set(CMAKE_C_COMPILER /usr/bin/gcc-7)
 #set(CMAKE_C_COMPILER /usr/bin/clang-7)
 #set(CMAKE_CXX_COMPILER:FILEPATH /usr/bin/g++-9)
-#set(CMAKE_CXX_COMPILER /usr/bin/clang++-7)  #clang++-8 NOT available in ubuntu 15 apr 2019
+#set(CMAKE_CXX_COMPILER /usr/bin/clang++-9)
 
-#set(GCC_EXTRA_COMPILE_FLAGS "-Ofast -fopenmp")
-set(GCC_EXTRA_COMPILE_FLAGS "-O0 -g -fopenmp")
+set(GCC_EXTRA_COMPILE_FLAGS "-Ofast")
+#set(GCC_EXTRA_COMPILE_FLAGS "-O0 -g --coverage") # -O0 and --coverage are slower
 #set(GCC_EXTRA_LINK_FLAGS    "")
 
 #reset existing
@@ -35,11 +35,16 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ../${BIN})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ../${BIN})
 
 #include folders
-set(INCLUDE "/home/hdaniel/Dropbox/01-libs/cpp") # "/usr/local/cuda-9.0/include")
-include_directories(. ${INCLUDE} )
+set(HDLIB "/home/hdaniel/Dropbox/01-libs/cpp")
+#set(CUDAINC "/usr/local/cuda-9.0/include")
+include_directories(. ${HDLIB} )
+
+#Intel thread building blocks (-lttb)
+#apt install libtbb-dev (use par policies) ("/usr/lib/x86_64-linux-gnu/libtbb.so")
+set(TBBLIB "/usr/lib/x86_64-linux-gnu/libtbb.so")
 
 #Catch2 lib
-set(CATCH2LIB "${INCLUDE}/catch2/libCatch2.a")
+set(CATCH2LIB "${HDLIB}/catch2/libCatch2.a")
 
 #targets
 set(TARGET "evaluate")
@@ -59,7 +64,8 @@ target_link_libraries(${UNITTEST} ${CATCH2LIB})
 
 set(UNITTEST "benchContest")
 add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
-target_link_libraries(${UNITTEST} ${CATCH2LIB})
+#target_link_libraries(${UNITTEST} ${CATCH2LIB} ${TBBLIB} )
+target_link_libraries(${UNITTEST} ${CATCH2LIB} )
 
 set(UNITTEST "testSubmission")
 add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
@@ -68,6 +74,7 @@ target_link_libraries(${UNITTEST} ${CATCH2LIB})
 set(UNITTEST "testAll")
 add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
 target_link_libraries(${UNITTEST} ${CATCH2LIB})
+
 
 #Doxygen
 #https://vicrucann.github.io/tutorials/quick-cmake-doxygen/

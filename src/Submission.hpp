@@ -18,6 +18,8 @@ using had::Table2;
 
 namespace mooshak {
 
+	constexpr int StatesSize = 2;
+	constexpr int ClassificationsSize = 13;
 	enum States { Final, Pending };
 	enum Classifications {
 		Accepted,
@@ -96,23 +98,32 @@ namespace mooshak {
 		const string classifys() const { return classificationsMap.at(_classification); }
 		const States state() const	   { return _state;	}
 		const string states() const	   { return statesMap.at(_state); }
-
-		string toString(char sep = defaultSeparator) const {
-			string os;
-			os += _problem + sep;
-			os += _team + sep;
-			os += classificationsTbl.value(_classification) + sep;
-			os += statesTbl.value(_state);
-			return os;
+		const bool isFailure() const   {
+			if (_classification == Accepted) return false;
+			if (_classification == PresentationError) return false;
+			if (_classification == CompileTimeError) return false;
+			if (_classification == InvalidSubmission) return false;
+			if (_classification == ProgramSizeExceeded) return false;
+			return true;
 		}
+		const bool isFinal() const     { return _state == Final; }
 
-		//friend ostream &operator<<(ostream &os, const Submission &s);
+		friend string to_string(const Submission &s);
+		//friend ostream& operator<<(ostream &os, const Submission &s);
 		friend bool operator<(const Submission &lhs, const Submission &rhs);
 	};
 
+	inline string to_string(const Submission &s) {
+		string ret;
+		ret += s._problem + Submission::defaultSeparator;
+		ret += s._team + Submission::defaultSeparator;
+		ret += Submission::classificationsTbl.value(s._classification) + Submission::defaultSeparator;
+		ret += Submission::statesTbl.value(s._state);
+		return ret;
+	}
 
 	ostream &operator<<(ostream &os, const Submission &s) {
-		return os << s.toString();
+		return os << to_string(s);
 	}
 
 	//strict-weak-ordering

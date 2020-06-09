@@ -27,6 +27,8 @@ TEST_CASE( "Mooshak Submission", "[Submission]" ) {
 
 		const string ec[] = { "Requires Reevaluation", "Accepted", "Wrong Answer", "Runtime Error" };
 		const string es[] = { "pending", "pending", "final", "final" };
+		const bool   ef[] = { false, false, true, true };
+		const bool   eFail[] = { true, false, true, true };
 		const string estr[] = {
 				",,Requires Reevaluation,pending",
 				"A,Team0,Accepted,pending",
@@ -41,7 +43,9 @@ TEST_CASE( "Mooshak Submission", "[Submission]" ) {
 			REQUIRE(subs[i].classifys() == ec[i]);
 			REQUIRE(subs[i].state() == s[i]);
 			REQUIRE(subs[i].states() == es[i]);
-			REQUIRE(subs[i].toString() == estr[i]);
+			REQUIRE(subs[i].isFailure() == eFail[i]);
+			REQUIRE(subs[i].isFinal() == ef[i]);
+			REQUIRE(to_string(subs[i]) == estr[i]);
 		}
 	}
 

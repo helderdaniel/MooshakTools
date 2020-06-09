@@ -52,24 +52,27 @@ TEST_CASE( "Mooshak Contest", "[Contest]" ) {
 		REQUIRE_THROWS_WITH(Contest(contestRoot, filterFN1), "bad filter format");
 	}
 
+
 	SECTION("Listings") {
 		Contest contest(contestRoot, filterFN0);
-		std::string output;
+		std::stringstream ss;
 		std::string POOAll = "../test/samples/subscsv/POOAll.csv";
 		std::string POOA = "../test/samples/subscsv/POOA.csv";
 		std::string POOAF = "../test/samples/subscsv/POOAF.csv";
 
 		//All
-		output = contest.All();
-		File::write("test.txt", output);
-		REQUIRE(File::teststr(POOAll, output).empty());
+		contest.All(ss);
+		//File::write("test.txt", ss.str());
+		REQUIRE(File::teststr(POOAll, ss.str()).empty());
 
 		//Accepted
-		output = contest.Accepted();
-		REQUIRE(File::teststr(POOA, output).empty());
+		ss.str("");  //clear ss
+		contest.Accepted(ss);
+		REQUIRE(File::teststr(POOA, ss.str()).empty());
 
 		//Accepted final
-		output = contest.AcceptedFinal();
-		REQUIRE(File::teststr(POOAF, output).empty());
+		ss.str("");  //clear ss
+		contest.AcceptedFinal(ss);
+		REQUIRE(File::teststr(POOAF, ss.str()).empty());
 	}
 }

@@ -12,6 +12,8 @@
 #include <map>
 #include <iostream>
 #include <numeric>
+#include <algorithm>
+//#include <execution>
 #include <file/File.hpp>
 #include <string/String.hpp>
 #include "Submission.hpp"
@@ -41,6 +43,9 @@ namespace mooshak {
 		map<const string, const string> problemName;
 		vector<Submission> submissions;
 
+		array<int,ClassificationsSize> classCountAll = {0};
+		array<int,ClassificationsSize> classCountFinal = {0};
+
 		typedef tuple<string,string> filterTuple;
 		typedef vector<filterTuple> customFilter;
 		customFilter fteam;
@@ -52,7 +57,7 @@ namespace mooshak {
 			string buf, key, value;
 
 			auto probInfo = File::search(problemsFolder, datafile);
-			for (auto pi : probInfo) {
+			for (const auto& pi : probInfo) {
 
 				//extract key
 				buf = pi.string();
@@ -76,9 +81,10 @@ namespace mooshak {
 		 */
 		void _filter(string &str) {
 
-			for (customFilter::const_iterator i = fteam.begin(); i != fteam.end(); ++i) {
-				const string regexp(get<0>(*i));
-				const string replacement = get<1>(*i);
+			//for (customFilter::const_iterator i = fteam.begin(); i != fteam.end(); ++i) {
+			for (const auto& i : fteam) {
+				const string& regexp(get<0>(i));
+				const string& replacement = get<1>(i);
 
 				/* Same as:  str = regex_replace(str, regexp, replacement);
 				 * but determines if matched (when begin and end of iterator are NOT equal)
@@ -98,7 +104,7 @@ namespace mooshak {
 			ulong idx;
 
 			auto subfiles = File::search(submissionsFolder, datafile, 1);
-			for (auto sf : subfiles) {
+			for (const auto& sf : subfiles) {
 
 				//ignore datafile in submissions root dir
 				String::lastSubstring(sf, folderSep, folderSep, buf);
@@ -125,7 +131,13 @@ namespace mooshak {
 				String::firstSubstring(file, Submission::ClassifyFinal, "\n", buf, idx);
 				state = buf;
 
-				submissions.push_back(Submission(name, team, classify, state));
+				//Add submission
+				Submission s(name, team, classify, state);
+				submissions.emplace_back(s);
+
+				//Update classification counters
+				classCountAll[s.classify()]++;
+				if (s.state() == Final) classCountFinal[s.classify()]++;
 			}
 		}
 
@@ -136,7 +148,7 @@ namespace mooshak {
 		 * @param contestFolder Mooshak contest root folder
 		 * @param filterNames   Filter Team names if true
 		 */
-		Contest(const string &contestFolder, const string &filterFN="") :
+		explicit Contest(const string &contestFolder, const string &filterFN="") :
 				contestFolder(contestFolder) {
 
 			problemsFolder = contestFolder + folderSep + problemsFN;
@@ -160,72 +172,100 @@ namespace mooshak {
 					getline(input, rgx, ',');
 					if (input.eof()) break;
 					getline(input, rpl, '\n');
-					fteam.push_back(filterTuple(rgx, rpl));
+					fteam.emplace_back(filterTuple(rgx, rpl));
 					if (input.eof()) throw std::runtime_error("bad filter format");
 				}
 			}
 
 			//Get submissions data
+			//submissions.reserve(2000);  //Do not show improvement with -Ofast ~164 us
 			_getSubmissions();
+			submissions.shrink_to_fit();  //Since is immutable clear vector extra reserved space for new elements
 			sort(submissions.begin(), submissions.end());
+
+			//Need to add lib to target in CmakeLists.txt ${TBBLIB} ("/usr/lib/x86_64-linux-gnu/libtbb.so")
+			//sort(std::execution::par, submissions.begin(), submissions.end()); //not useful for 2000 subs
+			//sort(std::execution::par_unseq, submissions.begin(), submissions.end()); //not useful for 2000 subs
 		}
 
 		/**
 		 *
 		 * @return all submissions as a string with format:
 		 *
-		 *  A,12335,Accepted
-		 *  A,23456,Accepted
-		 *  A,23456,{Wrong Answer}
-		 *  B,13456,Accepted
+		 *  A,12335,Accepted,final
+		 *  A,23456,Accepted,pending
+		 *  A,23456,Wrong Answer,pending
+		 *  B,13456,Accepted,final
 		 *  (...)
 		 */
-		string All() {
+		string All() const {
 			string ret;
 
-			///lambda way
-			for_each(submissions.begin(), submissions.end(),
-					[&](const Submission &s){ ret+=s.toString()+'\n'; } );
+			//lambd way (same performance)
+			//for_each(submissions.begin(), submissions.end(),
+			//		 [&](const Submission &s){ ret += to_string(s) + '\n'; } );
+			for (const auto& s : submissions)
+				ret += to_string(s) + '\n';
+
 			return ret;
+		}
+
+		//About 25% slower
+		ostream& All(ostream &os) const {
+			for (const auto& s : submissions) os << s << '\n';
+			return os;
 		}
 
 		/**
 		 *
 		 * @return all submissions Accepted as a string with format:
 		 *
-		 *  A,12335,Accepted
-		 *  A,23456,Accepted
-		 *  A,23456,{Wrong Answer}
-		 *  B,13456,Accepted
+		 *  A,12335,Accepted,final
+		 *  A,23456,Accepted,pending
+		 *  B,13456,Accepted,pending
 		 *  (...)
 		 */
-		string Accepted() {
-			string ret;
+		string Accepted() const {
+			string ret;  //faster to *= a string than << a stringstream (about 8x)
 
-			for (auto it = submissions.begin(); it != submissions.end(); ++it)
-				if (it->classify() == mooshak::Accepted)
-					ret += it->toString()+'\n';
+			for (const auto& s : submissions)
+				if (s.classify() == mooshak::Accepted)
+					ret += to_string(s) + '\n';
 			return ret;
+		}
+
+		//About 25% slower
+		ostream& Accepted(ostream &os) const {
+			for (const auto& s : submissions)
+				if (s.classify() == mooshak::Accepted) os << s << '\n';
+			return os;
 		}
 
 		/**
 		 *
 		 * @return all submissions Accepted and Final as a string with format:
 		 *
-		 *  A,12335,Accepted
-		 *  A,23456,Accepted
-		 *  A,23456,{Wrong Answer}
-		 *  B,13456,Accepted
+		 *  A,12335,Accepted,final
 		 *  (...)
 		 */
-		string AcceptedFinal() {
-			string ret;
+		string AcceptedFinal() const {
+			string ret;  //faster to *= a string than << a stringstream (about 8x)
 
-			for (auto it = submissions.begin(); it != submissions.end(); ++it)
-				if (it->classify() == mooshak::Accepted &&
-				    it->state() == mooshak::Final)
-					 ret += it->toString()+'\n';
+			///for iterator way
+			for (const auto& s : submissions)
+				if (s.classify() == mooshak::Accepted &&
+				    s.state() == mooshak::Final)
+					ret += to_string(s) + '\n';
 			return ret;
+		}
+
+		//About 25% slower
+		ostream& AcceptedFinal(ostream &os) const {
+			for (const auto& s : submissions)
+				if (s.classify() == mooshak::Accepted &&
+					s.state() == mooshak::Final)
+					os << s << '\n';
+			return os;
 		}
 
 		/**
@@ -234,17 +274,20 @@ namespace mooshak {
 		 * @param mcnt  mooshak contest
 		 * @return 		mooshak contest as string
 		 */
-		friend ostream &operator<<(ostream &os, const Contest &mcnt);
+		friend ostream& operator<<(ostream &os, const Contest &mcnt);
 	};
 
 
-	ostream &operator<<(ostream &os, const Contest &mcnt) {
+	ostream& operator<<(ostream &os, const Contest &mcnt) {
 		os << mcnt.contestFolder + '\n' <<
 		   mcnt.filterNames << '\n' <<
 		   mcnt.problemsFolder << '\n' <<
 		   mcnt.submissionsFolder << '\n';
 
 		for (auto e : mcnt.problemName)
+		//slows down in benchContest
+		//which does NOT uses <<. WHY?
+		//for (const auto& e : mcnt.problemName)
 			os << e.first << ' ' << e.second << '\n';
 
 		return os;

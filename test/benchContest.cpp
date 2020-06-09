@@ -19,12 +19,18 @@ TEST_CASE( "Mooshak Contest", "[Contest]" ) {
 	std::string contestPath = "../test/samples/contests/POO1920";
 	Contest contest (contestPath);
 	std::string output;
+	std::stringstream ss;
 
 	SECTION("benchmark") {
-		BENCHMARK("All") {
+		BENCHMARK("All string") {
 			output = contest.All();
-	   };
+	   	};
+
+		BENCHMARK("All straem") {
+			contest.All(ss);
+		};
 	}
+
 /*
 	StopWatch sw;
 	sw.reset();
