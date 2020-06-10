@@ -31,9 +31,7 @@ using had::String;
 namespace mooshak {
 
 	class Contest {
-		static constexpr int defaultWidthProb = 3;
 		static constexpr int defaultWidthClass = 5;
-		static constexpr int defaultWidthTotal = 6;
 
 		static inline string folderSep = "/";
 		static inline string datafile = ".data.tcl";
@@ -149,8 +147,7 @@ namespace mooshak {
 
 				//Update classification counters
 				mapCountAll.at(pname)[s.classification()]++;
-				if (s.state() == Final)
-					mapCountFinal.at(pname)[s.classification()]++;
+				if (s.isFinal()) mapCountFinal.at(pname)[s.classification()]++;
 			}
 		}
 
@@ -292,18 +289,29 @@ namespace mooshak {
 		 */
 		ostream& countMap(ostream& os, map<const string, array<int,ClassificationsSize>> map) const {
 			//Header
-			os << "Prob  Acc CTEr Eval InFn InSb MLEx OLEx PErr PSEx REvl RTEr TLEx WrAn Total\n";
+			os << std::setw(defaultWidthClass) << "nofail";
+			auto f = Submission::noFailSet.begin();
+			for (int i = 0; i < mooshak::ClassificationsSize; ++i) {
+				if (i == *f) { os << "  *  "; f++; }
+				else         { os << "     "; }
+			}
+			os << '\n';
+			os << "Prob  Acc CTEr Eval InFn InSb MLEx OLEx PErr PSEx REvl RTEr TLEx WrAn Total Fails\n";
 
 			//Body
 			for (auto entry : map) {
-				os << std::setw(defaultWidthProb) << entry.first << " ";
+				os << std::setw(defaultWidthClass-2) << entry.first << " ";
 				int total=0;
+				int fails=0;
 				for (int i = 0; i < mooshak::ClassificationsSize; ++i) {
 					int val = map.at(entry.first)[i];
 					total += val;
+					bool isFail = Submission::noFailSet.find(static_cast<const Classifications>(i)) == Submission::noFailSet.end();
+					if (isFail)  fails += val;
 					os << std::setw(defaultWidthClass) << val;
 				}
-				os << std::setw(defaultWidthTotal) << total << '\n';
+				os << std::setw(defaultWidthClass+1) << total;
+				os << std::setw(defaultWidthClass+1) << fails << '\n';
 			}
 			return os;
 		}
@@ -319,7 +327,6 @@ namespace mooshak {
 		 * @return table with counting of only Final submissions by classification type
 		 */
 		ostream& countFinal(ostream& os) const { return countMap(os, mapCountFinal); }
-
 
 		/**
 		 *

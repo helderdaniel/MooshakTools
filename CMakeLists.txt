@@ -7,8 +7,8 @@ set(CMAKE_CXX_STANDARD 20)
 #set(CMAKE_CXX_COMPILER:FILEPATH /usr/bin/g++-9)
 #set(CMAKE_CXX_COMPILER /usr/bin/clang++-9)
 
-#set(GCC_EXTRA_COMPILE_FLAGS "-Ofast")
-set(GCC_EXTRA_COMPILE_FLAGS "-O0 -g --coverage") # -O0 and --coverage are slower
+set(GCC_EXTRA_COMPILE_FLAGS "-Ofast")
+#set(GCC_EXTRA_COMPILE_FLAGS "-O0 -g --coverage") # -O0 and --coverage are slower
 #set(GCC_EXTRA_LINK_FLAGS    "")
 
 #reset existing

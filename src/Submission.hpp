@@ -8,12 +8,14 @@
 #define MOOSHAKTOOLS_SUBMISSION_H
 
 #include <map>
+#include <set>
 #include <table2/Table2.hpp>
 
 using std::string;
 using std::map;
 using std::ostream;
 using std::tie;
+using std::set;
 using had::Table2;
 
 namespace mooshak {
@@ -54,6 +56,7 @@ namespace mooshak {
 		//there are more data about submissions
 
 	public:
+		static const set<Classifications> noFailSet;
 		static inline string Problem = "Problem ";
 		static inline string Team = "Team ";
 		static inline string Classify = "Classify ";
@@ -98,14 +101,7 @@ namespace mooshak {
 		const string classificationStr() const { return classificationsMap.at(_classification); }
 		const States state() const	   { return _state;	}
 		const string stateStr() const  { return statesMap.at(_state); }
-		const bool isFailure() const   {
-			if (_classification == Accepted) return false;
-			if (_classification == PresentationError) return false;
-			if (_classification == CompileTimeError) return false;
-			if (_classification == InvalidSubmission) return false;
-			if (_classification == ProgramSizeExceeded) return false;
-			return true;
-		}
+		const bool isFailure() const   { return noFailSet.find(_classification) == noFailSet.end();	}
 		const bool isFinal() const     { return _state == Final; }
 
 
@@ -157,8 +153,11 @@ namespace mooshak {
 			{WrongAnswer,          "Wrong Answer"}
 	};
 
+	const set<Classifications> Submission::noFailSet {Accepted, CompileTimeError, InvalidSubmission, PresentationError, ProgramSizeExceeded};
+
 	const Table2<States, string> Submission::statesTbl(Submission::statesMap);
 	const Table2<Classifications, string> Submission::classificationsTbl(Submission::classificationsMap);
+
 }
 
 

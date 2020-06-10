@@ -46,7 +46,6 @@ TEST_CASE( "Mooshak Contest", "[Contest]" ) {
 			REQUIRE(out.str() == sc[i]);
 		}
 
-
 		//Bad filter format
 		REQUIRE_THROWS_AS(Contest(contestRoot, filterFN1), runtime_error);
 		REQUIRE_THROWS_WITH(Contest(contestRoot, filterFN1), "bad filter format");
@@ -86,11 +85,13 @@ TEST_CASE( "Mooshak Contest", "[Contest]" ) {
 		//Count All
 		ss.str("");  //clear ss
 		contest.countAll(ss);
+		//cout << ss.str();
 		REQUIRE(File::teststr(POOAllc, ss.str()).empty());
 
 		//Count All Final
 		ss.str("");  //clear ss
 		contest.countFinal(ss);
+		//cout << ss.str();
 		REQUIRE(File::teststr(POOFinalc, ss.str()).empty());
 	}
 }
