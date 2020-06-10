@@ -31,6 +31,10 @@ using had::String;
 namespace mooshak {
 
 	class Contest {
+		static constexpr int defaultWidthProb = 3;
+		static constexpr int defaultWidthClass = 5;
+		static constexpr int defaultWidthTotal = 6;
+
 		static inline string folderSep = "/";
 		static inline string datafile = ".data.tcl";
 		static inline string problemsFN = "problems";
@@ -43,8 +47,7 @@ namespace mooshak {
 		map<const string, const string> problemName;
 		vector<Submission> submissions;
 
-		array<int,ClassificationsSize> classCountAll = {0};
-		array<int,ClassificationsSize> classCountFinal = {0};
+		map<const string, array<int,ClassificationsSize>> mapCountAll, mapCountFinal;
 
 		typedef tuple<string,string> filterTuple;
 		typedef vector<filterTuple> customFilter;
@@ -74,6 +77,15 @@ namespace mooshak {
 			}
 		}
 
+		//Init counters
+		void initCounters() {
+			for (auto p : problemName) {
+				array<int,ClassificationsSize> all = {0};
+				mapCountAll.insert({p.second, all});
+				array<int,ClassificationsSize> final = {0};
+				mapCountFinal.insert({p.second, final});
+			}
+		}
 
 		/**
 		 *
@@ -99,7 +111,7 @@ namespace mooshak {
 		 *	Fills submission vector with every submission in contest
 		 */
 		void _getSubmissions() {
-			string file, buf, name, team, classify, state;
+			string file, buf, pname, team, classify, state;
 			Submission sub;
 			ulong idx;
 
@@ -115,7 +127,7 @@ namespace mooshak {
 
 				//Add problem name
 				idx = String::firstSubstring(file, Submission::Problem, "\n", buf);
-				name = problemName[buf];
+				pname = problemName[buf];
 
 				//Add team
 				idx = String::firstSubstring(file, Submission::Team, "\n", buf, idx);
@@ -123,7 +135,7 @@ namespace mooshak {
 				if (filterNames) _filter(buf);
 				team = buf;
 
-				//Add classify
+				//Add classification
 				idx = String::firstSubstring(file, Submission::Classify, "\n", buf, idx);
 				classify = buf;
 
@@ -132,12 +144,13 @@ namespace mooshak {
 				state = buf;
 
 				//Add submission
-				Submission s(name, team, classify, state);
+				Submission s(pname, team, classify, state);
 				submissions.emplace_back(s);
 
 				//Update classification counters
-				classCountAll[s.classify()]++;
-				if (s.state() == Final) classCountFinal[s.classify()]++;
+				mapCountAll.at(pname)[s.classification()]++;
+				if (s.state() == Final)
+					mapCountFinal.at(pname)[s.classification()]++;
 			}
 		}
 
@@ -156,6 +169,9 @@ namespace mooshak {
 
 			//Get names of problems as displayed in Mooshak: A,B,C,...
 			_getProblemNames();
+
+			//Previously init counters for fast map update
+			initCounters();
 
 			//Get filter
 			if (filterFN.empty()) {
@@ -201,7 +217,7 @@ namespace mooshak {
 		string All() const {
 			string ret;
 
-			//lambd way (same performance)
+			//lambda way (same performance)
 			//for_each(submissions.begin(), submissions.end(),
 			//		 [&](const Submission &s){ ret += to_string(s) + '\n'; } );
 			for (const auto& s : submissions)
@@ -229,7 +245,7 @@ namespace mooshak {
 			string ret;  //faster to *= a string than << a stringstream (about 8x)
 
 			for (const auto& s : submissions)
-				if (s.classify() == mooshak::Accepted)
+				if (s.classification() == mooshak::Accepted)
 					ret += to_string(s) + '\n';
 			return ret;
 		}
@@ -237,7 +253,7 @@ namespace mooshak {
 		//About 25% slower
 		ostream& Accepted(ostream &os) const {
 			for (const auto& s : submissions)
-				if (s.classify() == mooshak::Accepted) os << s << '\n';
+				if (s.classification() == mooshak::Accepted) os << s << '\n';
 			return os;
 		}
 
@@ -253,7 +269,7 @@ namespace mooshak {
 
 			///for iterator way
 			for (const auto& s : submissions)
-				if (s.classify() == mooshak::Accepted &&
+				if (s.classification() == mooshak::Accepted &&
 				    s.state() == mooshak::Final)
 					ret += to_string(s) + '\n';
 			return ret;
@@ -262,11 +278,48 @@ namespace mooshak {
 		//About 25% slower
 		ostream& AcceptedFinal(ostream &os) const {
 			for (const auto& s : submissions)
-				if (s.classify() == mooshak::Accepted &&
+				if (s.classification() == mooshak::Accepted &&
 					s.state() == mooshak::Final)
 					os << s << '\n';
 			return os;
 		}
+
+
+		/**
+		 * @param os output stream to insert table
+		 * @param map map to be converted to table
+		 * @return table that represents the map
+		 */
+		ostream& countMap(ostream& os, map<const string, array<int,ClassificationsSize>> map) const {
+			//Header
+			os << "Prob  Acc CTEr Eval InFn InSb MLEx OLEx PErr PSEx REvl RTEr TLEx WrAn Total\n";
+
+			//Body
+			for (auto entry : map) {
+				os << std::setw(defaultWidthProb) << entry.first << " ";
+				int total=0;
+				for (int i = 0; i < mooshak::ClassificationsSize; ++i) {
+					int val = map.at(entry.first)[i];
+					total += val;
+					os << std::setw(defaultWidthClass) << val;
+				}
+				os << std::setw(defaultWidthTotal) << total << '\n';
+			}
+			return os;
+		}
+
+		/**
+		 * @param os output stream to insert table
+		 * @return table with counting of All submissions by classification type
+		 */
+		ostream& countAll(ostream& os) const { return countMap(os, mapCountAll); }
+
+		/**
+		 * @param os output stream to insert table
+		 * @return table with counting of only Final submissions by classification type
+		 */
+		ostream& countFinal(ostream& os) const { return countMap(os, mapCountFinal); }
+
 
 		/**
 		 *

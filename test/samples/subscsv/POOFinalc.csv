@@ -1,0 +1,9 @@
+Prob  Acc CTEr Eval InFn InSb MLEx OLEx PErr PSEx REvl RTEr TLEx WrAn Total
+  A    73    0    0    0    0    0    0    0    0    0    1    0    2    76
+  B    74    0    0    0    0    0    0    0    0    0    0    0    0    74
+  C    70    0    0    0    0    0    0    0    0    0    0    0    0    70
+  D    61    0    0    0    0    0    0    0    0    0    0    0    0    61
+  E    66    0    0    0    0    0    0    0    0    0    0    0    0    66
+  F    59    0    0    0    0    0    0    0    0    0    0    0    0    59
+  G    30    0    0    0    0    0    0    0    0    0    0    0    0    30
+  H    20    2    0    0    0    0    0    0    0    0    0    0    0    22

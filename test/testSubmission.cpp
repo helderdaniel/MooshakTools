@@ -39,10 +39,10 @@ TEST_CASE( "Mooshak Submission", "[Submission]" ) {
 		for (int i = 0; i < cases; ++i) {
 			REQUIRE(subs[i].problem() == p[i]);
 			REQUIRE(subs[i].team() == t[i]);
-			REQUIRE(subs[i].classify() == c[i]);
-			REQUIRE(subs[i].classifys() == ec[i]);
+			REQUIRE(subs[i].classification() == c[i]);
+			REQUIRE(subs[i].classificationStr() == ec[i]);
 			REQUIRE(subs[i].state() == s[i]);
-			REQUIRE(subs[i].states() == es[i]);
+			REQUIRE(subs[i].stateStr() == es[i]);
 			REQUIRE(subs[i].isFailure() == eFail[i]);
 			REQUIRE(subs[i].isFinal() == ef[i]);
 			REQUIRE(to_string(subs[i]) == estr[i]);

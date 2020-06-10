@@ -74,5 +74,23 @@ TEST_CASE( "Mooshak Contest", "[Contest]" ) {
 		ss.str("");  //clear ss
 		contest.AcceptedFinal(ss);
 		REQUIRE(File::teststr(POOAF, ss.str()).empty());
+
+	}
+
+	SECTION("count") {
+		Contest contest(contestRoot, filterFN0);
+		std::stringstream ss;
+		std::string POOAllc = "../test/samples/subscsv/POOAllc.csv";
+		std::string POOFinalc = "../test/samples/subscsv/POOFinalc.csv";
+
+		//Count All
+		ss.str("");  //clear ss
+		contest.countAll(ss);
+		REQUIRE(File::teststr(POOAllc, ss.str()).empty());
+
+		//Count All Final
+		ss.str("");  //clear ss
+		contest.countFinal(ss);
+		REQUIRE(File::teststr(POOFinalc, ss.str()).empty());
 	}
 }

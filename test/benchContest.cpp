@@ -26,7 +26,7 @@ TEST_CASE( "Mooshak Contest", "[Contest]" ) {
 			output = contest.All();
 	   	};
 
-		BENCHMARK("All straem") {
+		BENCHMARK("All stream") {
 			contest.All(ss);
 		};
 	}

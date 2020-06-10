@@ -94,10 +94,10 @@ namespace mooshak {
 
 		const string &problem() const  { return _problem; }
 		const string &team() const     { return _team; }
-		const Classifications classify() const { return _classification; }
-		const string classifys() const { return classificationsMap.at(_classification); }
+		const Classifications classification() const { return _classification; }
+		const string classificationStr() const { return classificationsMap.at(_classification); }
 		const States state() const	   { return _state;	}
-		const string states() const	   { return statesMap.at(_state); }
+		const string stateStr() const  { return statesMap.at(_state); }
 		const bool isFailure() const   {
 			if (_classification == Accepted) return false;
 			if (_classification == PresentationError) return false;
@@ -108,31 +108,31 @@ namespace mooshak {
 		}
 		const bool isFinal() const     { return _state == Final; }
 
-		friend string to_string(const Submission &s);
-		//friend ostream& operator<<(ostream &os, const Submission &s);
-		friend bool operator<(const Submission &lhs, const Submission &rhs);
+
+		friend string to_string(const Submission &s, const char sep=Submission::defaultSeparator) {
+			string ret;
+			ret += s._problem + sep;
+			ret += s._team + sep;
+			ret += classificationsTbl.value(s._classification) + sep;
+			ret += statesTbl.value(s._state);
+			return ret;
+		}
+
+
+		//strict-weak-ordering
+		//https://en.cppreference.com/w/cpp/language/operators
+		//https://stackoverflow.com/questions/11312448/operator-comparing-multiple-fields
+		friend bool operator<(const Submission &lhs, const Submission &rhs) {
+			return 	tie(lhs._problem,lhs._team,lhs._classification,lhs._state) <
+					  tie(rhs._problem,rhs._team,rhs._classification,rhs._state);
+		}
 	};
 
-	inline string to_string(const Submission &s) {
-		string ret;
-		ret += s._problem + Submission::defaultSeparator;
-		ret += s._team + Submission::defaultSeparator;
-		ret += Submission::classificationsTbl.value(s._classification) + Submission::defaultSeparator;
-		ret += Submission::statesTbl.value(s._state);
-		return ret;
-	}
 
 	ostream &operator<<(ostream &os, const Submission &s) {
 		return os << to_string(s);
 	}
 
-	//strict-weak-ordering
-	//https://en.cppreference.com/w/cpp/language/operators
-	//https://stackoverflow.com/questions/11312448/operator-comparing-multiple-fields
-	bool operator<(const Submission &lhs, const Submission &rhs) {
-		return 	tie(lhs._problem,lhs._team,lhs._classification,lhs._state) <
-				tie(rhs._problem,rhs._team,rhs._classification,rhs._state);
-	}
 
 	//lexicographic ordering
 	const map<States, string> Submission::statesMap = {
