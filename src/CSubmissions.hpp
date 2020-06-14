@@ -1,5 +1,5 @@
 /**
- *
+ * Get information about mooshak contest submissions
  *
  * @author hdaniel@ualg.pt 
  * @version 0.1
@@ -12,6 +12,7 @@
 #include <map>
 #include <iostream>
 #include <numeric>
+#include <vector>
 #include <algorithm>
 //#include <execution>
 #include <file/File.hpp>
@@ -30,8 +31,9 @@ using had::String;
 
 namespace mooshak {
 
-	class Contest {
+	class CSubmissions {
 		static constexpr int defaultWidthClass = 5;
+		static constexpr char defaultCsvSeparator = ',';
 
 		static inline string folderSep = "/";
 		static inline string datafile = ".data.tcl";
@@ -128,27 +130,65 @@ namespace mooshak {
 				pname = problemName[buf];
 
 				//Add team
-				idx = String::firstSubstring(file, Submission::Team, "\n", buf, idx);
+				idx = String::firstSubstring(file, Submission::Team, "\n", team, idx);
 
-				if (filterNames) _filter(buf);
-				team = buf;
+				if (filterNames) _filter(team);
 
 				//Add classification
-				idx = String::firstSubstring(file, Submission::Classify, "\n", buf, idx);
-				classify = buf;
+				idx = String::firstSubstring(file, Submission::Classify, "\n", classify, idx);
 
 				//Add state
-				String::firstSubstring(file, Submission::ClassifyFinal, "\n", buf, idx);
-				state = buf;
+				String::firstSubstring(file, Submission::ClassifyFinal, "\n", state, idx);
 
 				//Add submission
-				Submission s(pname, team, classify, state);
+				//conts here does NOT give better performance
+				//compiler should optimize it anyway
+				const Submission s(pname, team, classify, state);
 				submissions.emplace_back(s);
+				//using std::move() does not give better perfiormance
+				//since using const&
+				//Submission s(std::move(pname), std::move(team), std::move(classify), std::move(state));
+				//submissions.emplace_back(std::move(s));
 
 				//Update classification counters
 				mapCountAll.at(pname)[s.classification()]++;
 				if (s.isFinal()) mapCountFinal.at(pname)[s.classification()]++;
 			}
+		}
+
+
+		/**
+		 * @param os output stream to insert table
+		 * @param map map to be converted to table
+		 * @return table that represents the map
+		 */
+		ostream& _report(ostream& os, map<const string, array<int,ClassificationsSize>> map) const {
+			//Header
+			os << std::setw(defaultWidthClass) << "nofail";
+			auto f = Submission::noFailSet.begin();
+			for (int i = 0; i < mooshak::ClassificationsSize; ++i) {
+				if (i == *f) { os << "  *  "; f++; }
+				else         { os << "     "; }
+			}
+			os << '\n';
+			os << "Prob  Acc CTEr Eval InFn InSb MLEx OLEx PErr PSEx REvl RTEr TLEx WrAn Total Fails\n";
+
+			//Body
+			for (auto entry : map) {
+				os << std::setw(defaultWidthClass-2) << entry.first << " ";
+				int total=0;
+				int fails=0;
+				for (int i = 0; i < mooshak::ClassificationsSize; ++i) {
+					int val = map.at(entry.first)[i];
+					total += val;
+					bool isFail = Submission::noFailSet.find(static_cast<const Classifications>(i)) == Submission::noFailSet.end();
+					if (isFail)  fails += val;
+					os << std::setw(defaultWidthClass) << val;
+				}
+				os << std::setw(defaultWidthClass+1) << total;
+				os << std::setw(defaultWidthClass+1) << fails << '\n';
+			}
+			return os;
 		}
 
 
@@ -158,7 +198,7 @@ namespace mooshak {
 		 * @param contestFolder Mooshak contest root folder
 		 * @param filterNames   Filter Team names if true
 		 */
-		explicit Contest(const string &contestFolder, const string &filterFN="") :
+		explicit CSubmissions(const string &contestFolder, const string &filterFN="") :
 				contestFolder(contestFolder) {
 
 			problemsFolder = contestFolder + folderSep + problemsFN;
@@ -201,6 +241,33 @@ namespace mooshak {
 			//sort(std::execution::par_unseq, submissions.begin(), submissions.end()); //not useful for 2000 subs
 		}
 
+
+
+		/**
+		 * Applies f() to every element in CSubmissions. F() cannot change elemnts.
+		 *
+		 * @tparam Func template function accepts: function pointers, functor classes, and lambdas
+		 * @param f 	function pointers, functor classes, and lambdas
+		 */
+		//Accepts functor classes, function pointers and lambdas
+		//This is slower than specialized methods, to prevent function f() to modify vector elements, see below
+		template <typename Func>
+		void foreach(Func f) {
+			//Slower 15% than (but ensures vector cannot be changed)
+			//for (const auto& s : submissions)
+			for (const auto s : submissions) f(s);
+
+			//Note: even this ways <const_cast> will give access to modify element
+			//for (vector<Submission>::const_iterator it = submissions.cbegin(); it < submissions.cend(); ++it)
+			//	f(std::as_const(*it));
+		}
+
+		/*Slower 25% but ensures vector cannot be changed
+		void foreach0(const std::function<void(Submission)> f) {
+			for (const auto& s : submissions) f(s);
+		}
+		*/
+
 		/**
 		 *
 		 * @return all submissions as a string with format:
@@ -239,7 +306,7 @@ namespace mooshak {
 		 *  (...)
 		 */
 		string Accepted() const {
-			string ret;  //faster to *= a string than << a stringstream (about 8x)
+			string ret;
 
 			for (const auto& s : submissions)
 				if (s.classification() == mooshak::Accepted)
@@ -262,7 +329,7 @@ namespace mooshak {
 		 *  (...)
 		 */
 		string AcceptedFinal() const {
-			string ret;  //faster to *= a string than << a stringstream (about 8x)
+			string ret;
 
 			///for iterator way
 			for (const auto& s : submissions)
@@ -283,50 +350,112 @@ namespace mooshak {
 
 
 		/**
-		 * @param os output stream to insert table
-		 * @param map map to be converted to table
-		 * @return table that represents the map
+		 *
+		 * @return all submissions Failed as a string with format:
+		 *
+		 *  A,12335,Runtime Error,final
+		 *  A,12335,Wrong Answer,pending
+		 *  B,13456,Wrong Answer,pending
+		 *  (...)
 		 */
-		ostream& countMap(ostream& os, map<const string, array<int,ClassificationsSize>> map) const {
-			//Header
-			os << std::setw(defaultWidthClass) << "nofail";
-			auto f = Submission::noFailSet.begin();
-			for (int i = 0; i < mooshak::ClassificationsSize; ++i) {
-				if (i == *f) { os << "  *  "; f++; }
-				else         { os << "     "; }
-			}
-			os << '\n';
-			os << "Prob  Acc CTEr Eval InFn InSb MLEx OLEx PErr PSEx REvl RTEr TLEx WrAn Total Fails\n";
+	private:
+		//About 25% slower than string version
+		template <typename U, typename V>
+		ostream& _Failed(ostream &os,
+				  		 U cmp, V ins,
+						 //or:
+						 //bool(*cmp)(const Submission&, const Submission&),
+						 //void (*ins)(ostream&, const Submission&,
+						 //  		   const int count, const char sep),
+						 const char sep = defaultCsvSeparator) const {
+			int count=0;
+			Submission s0;
 
-			//Body
-			for (auto entry : map) {
-				os << std::setw(defaultWidthClass-2) << entry.first << " ";
-				int total=0;
-				int fails=0;
-				for (int i = 0; i < mooshak::ClassificationsSize; ++i) {
-					int val = map.at(entry.first)[i];
-					total += val;
-					bool isFail = Submission::noFailSet.find(static_cast<const Classifications>(i)) == Submission::noFailSet.end();
-					if (isFail)  fails += val;
-					os << std::setw(defaultWidthClass) << val;
+			for (const auto& s : submissions)
+				if (s.isFailure()) {
+					//Another failed group submission
+					if (!cmp(s0, s)) {
+						//Only print if count > 0, last failed accounted submission
+						//Does NOT print at first iteration
+						if (count > 0) ins(os, s0, count, sep);
+						count = 1;
+						s0 = s;
+					}
+					//same failed group submission
+					else count ++;
 				}
-				os << std::setw(defaultWidthClass+1) << total;
-				os << std::setw(defaultWidthClass+1) << fails << '\n';
-			}
+			//If there was any failed accounted submission, print it
+			if (count > 0) ins(os, s0, count, sep);
 			return os;
 		}
 
+		static bool cmpFailed(const Submission& s0, const Submission& s1) {
+			return 	s0.problem() == s1.problem() &&
+					  s0.team() == s1.team() &&
+					  s0.classification() == s1.classification();
+		}
+
+		static bool cmpFailedType(const Submission& s0, const Submission& s1) {
+			return 	s0.problem() == s1.problem() &&
+					  s0.team() == s1.team();
+		}
+
+		static void insFailed(ostream &os, const Submission& sub, const int count,
+							  const char sep = defaultCsvSeparator) {
+			os 	<< sub.problem() << sep << sub.team() << sep
+				<< sub.classificationStr() << sep << count << '\n';
+		}
+
+		static void insFailedType(ostream &os, const Submission& sub, const int count,
+							  const char sep = defaultCsvSeparator) {
+			os 	<< sub.problem() << sep << sub.team() << sep << count << '\n';
+		}
+
+	public:
+		ostream& Failed(ostream &os, const char sep = defaultCsvSeparator) const {
+			return _Failed(os, cmpFailed, insFailed, sep);
+		}
+
+		ostream& FailedType(ostream &os, const char sep = defaultCsvSeparator) const {
+			return _Failed(os, cmpFailedType, insFailedType, sep);
+		}
+
+		ostream& FailedTypeAccepted(ostream &os, const char sep = defaultCsvSeparator) const {
+			int count = -1;
+			Submission s0;
+
+			for (const auto &s : submissions)
+				if (!cmpFailedType(s0, s)) {
+					//Only print if count >= 0, last failed accounted submission
+					//Does NOT print at first iteration
+					if (count >= 0) insFailedType(os, s0, count, sep);
+
+					if (s.classification() == mooshak::Accepted && s.isFinal()) {
+						count = 0;
+						s0 = s;
+					}
+					else count = -1;
+				}
+				else if (s.isFailure()) count++;
+
+			//If there was any failed accounted submission, print it
+			if (count >= 0) insFailedType(os, s0, count, sep);
+			return os;
+		}
+
+
 		/**
-		 * @param os output stream to insert table
-		 * @return table with counting of All submissions by classification type
-		 */
-		ostream& countAll(ostream& os) const { return countMap(os, mapCountAll); }
+			 * @param os output stream to insert table
+			 * @return table with counting of All submissions by classification type
+			 */
+		ostream& reportAll(ostream& os) const { return _report(os, mapCountAll); }
 
 		/**
 		 * @param os output stream to insert table
 		 * @return table with counting of only Final submissions by classification type
 		 */
-		ostream& countFinal(ostream& os) const { return countMap(os, mapCountFinal); }
+		ostream& reportFinal(ostream& os) const { return _report(os, mapCountFinal); }
+
 
 		/**
 		 *
@@ -334,11 +463,11 @@ namespace mooshak {
 		 * @param mcnt  mooshak contest
 		 * @return 		mooshak contest as string
 		 */
-		friend ostream& operator<<(ostream &os, const Contest &mcnt);
+		friend ostream& operator<<(ostream &os, const CSubmissions &mcnt);
 	};
 
 
-	ostream& operator<<(ostream &os, const Contest &mcnt) {
+	ostream& operator<<(ostream &os, const CSubmissions &mcnt) {
 		os << mcnt.contestFolder + '\n' <<
 		   mcnt.filterNames << '\n' <<
 		   mcnt.problemsFolder << '\n' <<

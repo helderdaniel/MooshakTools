@@ -104,6 +104,10 @@ namespace mooshak {
 		const bool isFailure() const   { return noFailSet.find(_classification) == noFailSet.end();	}
 		const bool isFinal() const     { return _state == Final; }
 
+		static const string& classificationStr(Classifications c) { return classificationsTbl.value(c); }
+		static const Classifications& classifications(const string& s) { return classificationsTbl.key(s); }
+		static const string& stateStr(States c) { return statesTbl.value(c); }
+		static const States& states(const string& s) { return statesTbl.key(s); }
 
 		friend string to_string(const Submission &s, const char sep=Submission::defaultSeparator) {
 			string ret;

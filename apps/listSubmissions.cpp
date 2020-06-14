@@ -52,9 +52,9 @@
  */
 
 #include <iostream>
-#include "src/Contest.hpp"
+#include "src/CSubmissions.hpp"
 
-using mooshak::Contest;
+using mooshak::CSubmissions;
 
 int main(int argc, char** argv) {
 //std::string input="input";
@@ -72,7 +72,7 @@ int main(int argc, char** argv) {
 */
 
 
- 	Contest contest("../test/samples/contests/POO1920", "../test/samples/contests/filterPOO1920.txt");
+ 	CSubmissions contest("../test/samples/contests/POO1920", "../test/samples/contests/filterPOO1920.txt");
 	std::cout << contest.AcceptedFinal();
 
 

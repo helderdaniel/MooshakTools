@@ -13,7 +13,7 @@
 #define CATCH_CONFIG_ENABLE_BENCHMARKING
 
 #include "testEval.cpp"
-#include "testContest.cpp"
+#include "testCSubmissions.cpp"
 #include "testSubmission.cpp"
 
 

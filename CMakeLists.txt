@@ -4,20 +4,28 @@ cmake_minimum_required(VERSION 3.2)
 set(CMAKE_CXX_STANDARD 20)
 #set(CMAKE_C_COMPILER /usr/bin/gcc-7)
 #set(CMAKE_C_COMPILER /usr/bin/clang-7)
-#set(CMAKE_CXX_COMPILER:FILEPATH /usr/bin/g++-9)
+set(CMAKE_CXX_COMPILER:FILEPATH /usr/bin/g++-9)
 #set(CMAKE_CXX_COMPILER /usr/bin/clang++-9)
 
-set(GCC_EXTRA_COMPILE_FLAGS "-Ofast")
-#set(GCC_EXTRA_COMPILE_FLAGS "-O0 -g --coverage") # -O0 and --coverage are slower
-#set(GCC_EXTRA_LINK_FLAGS    "")
+if (CMAKE_BUILD_TYPE MATCHES Debug)
+    set(CC_EXTRA_COMPILE_FLAGS "-O0 -g --coverage") # -O0 and --coverage are slower
+elseif(CMAKE_BUILD_TYPE MATCHES Release)
+    set(CC_EXTRA_COMPILE_FLAGS "-Ofast")
+endif()
+#set(CC_EXTRA_COMPILE_FLAGS_RELEASE "-Ofast")
+#set(CC_EXTRA_COMPILE_FLAGS_DEBUG "-O0 -g --coverage") # -O0 and --coverage are slower
+#set(CC_EXTRA_LINK_FLAGS    "")
 
 #reset existing
-set(CMAKE_CXX_FLAGS  ${GCC_EXTRA_COMPILE_FLAGS})
-set(CMAKE_EXE_LINKER_FLAGS  ${GCC_EXTRA_LINK_FLAGS})
+#set(CMAKE_CXX_FLAGS_DEBUG  ${CC_EXTRA_COMPILE_FLAGS_DEBUG})
+#set(CMAKE_CXX_FLAGS_RELEASE  ${CC_EXTRA_COMPILE_FLAGS_RELEASE})
+set(CMAKE_CXX_FLAGS  ${CC_EXTRA_COMPILE_FLAGS})
+set(CMAKE_CXX_FLAGS  ${CC_EXTRA_COMPILE_FLAGS})
+set(CMAKE_EXE_LINKER_FLAGS  ${CC_EXTRA_LINK_FLAGS})
 
 #add to existing
-#set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${GCC_EXTRA_COMPILE_FLAGS}")
-#set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} ${GCC_EXTRA_LINK_FLAGS}")
+#set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${CC_EXTRA_COMPILE_FLAGS}")
+#set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} ${CC_EXTRA_LINK_FLAGS}")
 
 #Project name
 #Must be after set compiler paths
@@ -50,7 +58,10 @@ set(CATCH2LIB "${HDLIB}/catch2/libCatch2.a")
 set(TARGET "evaluate")
 add_executable(${TARGET} ${APPS}/${TARGET}.cpp)
 
-set(TARGET "submissions")
+set(TARGET "listSubmissions")
+add_executable(${TARGET} ${APPS}/${TARGET}.cpp)
+
+set(TARGET "test")
 add_executable(${TARGET} ${APPS}/${TARGET}.cpp)
 
 #Unit tests
@@ -58,11 +69,11 @@ set(UNITTEST "testEval")
 add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
 target_link_libraries(${UNITTEST} ${CATCH2LIB})
 
-set(UNITTEST "testContest")
+set(UNITTEST "testCSubmissions")
 add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
 target_link_libraries(${UNITTEST} ${CATCH2LIB})
 
-set(UNITTEST "benchContest")
+set(UNITTEST "benchCSubmissions")
 add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
 #target_link_libraries(${UNITTEST} ${CATCH2LIB} ${TBBLIB} )
 target_link_libraries(${UNITTEST} ${CATCH2LIB} )
@@ -75,9 +86,6 @@ set(UNITTEST "testAll")
 add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
 target_link_libraries(${UNITTEST} ${CATCH2LIB})
 
-set(UNITTEST "benchSS")
-add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
-target_link_libraries(${UNITTEST} ${CATCH2LIB})
 
 #Doxygen
 #https://vicrucann.github.io/tutorials/quick-cmake-doxygen/

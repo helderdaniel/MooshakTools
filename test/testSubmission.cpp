@@ -49,4 +49,14 @@ TEST_CASE( "Mooshak Submission", "[Submission]" ) {
 		}
 	}
 
+	SECTION("Converters") {
+		REQUIRE(Submission::classificationStr(Accepted) == "Accepted");
+		REQUIRE(Submission::classifications("Accepted") == Accepted);
+		REQUIRE_THROWS_AS(Submission::classifications(""),std::out_of_range);
+
+		REQUIRE(Submission::stateStr(Final) == "final");
+		REQUIRE(Submission::states("final") == Final);
+		REQUIRE_THROWS_AS(Submission::states(""),std::out_of_range);
+	}
+
 }

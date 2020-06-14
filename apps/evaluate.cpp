@@ -19,6 +19,8 @@
 #include <iostream>
 #include "src/Evaluate.hpp"
 
+using mooshak::Evaluate;
+
 int main(int argc, char** argv) {
 std::string input="input";
 std::string output="output";
