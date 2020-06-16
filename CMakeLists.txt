@@ -58,10 +58,7 @@ set(CATCH2LIB "${HDLIB}/catch2/libCatch2.a")
 set(TARGET "evaluate")
 add_executable(${TARGET} ${APPS}/${TARGET}.cpp)
 
-set(TARGET "listSubmissions")
-add_executable(${TARGET} ${APPS}/${TARGET}.cpp)
-
-set(TARGET "test")
+set(TARGET "submissions")
 add_executable(${TARGET} ${APPS}/${TARGET}.cpp)
 
 #Unit tests
@@ -69,16 +66,24 @@ set(UNITTEST "testEval")
 add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
 target_link_libraries(${UNITTEST} ${CATCH2LIB})
 
-set(UNITTEST "testCSubmissions")
+set(UNITTEST "testSubmissionsInfo")
 add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
 target_link_libraries(${UNITTEST} ${CATCH2LIB})
 
-set(UNITTEST "benchCSubmissions")
+set(UNITTEST "benchSubmissionsInfo")
 add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
 #target_link_libraries(${UNITTEST} ${CATCH2LIB} ${TBBLIB} )
 target_link_libraries(${UNITTEST} ${CATCH2LIB} )
 
 set(UNITTEST "testSubmission")
+add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
+target_link_libraries(${UNITTEST} ${CATCH2LIB})
+
+set(UNITTEST "testAppSubmissions")
+add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
+target_link_libraries(${UNITTEST} ${CATCH2LIB})
+
+set(UNITTEST "testAppEvaluate")
 add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
 target_link_libraries(${UNITTEST} ${CATCH2LIB})
 

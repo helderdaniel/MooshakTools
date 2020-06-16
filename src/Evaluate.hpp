@@ -22,8 +22,8 @@ using had::Shell;
 namespace mooshak {
 
 	class Evaluate {
-		inline static const string DFLTINPUTFN = "input";
-		inline static const string DFLTOUTPUTFN = "output";
+		static constexpr const char* DFLTINPUTFN  = "input";
+		static constexpr const char* DFLTOUTPUTFN = "output";
 
 		const string inputFN;
 		const string outputFN;
@@ -41,10 +41,15 @@ namespace mooshak {
 		 */
 		Evaluate(const string &executePath, const string &testsPath,
 				 const string &inputFN = DFLTINPUTFN,
-				 const string &outputFN = DFLTOUTPUTFN) : inputFN(inputFN),
-														  outputFN(outputFN),
-														  testsPath(testsPath),
-														  executePath(executePath) {}
+				 const string &outputFN = DFLTOUTPUTFN) : executePath(executePath),
+				  										  testsPath(testsPath),
+				 										  inputFN(inputFN),
+														  outputFN(outputFN) {
+			if (!std::filesystem::exists(executePath))
+				throw runtime_error("executable not found");
+			if (!std::filesystem::exists(testsPath))
+				throw runtime_error("tests folder not found");
+		}
 
 		/**
 		 * Perform expression evaluation
@@ -86,10 +91,16 @@ namespace mooshak {
 
 
 		/**
-		 * Inserts in output stream os a string representing the
-		 * Evaluation expression in the form:
+		 * Inserts in output stream os, a line for each test, in the form:
 		 *
-		 * diff: (<executable> < <input filename> , <output filename>)
+		 * <executable> < <input filename>
+		 *
+		 * If any differences between <executable> output and <expected output> shows them as:
+		 *
+		 * Expected:
+		 * (...)
+		 * Actual:
+		 * (...)
 		 *
 		 * @param os 	output stream
 		 * @param meval Evaluate object

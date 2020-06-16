@@ -13,7 +13,9 @@
 #define CATCH_CONFIG_ENABLE_BENCHMARKING
 
 #include "testEval.cpp"
-#include "testCSubmissions.cpp"
+#include "testSubmissionsInfo.cpp"
 #include "testSubmission.cpp"
+#include "testAppEvaluate.cpp"
+#include "testAppSubmissions.cpp"
 
 

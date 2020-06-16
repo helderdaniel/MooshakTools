@@ -10,7 +10,7 @@
 #define CATCH_CONFIG_ENABLE_BENCHMARKING
 #include <catch2/catch.hpp>
 #include <sstream>
-#include "../src/CSubmissions.hpp"
+#include "../src/SubmissionsInfo.hpp"
 #include <stopwatch/stopwatch.hpp>
 
 using namespace mooshak;
@@ -24,9 +24,9 @@ public:
 	}
 };
 
-TEST_CASE( "Mooshak CSubmissions", "[CSubmissions]" ) {
+TEST_CASE( "Mooshak SubmissionsInfo", "[SubmissionsInfo]" ) {
 	std::string contestPath = "../test/samples/contests/POO1920";
-	CSubmissions csub (contestPath);
+	SubmissionsInfo csub (contestPath);
 	std::string output;
 	std::stringstream ss;
 

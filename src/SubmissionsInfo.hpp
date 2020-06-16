@@ -31,14 +31,14 @@ using had::String;
 
 namespace mooshak {
 
-	class CSubmissions {
+	class SubmissionsInfo {
 		static constexpr int defaultWidthClass = 5;
 		static constexpr char defaultCsvSeparator = ',';
 
-		static inline string folderSep = "/";
-		static inline string datafile = ".data.tcl";
-		static inline string problemsFN = "problems";
-		static inline string submissionsFN = "submissions";
+		static constexpr const char* folderSep = "/";
+		static constexpr const char* datafile = ".data.tcl";
+		static constexpr const char* problemsFN = "problems";
+		static constexpr const char* submissionsFN = "submissions";
 
 		string contestFolder;
 		bool filterNames;
@@ -79,7 +79,7 @@ namespace mooshak {
 
 		//Init counters
 		void initCounters() {
-			for (auto p : problemName) {
+			for (const auto& p : problemName) {
 				array<int,ClassificationsSize> all = {0};
 				mapCountAll.insert({p.second, all});
 				array<int,ClassificationsSize> final = {0};
@@ -198,7 +198,7 @@ namespace mooshak {
 		 * @param contestFolder Mooshak contest root folder
 		 * @param filterNames   Filter Team names if true
 		 */
-		explicit CSubmissions(const string &contestFolder, const string &filterFN="") :
+		explicit SubmissionsInfo(const string &contestFolder, const string &filterFN="") :
 				contestFolder(contestFolder) {
 
 			problemsFolder = contestFolder + folderSep + problemsFN;
@@ -217,6 +217,8 @@ namespace mooshak {
 			else {
 				filterNames = true;
 				ifstream input(filterFN);
+				if (!input)
+					throw std::runtime_error("I/O error opening filter");
 
 				for (;;) {
 					string rgx;
@@ -244,7 +246,7 @@ namespace mooshak {
 
 
 		/**
-		 * Applies f() to every element in CSubmissions. F() cannot change elemnts.
+		 * Applies f() to every element in SubmissionsInfo. F() cannot change elemnts.
 		 *
 		 * @tparam Func template function accepts: function pointers, functor classes, and lambdas
 		 * @param f 	function pointers, functor classes, and lambdas
@@ -349,16 +351,17 @@ namespace mooshak {
 		}
 
 
+	private:
 		/**
 		 *
-		 * @return all submissions Failed as a string with format:
-		 *
-		 *  A,12335,Runtime Error,final
-		 *  A,12335,Wrong Answer,pending
-		 *  B,13456,Wrong Answer,pending
-		 *  (...)
+		 * @tparam U   use to accept a function pointer, functor or lambda for comparision
+		 * @tparam V   use to accept a function pointer, functor or lambda for insertion
+		 * @param os   stream to insert
+		 * @param cmp  comparator
+		 * @param ins  stream insertion and formatter
+		 * @param sep  field separator
+		 * @return     a stream with all submissions that fulfill cmp() as a string defined by ins()
 		 */
-	private:
 		//About 25% slower than string version
 		template <typename U, typename V>
 		ostream& _Failed(ostream &os,
@@ -389,37 +392,90 @@ namespace mooshak {
 			return os;
 		}
 
+		/**
+		 * @param   s0 a Submission to compare
+		 * @param   s1 another Submission to compare
+		 * @return  true if _problem, _team and _classification are equal
+		 */
 		static bool cmpFailed(const Submission& s0, const Submission& s1) {
 			return 	s0.problem() == s1.problem() &&
 					  s0.team() == s1.team() &&
 					  s0.classification() == s1.classification();
 		}
 
+		/**
+		 * @param   s0 a Submission to compare
+		 * @param   s1 another Submission to compare
+		 * @return  true if _problem and _team are equal
+		 */
 		static bool cmpFailedType(const Submission& s0, const Submission& s1) {
 			return 	s0.problem() == s1.problem() &&
 					  s0.team() == s1.team();
 		}
 
+
+		/**
+		 * insert submission in stream os, with format:
+		 *
+		 *  A,12335,Runtime Error,final
+		 *  A,12335,Wrong Answer,pending
+		 *  B,13456,Wrong Answer,pending
+		 *  (...)
+		 *
+		 * @param os    stream to insert
+		 * @param sub   submission
+		 * @param count counter
+		 * @param sep   field, separator
+		 */
 		static void insFailed(ostream &os, const Submission& sub, const int count,
 							  const char sep = defaultCsvSeparator) {
 			os 	<< sub.problem() << sep << sub.team() << sep
 				<< sub.classificationStr() << sep << count << '\n';
 		}
 
+		/**
+		 * insert count of submission in stream os, with format:
+		 *
+		 *  A,12335,0
+		 *  A,12565,3
+		 *  B,13456,3
+		 *  (...)
+		 *
+		 * @param os    stream to insert
+		 * @param sub   submission
+		 * @param count counter
+		 * @param sep   field, separator
+		 */
 		static void insFailedType(ostream &os, const Submission& sub, const int count,
 							  const char sep = defaultCsvSeparator) {
 			os 	<< sub.problem() << sep << sub.team() << sep << count << '\n';
 		}
 
 	public:
+		/**
+		 * @param os   stream to insert
+		 * @param sep  field separator
+		 * @return     a stream with failed submissions
+		 */
 		ostream& Failed(ostream &os, const char sep = defaultCsvSeparator) const {
 			return _Failed(os, cmpFailed, insFailed, sep);
 		}
 
+		/**
+		 * @param os   stream to insert
+		 * @param sep  field separator
+		 * @return     a stream with the count of failed submissions, group for problem and team
+		 */
 		ostream& FailedType(ostream &os, const char sep = defaultCsvSeparator) const {
 			return _Failed(os, cmpFailedType, insFailedType, sep);
 		}
 
+		/**
+		 * @param os   stream to insert
+		 * @param sep  field separator
+		 * @return     a stream with the count of failed submissions, group for problem
+		 * 			   and team, only for teams that have the problem marked as Accepted
+		 */
 		ostream& FailedTypeAccepted(ostream &os, const char sep = defaultCsvSeparator) const {
 			int count = -1;
 			Submission s0;
@@ -463,11 +519,11 @@ namespace mooshak {
 		 * @param mcnt  mooshak contest
 		 * @return 		mooshak contest as string
 		 */
-		friend ostream& operator<<(ostream &os, const CSubmissions &mcnt);
+		friend ostream& operator<<(ostream &os, const SubmissionsInfo &mcnt);
 	};
 
 
-	ostream& operator<<(ostream &os, const CSubmissions &mcnt) {
+	ostream& operator<<(ostream &os, const SubmissionsInfo &mcnt) {
 		os << mcnt.contestFolder + '\n' <<
 		   mcnt.filterNames << '\n' <<
 		   mcnt.problemsFolder << '\n' <<

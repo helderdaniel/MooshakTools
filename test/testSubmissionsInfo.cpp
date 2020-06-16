@@ -4,21 +4,22 @@
 
 #include <catch2/catch.hpp>
 #include <sstream>
-#include "../src/CSubmissions.hpp"
+#include "../src/SubmissionsInfo.hpp"
 
 using namespace mooshak;
 
-TEST_CASE( "Mooshak CSubmissions", "[CSubmissions]" ) {
+TEST_CASE( "Mooshak SubmissionsInfo", "[SubmissionsInfo]" ) {
 	std::string contestsPath = "../test/samples/contests/";
 	std::string contestRoot = contestsPath + "POO1920";
 	std::string filterFN0 = contestsPath + "filterPOO1920.txt";
-	std::string filterFN1 = contestsPath + "filterPOO1920bad.txt";
+	std::string filterFN1 = contestsPath + "filterPOO1920noExistent.txt";
+	std::string filterFN2 = contestsPath + "filterPOO1920bad.txt";
 
 	SECTION("Constructor") {
 		const int cases = 2;
-		const CSubmissions c[] = {
-				CSubmissions(contestRoot),
-				CSubmissions(contestRoot, filterFN0)};
+		const SubmissionsInfo c[] = {
+				SubmissionsInfo(contestRoot),
+				SubmissionsInfo(contestRoot, filterFN0)};
 
 		std::string contest0 = "0\n";
 		std::string contest1 = "1\n";
@@ -46,14 +47,19 @@ TEST_CASE( "Mooshak CSubmissions", "[CSubmissions]" ) {
 			REQUIRE(out.str() == sc[i]);
 		}
 
+
+		//I/O error opening filter
+		REQUIRE_THROWS_AS(SubmissionsInfo(contestRoot, filterFN1), runtime_error);
+		REQUIRE_THROWS_WITH(SubmissionsInfo(contestRoot, filterFN1), "I/O error opening filter");
+
 		//Bad filter format
-		REQUIRE_THROWS_AS(CSubmissions(contestRoot, filterFN1), runtime_error);
-		REQUIRE_THROWS_WITH(CSubmissions(contestRoot, filterFN1), "bad filter format");
+		REQUIRE_THROWS_AS(SubmissionsInfo(contestRoot, filterFN2), runtime_error);
+		REQUIRE_THROWS_WITH(SubmissionsInfo(contestRoot, filterFN2), "bad filter format");
 	}
 
 
 	SECTION("Listings") {
-		CSubmissions contest(contestRoot, filterFN0);
+		SubmissionsInfo contest(contestRoot, filterFN0);
 		std::stringstream ss;
 		std::string s;
 		std::string POOAll = "../test/samples/mapscsv/POOAll.csv";
@@ -103,7 +109,7 @@ TEST_CASE( "Mooshak CSubmissions", "[CSubmissions]" ) {
 	}
 
 	SECTION("count") {
-		CSubmissions contest(contestRoot, filterFN0);
+		SubmissionsInfo contest(contestRoot, filterFN0);
 		std::stringstream ss;
 		std::string POOAllc = "../test/samples/mapscsv/POOAllc.map";
 		std::string POOFinalc = "../test/samples/mapscsv/POOFinalc.map";

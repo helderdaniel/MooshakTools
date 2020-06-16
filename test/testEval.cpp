@@ -10,14 +10,17 @@ using namespace mooshak;
 TEST_CASE( "Mooshak Evaluation", "[Evaluate]" ) {
 
 	SECTION("Constructor") {
+		constexpr const char * exePath = "../test/samples/apps/conv";
 		const int cases = 2;
+
 		const Evaluate e[] = {
-				Evaluate("run.sh", "."),
-				Evaluate("run.sh", ".", "inputf", "outputf") };
+				Evaluate(exePath, "."),
+				Evaluate(exePath, ".", "inputf", "outputf")
+		};
 
 		const std::string se[] = {
-				"diff: (run.sh (./input, ./output)",
-				"diff: (run.sh (./inputf, ./outputf)" };
+				std::string("diff: (") + exePath + " (./input, ./output)",
+				std::string("diff: (") + exePath + " (./inputf, ./outputf)" };
 
 		std::stringstream out;
 
@@ -26,6 +29,7 @@ TEST_CASE( "Mooshak Evaluation", "[Evaluate]" ) {
 			out << e[i];
 			REQUIRE(out.str() == se[i]);
 		}
+
 	}
 
 	SECTION("test") {
@@ -57,7 +61,6 @@ TEST_CASE( "Mooshak Evaluation", "[Evaluate]" ) {
 				"../test/samples/apps/conv < ../test/samples/tests/T7/input\n"
 				"../test/samples/apps/conv < ../test/samples/tests/T8/input\n";
 
-		const int cases = 3;
 		const Evaluate e0[] = {
 				Evaluate(testexe, testspath),
 				Evaluate(testexe, testspath, "input", "output"),
@@ -70,13 +73,13 @@ TEST_CASE( "Mooshak Evaluation", "[Evaluate]" ) {
 				Evaluate(testexe, testspath, "__NonExistant__", "output"),
 				Evaluate(testexe, testspath, "__NonExistant__", "__NonExistant__") };
 
-		for (int i = 0; i < cases; ++i) {
-			REQUIRE(e0[i].run()==expected);
+		for (const auto & e : e0) {
+			REQUIRE(e.run()==expected);
 		}
 
 		for (int i = 0; i < excases-1; ++i) {
 			REQUIRE_THROWS_AS(e1[i].run(), std::runtime_error);
-			REQUIRE_THROWS_WITH(e1[0].run(), "Number of input and output files differ");
+			REQUIRE_THROWS_WITH(e1[i].run(), "Number of input and output files differ");
 		}
 
 		REQUIRE_THROWS_AS(e1[2].run(), std::runtime_error);
