@@ -8,8 +8,8 @@
  *
  * submissions <contest path> <operation> [<filter path>]
  *
- * eg.:  submissions contests/POO1920/ AF
- * eg.:  submissions ../test/samples/contests/POO1920  AF  ../test/samples/contests/filterPOO1920.txt
+ * eg.:  submissions contests/POO1920/ AcceptedFinal
+ * eg.:  submissions ../test/samples/contests/POO1920  AcceptedFinal
  *
  * 1st argument is the contest folder, eg:
  *	/home/mooshak/data/contests/SO1920
@@ -21,6 +21,7 @@
  *	Fail			list failed submissions
  *	FailType		list failed submissions grouped by type
  *	AcceptedFailType list failed submissions grouped by type, only if team as one "Accepted" submission to the problem
+ *	                 (used to get info from Mooshak to assessment sheets)
  *  mapAll  		map counter of all submissions classification for each problem
  *  mapFinal 		map counter of all submissions classification for each problem, marked as "final"
  *
@@ -64,6 +65,7 @@
  *
  *
  *	Classifications listed below are the only ones not considered as failure:
+ *	(This is harded coded in current version)
  *		Accepted
  *		Compile Time Error
  *		Invalid Submission

@@ -54,43 +54,18 @@ set(TBBLIB "/usr/lib/x86_64-linux-gnu/libtbb.so")
 #Catch2 lib
 set(CATCH2LIB "${HDLIB}/catch2/libCatch2.a")
 
-#targets
-set(TARGET "evaluate")
-add_executable(${TARGET} ${APPS}/${TARGET}.cpp)
-
-set(TARGET "submissions")
-add_executable(${TARGET} ${APPS}/${TARGET}.cpp)
+#Targets
+list(APPEND TARGETS evaluate submissions report)
+foreach(TARGET IN LISTS TARGETS)
+    add_executable(${TARGET} ${APPS}/${TARGET}.cpp)
+endforeach()
 
 #Unit tests
-set(UNITTEST "testEval")
-add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
-target_link_libraries(${UNITTEST} ${CATCH2LIB})
-
-set(UNITTEST "testSubmissionsInfo")
-add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
-target_link_libraries(${UNITTEST} ${CATCH2LIB})
-
-set(UNITTEST "benchSubmissionsInfo")
-add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
-#target_link_libraries(${UNITTEST} ${CATCH2LIB} ${TBBLIB} )
-target_link_libraries(${UNITTEST} ${CATCH2LIB} )
-
-set(UNITTEST "testSubmission")
-add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
-target_link_libraries(${UNITTEST} ${CATCH2LIB})
-
-set(UNITTEST "testAppSubmissions")
-add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
-target_link_libraries(${UNITTEST} ${CATCH2LIB})
-
-set(UNITTEST "testAppEvaluate")
-add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
-target_link_libraries(${UNITTEST} ${CATCH2LIB})
-
-set(UNITTEST "testAll")
-add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
-target_link_libraries(${UNITTEST} ${CATCH2LIB})
-
+list(APPEND UNITTESTS testEval testSubmissionsInfo benchSubmissionsInfo testSubmission testAppSubmissions testAppEvaluate testAll)
+foreach(UNITTEST IN LISTS UNITTESTS)
+    add_executable(${UNITTEST} ${TEST}/${UNITTEST}.cpp)
+    target_link_libraries(${UNITTEST} ${CATCH2LIB})
+endforeach()
 
 #Doxygen
 #https://vicrucann.github.io/tutorials/quick-cmake-doxygen/
