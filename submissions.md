@@ -67,17 +67,18 @@ Columns from left to right are:
  A,52770,1
  (...)
  ``` 
- Classifications listed below are the only ones not considered as failure	(This is harded coded in current version).
+ Submission states listed below are the only ones not considered as failure	(This is harded coded in current version).
  -	Accepted
  -	Compile Time Error
  -	Invalid Submission
  -	Presentation Error
  -	Program Size Exceeded
 
+For operation "mapAll" and "mapFinal", map is formatted as sample below.
+**mapAll** presents a map of all submissions, while **mapFinal** only of final marked submissions.   
 
+Columns with an asterisc on top are submission states not considered failures, as described above.
 
-
-For operation "mapAll" and "mapFinal", map is formatted as sample below:
  ``` 
  nofail  *    *              *              *    *
  Prob  Acc CTEr Eval InFn InSb MLEx OLEx PErr PSEx REvl RTEr TLEx WrAn Total Fails
@@ -89,13 +90,15 @@ For operation "mapAll" and "mapFinal", map is formatted as sample below:
    F   119   38    0    0    0    0    0    2    0    0   27    0   26   212    53
    G    74   22    0    0    0    0    0    3    0    0    5    0   13   117    18
    H    47   38    0    0    0    0    0   13    1    0    4    0   16   119    20
- ``` 
+``` 
+Column header legend:
+**Acc** Accepted
+**CTEr** 
+**Eval**
+InFn InSb MLEx OLEx PErr PSEx REvl RTEr TLEx WrAn
 
 
 
+### 3rd argument is an optional path to a Team filter for team name fixing
 
-
-# 3rd argument is an optional path to a Team filter for name fixing
- *
- *
  
