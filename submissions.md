@@ -5,9 +5,11 @@ Call with:
 
 `submissions <contest path> <operation> [<filter path>]`
 
+
 ### 1st argument is the contest folder path, eg:
  
  `/home/mooshak/data/contests/aContestFolder`
+ 
  
 ### 2nd argument is the operation, and can be:
 ``` 
@@ -107,13 +109,17 @@ Column header legend:\
 **WrAn** Wrong Answer\
 
 
-
 ### 3rd argument is an optional path to a Team filter for team name fixing
 If specified a 3rd parameter, it is the path of a filter text file to fix team names using regular expressions, eg.:
 
 `submissions /home/mooshak/data/contests/aContestFolder All aFilterFile.flt`
 
-If file `aFilterFile.flt` has the contents
+If file `aFilterFile.flt` has the contents:
 
+```
+^a,
+G1POO1920P1G15,POO1920P1G15
+POO1920g1p07,POO1920P1G7
+```
 
- 
+Rules are applied from top to bottom. First row makes all team names uppercase. Last 2 row are substitution pairs. If found a team name equal to the left colummn it is changed to the name in the right column.\
