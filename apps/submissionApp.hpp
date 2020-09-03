@@ -18,7 +18,7 @@ Call with:
 
 ### 1st argument is the contest folder path, eg:
 
- `/home/mooshak/data/contests/aContestFolder`
+`/home/mooshak/data/contests/aContestFolder`
 
 
 ### 2nd argument is the operation, and can be:
