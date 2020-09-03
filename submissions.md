@@ -109,5 +109,11 @@ Column header legend:\
 
 
 ### 3rd argument is an optional path to a Team filter for team name fixing
+If specified a 3rd parameter, it is the path of a filter text file to fix team names using regular expressions, eg.:
+
+`submissions /home/mooshak/data/contests/aContestFolder All aFilterFile.flt`
+
+If file `aFilterFile.flt` has the contents
+
 
  
