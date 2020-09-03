@@ -37,7 +37,14 @@ Columns from left to right are:
  B,13456,Accepted,pending
  (...)
  ``` 
- For operation "Fail" list is formatted as sample below and sorted alphabetically:
+ For operation "Fail" list is formatted as sample below and sorted alphabetically.
+ Columns from left to right are:
+
+- Mooshak contest's problem name
+- Team name
+- Submission state
+- number of submissions with this state for this problem and this team
+
  ``` 
  A,44340,Runtime Error,1
  A,44340,Wrong Answer,2
@@ -46,7 +53,13 @@ Columns from left to right are:
  A,52770,Wrong Answer,1
  (...)
  ``` 
- For operation "FailType" and "AcceptedFailType", list is formatted as sample below and sorted alphabetically:
+ For operation "FailType" and "AcceptedFailType", list is formatted as sample below and sorted alphabetically.
+ Columns from left to right are:
+
+- Mooshak contest's problem name
+- Team name
+- number of all failed submissions for this problem and this team
+
  ``` 
  A,44340,3
  A,49551,1
@@ -54,7 +67,17 @@ Columns from left to right are:
  A,52770,1
  (...)
  ``` 
- For operation "mapAll" and "mapFinal", map is formatted as sample below:
+ Classifications listed below are the only ones not considered as failure	(This is harded coded in current version).
+ -	Accepted
+ -	Compile Time Error
+ -	Invalid Submission
+ -	Presentation Error
+ -	Program Size Exceeded
+
+
+
+
+For operation "mapAll" and "mapFinal", map is formatted as sample below:
  ``` 
  nofail  *    *              *              *    *
  Prob  Acc CTEr Eval InFn InSb MLEx OLEx PErr PSEx REvl RTEr TLEx WrAn Total Fails
@@ -67,15 +90,7 @@ Columns from left to right are:
    G    74   22    0    0    0    0    0    3    0    0    5    0   13   117    18
    H    47   38    0    0    0    0    0   13    1    0    4    0   16   119    20
  ``` 
- Classifications listed below are the only ones not considered as failure:
- *	(This is harded coded in current version)
- *		Accepted
- *		Compile Time Error
- *		Invalid Submission
- *		Presentation Error
- *		Program Size Exceeded
- *
- */
+
 
 
 
