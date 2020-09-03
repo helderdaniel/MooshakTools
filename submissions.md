@@ -91,11 +91,20 @@ Columns with an asterisc on top are submission states not considered failures, a
    G    74   22    0    0    0    0    0    3    0    0    5    0   13   117    18
    H    47   38    0    0    0    0    0   13    1    0    4    0   16   119    20
 ``` 
-Column header legend:
-**Acc** Accepted
-**CTEr** 
-**Eval**
-InFn InSb MLEx OLEx PErr PSEx REvl RTEr TLEx WrAn
+Column header legend:\
+**Acc** Accepted\
+**CTEr** Compile Time Error\
+**Eval** Evaluating\
+**InFn** Invalid Function\
+**InSb** Invalid Submission\
+**MLEx** Memory Limit Exceeded\
+**OLEx** Output Limit Exceeded\
+**PErr** Presentation Error\
+**PSEx** Program Size Exceeded\
+**REvl** Requires Reevaluation\
+**RTEr** Runtime Error\
+**TLEx** Time Limit Exceeded\
+**WrAn** Wrong Answer\
 
 
 
