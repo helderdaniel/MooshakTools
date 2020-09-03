@@ -5,7 +5,7 @@ Call with:
 
 `submissions <contest path> <operation> [<filter path>]`
 
-## 1st argument is the contest folder, eg:
+## 1st argument is the contest folder path, eg:
  
  `/home/mooshak/data/contests/aContestFolder`
  
@@ -22,7 +22,14 @@ mapAll            map counter of all submissions classification for each problem
 mapFinal          map counter of all submissions classification for each problem, marked as "final"
 ```
 
-For operations: "All", "Accepted" and "AcceptedFinal", list is formatted as sample below and sorted alphabetically:
+For operations: "All", "Accepted" and "AcceptedFinal", list is formatted as sample below and sorted alphabetically.
+Columns from left to right are:
+
+- Mooshak contest's problem name
+- team name
+- submission state
+- submission **final** or **pending** review
+
  ``` 
  A,12335,Accepted,final
  A,23456,Accepted,pending
