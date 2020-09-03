@@ -4,7 +4,7 @@ Mooshak contest manager tools include:
 1. evaluate (completed)\
 Evalution of mooshak test on command line.
 
-2. submissions (completed)\
+2. [submissions](submissions.md) (completed)\
 Get submissions state date from a contest and present some statistics.
 
 3. report (still in initial stage of development)\
