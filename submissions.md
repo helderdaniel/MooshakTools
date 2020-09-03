@@ -5,11 +5,11 @@ Call with:
 
 `submissions <contest path> <operation> [<filter path>]`
 
-## 1st argument is the contest folder path, eg:
+### 1st argument is the contest folder path, eg:
  
  `/home/mooshak/data/contests/aContestFolder`
  
-#### 2nd argument is the operation, and can be:
+### 2nd argument is the operation, and can be:
 ``` 
 All               list all submissions
 Accepted          list only "Accepted" submissions
