@@ -122,4 +122,4 @@ G1POO1920P1G15,POO1920P1G15
 POO1920g1p07,POO1920P1G7
 ```
 
-Rules are applied from top to bottom. First row makes all team names uppercase. Last 2 row are substitution pairs. If found a team name equal to the left colummn it is changed to the name in the right column.\
+Rules are applied from top to bottom. First row makes all team names uppercase. Last 2 row are substitution pairs. If found a team name equal to the left colummn it is changed to the name in the right column.
