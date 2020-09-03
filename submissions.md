@@ -1,27 +1,27 @@
 # submissions
-
 Gather information from all submissions to a Mooshak contest
 
 Call with:
 
-```submissions <contest path> <operation> [<filter path>]```
+`submissions <contest path> <operation> [<filter path>]`
 
-  1st argument is the contest folder, eg:
+## 1st argument is the contest folder, eg:
  
- ```/home/mooshak/data/contests/aContestFolder```
+ `/home/mooshak/data/contests/aContestFolder`
  
- 2nd argument is the operation, and can be:
- 
- All				      list all submissions
- Accepted		      list only "Accepted" submissions
- AcceptedFinal	  list only "Accepted" and "final" submissions
- Fail			        list failed submissions
- FailType		      list failed submissions grouped by type
- AcceptedFailType list failed submissions grouped by type, only if team as one "Accepted" submission to the problem
- *	                 (used to get info from Mooshak to assessment sheets)
- *  mapAll  		map counter of all submissions classification for each problem
- *  mapFinal 		map counter of all submissions classification for each problem, marked as "final"
- *
+## 2nd argument is the operation, and can be:
+``` 
+All               list all submissions
+Accepted          list only "Accepted" submissions
+AcceptedFinal     list only "Accepted" and "final" submissions
+Fail              list failed submissions
+FailType          list failed submissions grouped by type
+AcceptedFailType  list failed submissions grouped by type, only if team as one "Accepted" submission to the problem
+                  (used to get info from Mooshak to assessment sheets)
+mapAll            map counter of all submissions classification for each problem
+mapFinal          map counter of all submissions classification for each problem, marked as "final"
+```
+
  *  3rd argument is an optional path to a Team filter for name fixing
  *
  *
