@@ -69,7 +69,7 @@ Columns from left to right are:
  A,52770,1
  (...)
  ``` 
- Submission states listed below are the only ones not considered as failure	(This is harded coded in current version).
+ Submission states listed below are the only ones not considered as failure	(This is hard coded in current version).
  -	Accepted
  -	Compile Time Error
  -	Invalid Submission
@@ -79,7 +79,7 @@ Columns from left to right are:
 For operation "mapAll" and "mapFinal", map is formatted as sample below.
 **mapAll** presents a map of all submissions, while **mapFinal** only of final marked submissions.   
 
-Columns with an asterisc on top are submission states not considered failures, as described above.
+Columns with an asterisk on top are submission states not considered failures, as described above.
 
  ``` 
  nofail  *    *              *              *    *
@@ -122,4 +122,4 @@ G1POO1920P1G15,POO1920P1G15
 POO1920g1p07,POO1920P1G7
 ```
 
-Rules are applied from top to bottom. First row makes all team names uppercase. Last 2 row are substitution pairs. If found a team name equal to the left colummn it is changed to the name in the right column.
+Rules are applied from top to bottom. First row makes all team names uppercase. Last 2 row are substitution pairs. If found a team name equal to the left column it is changed to the name in the right column.
