@@ -1,7 +1,7 @@
 # MooshakTools
 Mooshak contest manager tools include:
 
-1. evaluate (completed)\
+1. [evaluate](evaluate.md) (completed)\
 Evalution of mooshak test on command line.
 
 2. [submissions](submissions.md) (completed)\
