@@ -1,5 +1,5 @@
 # submissions
-Gather information from all submissions to a Mooshak contest
+Gather information from all submissions to a Mooshak contest.
 
 Call with:
 
@@ -26,9 +26,9 @@ For operations: "All", "Accepted" and "AcceptedFinal", list is formatted as samp
 Columns from left to right are:
 
 - Mooshak contest's problem name
-- team name
-- submission state
-- submission **final** or **pending** review
+- Team name
+- Submission state
+- Submission marked as **final** or **pending** review
 
  ``` 
  A,12335,Accepted,final
