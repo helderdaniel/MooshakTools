@@ -9,7 +9,7 @@ Call with:
  
  `/home/mooshak/data/contests/aContestFolder`
  
-## 2nd argument is the operation, and can be:
+#### 2nd argument is the operation, and can be:
 ``` 
 All               list all submissions
 Accepted          list only "Accepted" submissions
