@@ -11,8 +11,8 @@ Get submissions state date from a contest and present some statistics.
 Make mooshak evaluation reports available to users.\
 (completed version is in bash, not included in these repository)
 
-Compiled versions of Apps 1 and 2 are in dist folder.
-
+Compiled versions of Apps 1 and 2 are in bin folder, with format:\
+*ELF 64-bit LSB shared object, x86-64, version 1 (GNU/Linux), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2*
 
 **Note:** to compile this code in a local system it is required that an updated version of the source code of libs:
 
