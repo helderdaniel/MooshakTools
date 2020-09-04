@@ -43,16 +43,15 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ../${BIN})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ../${BIN})
 
 #include folders
-set(HDLIB "/home/hdaniel/Dropbox/01-libs/cpp")
-#set(CUDAINC "/usr/local/cuda-9.0/include")
-include_directories(. ${HDLIB} )
+set(CPPLIB "/home/hdaniel/Dropbox/01-libs/cpp")
+include_directories(. ${CPPLIB} )
 
 #Intel thread building blocks (-lttb)
 #apt install libtbb-dev (use par policies) ("/usr/lib/x86_64-linux-gnu/libtbb.so")
-set(TBBLIB "/usr/lib/x86_64-linux-gnu/libtbb.so")
+#set(TBBLIB "/usr/lib/x86_64-linux-gnu/libtbb.so")
 
 #Catch2 lib
-set(CATCH2LIB "${HDLIB}/catch2/libCatch2.a")
+set(CATCH2LIB "${CPPLIB}/catch2/libCatch2.a")
 
 #Targets
 list(APPEND TARGETS evaluate submissions report)

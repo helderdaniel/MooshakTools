@@ -11,3 +11,16 @@ Get submissions state date from a contest and present some statistics.
 Make mooshak evaluation reports available to users.\
 (completed version is in bash, not included in these repository)
 
+Compiled versions of Apps 1 and 2 are in dist folder.
+
+
+**Note:** to compile this code in a local system it is required that an updated version of the source code of libs:
+
+`https://github.com/helderdaniel/cpplib`
+
+be present in the local system.
+
+Then the local path for that libs should be set in CMakeLists.txt file at line:
+
+`set(CPPLIB "/home/hdaniel/Dropbox/01-libs/cpp")`
+
