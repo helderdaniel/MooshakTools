@@ -5,6 +5,7 @@
  *
  * hdaniel@ualg.pt
  * 17th june 2020
+ *
  */
 
 #include <iostream>
