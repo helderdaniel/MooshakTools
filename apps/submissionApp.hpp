@@ -150,7 +150,19 @@ using mooshak::SubmissionsInfo;
 int subsmain(int argc, char* argv[], istream& in, ostream& out) {
 
 	if (argc != 3 && argc != 4) {
-		out << "Usage: submissions <contest path> <operation> [<filter path>]\n";
+		out << "Usage: submissions <contest path> <operation> [<filter path>]\n\n";
+		out <<
+		"Operation:\n"
+        "Accepted          list only \"Accepted\" submissions\n"
+        "AcceptedFinal     list only \"Accepted\" and \"final\" submissions\n"
+        "All               list all submissions\n"
+        "Fail              list failed submissions\n"
+        "FailType          list failed submissions grouped by type\n"
+        "AcceptedFailType  list failed submissions grouped by type, only if team as one \"Accepted\" submission to the problem\n"
+        "                  (used to get info from Mooshak to assessment sheets)\n"
+        "mapAll            map counter of all submissions classification for each problem\n"
+        "mapFinal          map counter of all submissions classification for each problem, marked as \"final\"\n";
+
 		return 0;
 	}
 
