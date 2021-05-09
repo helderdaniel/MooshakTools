@@ -22,13 +22,26 @@ TEST_CASE( "Submissions Info app", "[submissions]" ) {
 	const char* filterPath = "../test/samples/contests/filterPOO1920.txt";
 	const char* appPath = "./submissions";
 	AppTest::cmdlineargs errorNumArgs = { appPath };
-	AppTest::cmdlineargs errorUnknownOP = { appPath, contestPath, " WRONG ", filterPath };
+	AppTest::cmdlineargs errorUnknownOP = { appPath, contestPath, "WRONG", filterPath };
 	AppTest::cmdlineargs errorContest = { appPath, noFile, "A", filterPath };
 	AppTest::cmdlineargs errorFilter = { appPath, contestPath, "A", noFile };
 	AppTest::cmdlineargs errorBoth = { appPath, noFile, "A", noFile };
 
-	string errorUsage("Usage: submissions <contest path> <operation> [<filter path>]\n");
-	string errorOP("Unknown operation! Valid operations are:\n"
+	string errorUsage(
+     "Usage: submissions <contest path> <operation> [<filter path>]\n\n"
+        "Operation:\n"
+        "Accepted          list only \"Accepted\" submissions\n"
+        "AcceptedFinal     list only \"Accepted\" and \"final\" submissions\n"
+        "All               list all submissions\n"
+        "Fail              list failed submissions\n"
+        "FailType          list failed submissions grouped by type\n"
+        "AcceptedFailType  list failed submissions grouped by type, only if team as one \"Accepted\" submission to the problem\n"
+        "                  (used to get info from Mooshak to assessment sheets)\n"
+        "mapAll            map counter of all submissions classification for each problem\n"
+        "mapFinal          map counter of all submissions classification for each problem, marked as \"final\"\n"
+        "mapCountUnique         map counter of different persons that have submitted, have accepted and have accepted marked as \"final\"\n");
+
+    string errorOP("Unknown operation 'WRONG' Valid operations are:\n"
 				   "All\n"
 				   "Accepted\n"
 				   "AcceptedFinal\n"
@@ -36,7 +49,8 @@ TEST_CASE( "Submissions Info app", "[submissions]" ) {
 				   "FailType\n"
 				   "AcceptedFailType\n"
 				   "mapAll\n"
-				   "mapFinal\n");
+				   "mapFinal\n"
+                   "mapUnique\n");
 
 	SECTION("Cmd line Arguments") {
 		apptest.clearOUTstream();
@@ -61,6 +75,7 @@ TEST_CASE( "Submissions Info app", "[submissions]" ) {
 		std::string POOFailTA = "../test/samples/mapscsv/POOFailTA.csv";
 		std::string POOAllc = "../test/samples/mapscsv/POOAllc.map";
 		std::string POOFinalc = "../test/samples/mapscsv/POOFinalc.map";
+        std::string POOUniquec = "../test/samples/mapscsv/POOUniquec.map";
 
 		apptest.clearOUTstream();
 		AppTest::cmdlineargs path0 = { appPath, contestPath, "All", filterPath };
@@ -101,6 +116,11 @@ TEST_CASE( "Submissions Info app", "[submissions]" ) {
 		AppTest::cmdlineargs path7 = { appPath, contestPath, "mapFinal", filterPath };
 		apptest.exec(subsmain, path7);
 		REQUIRE(File::teststr(POOFinalc, apptest.outStream()).empty());
+
+        apptest.clearOUTstream();
+        AppTest::cmdlineargs path8= { appPath, contestPath, "mapUnique", filterPath };
+        apptest.exec(subsmain, path8);
+        REQUIRE(File::teststr(POOUniquec, apptest.outStream()).empty());
 	}
 
 }

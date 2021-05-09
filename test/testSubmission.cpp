@@ -47,6 +47,8 @@ TEST_CASE( "Mooshak Submission", "[Submission]" ) {
 			REQUIRE(subs[i].isFinal() == ef[i]);
 			REQUIRE(to_string(subs[i]) == estr[i]);
 		}
+
+
 	}
 
 	SECTION("Converters") {
@@ -59,4 +61,37 @@ TEST_CASE( "Mooshak Submission", "[Submission]" ) {
 		REQUIRE_THROWS_AS(Submission::states(""),std::out_of_range);
 	}
 
+    SECTION("Relational operators") {
+        Submission s0;
+        Submission s1("A", "a12345", Accepted, Final );
+        Submission s2("A", "a12345", Accepted, Final );
+        Submission s3("A", "a12346", Accepted, Final );
+        Submission s4("A", "a12345", Evaluating, Final );
+        Submission s5("A", "a12345", Accepted, Pending );
+        Submission s6("B", "a12345", Accepted, Final );
+        Submission s7("A", "a00000", Accepted, Final );
+
+        //Relational operators and CompareSubmissionPointers predicate
+        REQUIRE(s0==s0);
+        REQUIRE(s1==s1);
+        REQUIRE(s1==s2);
+
+        REQUIRE(s0!=s1);
+        REQUIRE(s1!=s3);
+
+        CompareSubmissionPointers cmp;
+        REQUIRE(cmp.operator()(&s0,&s0));
+        REQUIRE(cmp.operator()(&s1,&s1));
+        REQUIRE(cmp.operator()(&s1,&s2));
+        REQUIRE(!cmp.operator()(&s0,&s1));
+        REQUIRE(!cmp.operator()(&s1,&s3));
+
+        REQUIRE(s0<s1);
+        REQUIRE(s2<s3);
+        REQUIRE(s2<s4);
+        REQUIRE(s2<s5);
+        REQUIRE(s2<s6);
+
+        REQUIRE(s7<s2);
+	}
 }

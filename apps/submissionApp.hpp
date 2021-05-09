@@ -161,7 +161,8 @@ int subsmain(int argc, char* argv[], istream& in, ostream& out) {
         "AcceptedFailType  list failed submissions grouped by type, only if team as one \"Accepted\" submission to the problem\n"
         "                  (used to get info from Mooshak to assessment sheets)\n"
         "mapAll            map counter of all submissions classification for each problem\n"
-        "mapFinal          map counter of all submissions classification for each problem, marked as \"final\"\n";
+        "mapFinal          map counter of all submissions classification for each problem, marked as \"final\"\n"
+        "mapCountUnique         map counter of different persons that have submitted, have accepted and have accepted marked as \"final\"\n";
 
 		return 0;
 	}
@@ -181,7 +182,8 @@ int subsmain(int argc, char* argv[], istream& in, ostream& out) {
 	else if (operation == "AcceptedFailType")   subs.FailedTypeAccepted(out);
 	else if (operation == "mapAll") 			subs.reportAll(out);
 	else if (operation == "mapFinal")   		subs.reportFinal(out);
-	else out << "Unknown operation! Valid operations are:\n"
+    else if (operation == "mapUnique")   		subs.reportUnique(out);
+	else out << "Unknown operation \'" << operation << "\' Valid operations are:\n"
 				 "All\n"
 				 "Accepted\n"
 				 "AcceptedFinal\n"
@@ -189,7 +191,8 @@ int subsmain(int argc, char* argv[], istream& in, ostream& out) {
 				 "FailType\n"
 				 "AcceptedFailType\n"
 				 "mapAll\n"
-				 "mapFinal\n";
+				 "mapFinal\n"
+                 "mapUnique\n";
 
 	return 0;
 }

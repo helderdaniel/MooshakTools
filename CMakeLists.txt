@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.2)
 set(CMAKE_CXX_STANDARD 20)
 #set(CMAKE_C_COMPILER /usr/bin/gcc-7)
 #set(CMAKE_C_COMPILER /usr/bin/clang-7)
-set(CMAKE_CXX_COMPILER:FILEPATH /usr/bin/g++-9)
+set(CMAKE_CXX_COMPILER:FILEPATH /usr/bin/g++-10)
 #set(CMAKE_CXX_COMPILER /usr/bin/clang++-9)
 
 if (CMAKE_BUILD_TYPE MATCHES Debug)
