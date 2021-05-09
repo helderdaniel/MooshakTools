@@ -17,8 +17,8 @@
 //#include <execution>
 #include <file/File.hpp>
 #include <string/String.hpp>
-#include <apps/IdentifyType.hpp>
 #include "Submission.hpp"
+//#include <appTest/IdentifyType.hpp>
 
 using std::cout;
 using std::map;
