@@ -162,6 +162,49 @@ namespace mooshak {
 
         /**
          * @param os output stream to insert table
+         * @return table that represents the map
+         */
+        void _countUnique() {
+            //Create vector of pointers to submissions without duplicates
+            vector<Submission const *> all;
+            all.reserve(submissions.size());
+            for (auto &s : submissions)
+                all.emplace_back(&s);
+
+            //all.erase( unique( all.begin(), all.end(), CompareSubmissionPointers() ), all.end() );
+            auto predUnique = [](Submission const *lhs, Submission const *rhs) { return *lhs == *rhs; };
+            all.erase(unique(all.begin(), all.end(), predUnique), all.end());
+
+            //Unique submissions count
+            vector<Submission const *> subs(all);
+            //subs.erase( unique( subs.begin(), subs.end(), CompareSubmissionProblemTeam() ), subs.end() );
+            auto predProbTeam = [](Submission const *lhs, Submission const *rhs) {
+                return lhs->problem() == rhs->problem() && lhs->team() == rhs->team();
+            };
+            subs.erase(unique(subs.begin(), subs.end(), predProbTeam), subs.end());
+            for (auto &sub : subs)
+                mapCountUnique.at(sub->problem())[0]++;
+
+            //Unique accepted submissions count
+            vector<Submission const *> acc;
+            auto predAcc = [](Submission const *sub) { return sub->classification() == mooshak::Accepted; };
+            copy_if(subs.begin(), subs.end(), back_inserter(acc), predAcc);
+            for (auto &sub : acc)
+                mapCountUnique.at(sub->problem())[1]++;
+
+            //Unique accepted and final submissions count
+            vector<Submission const *> accf;
+            auto predAccFinal = [](Submission const *sub) {
+                return sub->classification() == mooshak::Accepted && sub->state() == mooshak::Final;
+            };
+            copy_if(all.begin(), all.end(), back_inserter(accf), predAccFinal);
+            for (auto &sub : accf)
+                mapCountUnique.at(sub->problem())[2]++;
+
+        }
+
+        /**
+         * @param os output stream to insert table
          * @param map map to be converted to table
          * @return table that represents the map
          */
@@ -247,6 +290,10 @@ namespace mooshak {
             //Need to add lib to target in CmakeLists.txt ${TBBLIB} ("/usr/lib/x86_64-linux-gnu/libtbb.so")
             //sort(std::execution::par, submissions.begin(), submissions.end()); //not useful for 2000 subs
             //sort(std::execution::par_unseq, submissions.begin(), submissions.end()); //not useful for 2000 subs
+
+
+            //Construct uni que map
+            _countUnique();
         }
 
 
@@ -519,45 +566,9 @@ namespace mooshak {
 
         /**
          * @param os output stream to insert table
-         * @param map map to be converted to table
          * @return table that represents the map
          */
-        ostream &reportUnique(ostream &os) {
-            //Create vector of pointers to submissions without duplicates
-            vector<Submission const*> all;
-            all.reserve(submissions.size());
-            for (auto & s : submissions)
-                all.emplace_back(&s);
-
-            //all.erase( unique( all.begin(), all.end(), CompareSubmissionPointers() ), all.end() );
-            auto predUnique = [](Submission const* lhs, Submission const* rhs) { return *lhs == *rhs; };
-            all.erase(unique(all.begin(), all.end(), predUnique ), all.end() );
-
-            //Unique submissions count
-            vector<Submission const*> subs(all);
-            //subs.erase( unique( subs.begin(), subs.end(), CompareSubmissionProblemTeam() ), subs.end() );
-            auto predProbTeam = [](Submission const* lhs, Submission const* rhs) { return lhs->problem() == rhs->problem() && lhs->team() == rhs->team(); };
-            subs.erase(unique(subs.begin(), subs.end(), predProbTeam ), subs.end() );
-            for (auto &sub : subs)
-                mapCountUnique.at(sub->problem())[0]++;
-
-
-            //Unique accepted submissions count
-            vector<Submission const*> acc;
-            auto predAcc = [](Submission const *sub) { return sub->classification() == mooshak::Accepted; };
-            copy_if(subs.begin(), subs.end(), back_inserter(acc), predAcc);
-            for (auto &sub : acc)
-                mapCountUnique.at(sub->problem())[1]++;
-
-
-            //Unique accepted and final submissions count
-            vector<Submission const*> accf;
-            auto predAccFinal = [](Submission const *sub) { return sub->classification() == mooshak::Accepted && sub->state() == mooshak::Final; };
-            copy_if(all.begin(), all.end(), back_inserter(accf), predAccFinal);
-            for (auto &sub : accf)
-                mapCountUnique.at(sub->problem())[2]++;
-
-
+        ostream &reportUnique(ostream &os) const {
             //Header
             os << "Unique person count\n";
             os << "Problem Submissions Accepted Final\n";
