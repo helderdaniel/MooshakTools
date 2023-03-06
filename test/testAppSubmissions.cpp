@@ -39,7 +39,7 @@ TEST_CASE( "Submissions Info app", "[submissions]" ) {
         "                  (used to get info from Mooshak to assessment sheets)\n"
         "mapAll            map counter of all submissions classification for each problem\n"
         "mapFinal          map counter of all submissions classification for each problem, marked as \"final\"\n"
-        "mapCountUnique         map counter of different persons that have submitted, have accepted and have accepted marked as \"final\"\n");
+        "mapUnique         map counter of different persons that have submitted, have accepted and have accepted marked as \"final\"\n");
 
     string errorOP("Unknown operation 'WRONG' Valid operations are:\n"
 				   "All\n"

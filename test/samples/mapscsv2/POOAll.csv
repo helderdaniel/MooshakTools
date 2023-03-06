@@ -1,0 +1,1631 @@
+A,44340,Accepted,final
+A,44340,Compile Time Error,pending
+A,44340,Compile Time Error,pending
+A,44340,Runtime Error,pending
+A,44340,Wrong Answer,pending
+A,44340,Wrong Answer,pending
+A,48204,Accepted,final
+A,49551,Accepted,final
+A,49551,Wrong Answer,pending
+A,50455,Accepted,final
+A,52080,Accepted,pending
+A,52080,Compile Time Error,pending
+A,52080,Compile Time Error,pending
+A,52080,Runtime Error,pending
+A,52163,Accepted,final
+A,52770,Accepted,final
+A,52770,Compile Time Error,pending
+A,52770,Wrong Answer,pending
+A,54352,Accepted,final
+A,54352,Wrong Answer,pending
+A,54352,Wrong Answer,pending
+A,54430,Accepted,final
+A,54436,Accepted,final
+A,54436,Compile Time Error,pending
+A,55618,Accepted,final
+A,57348,Accepted,final
+A,57572,Accepted,final
+A,57588,Accepted,final
+A,57592,Accepted,final
+A,57592,Compile Time Error,pending
+A,57592,Compile Time Error,pending
+A,57593,Accepted,final
+A,57593,Compile Time Error,pending
+A,57593,Compile Time Error,pending
+A,57593,Compile Time Error,pending
+A,57593,Compile Time Error,pending
+A,57593,Wrong Answer,pending
+A,57596,Accepted,final
+A,57596,Accepted,pending
+A,57596,Runtime Error,pending
+A,57596,Wrong Answer,pending
+A,57596,Wrong Answer,pending
+A,57596,Wrong Answer,pending
+A,57600,Accepted,final
+A,57600,Compile Time Error,pending
+A,57620,Accepted,pending
+A,57637,Accepted,pending
+A,57637,Compile Time Error,pending
+A,57652,Accepted,final
+A,57652,Accepted,pending
+A,57652,Accepted,pending
+A,57652,Wrong Answer,pending
+A,57652,Wrong Answer,pending
+A,57652,Wrong Answer,pending
+A,57710,Runtime Error,pending
+A,57710,Runtime Error,pending
+A,58595,Accepted,final
+A,58604,Accepted,final
+A,59826,Accepted,final
+A,61018,Accepted,final
+A,61018,Runtime Error,pending
+A,61024,Accepted,final
+A,61024,Presentation Error,pending
+A,61039,Accepted,final
+A,61064,Accepted,final
+A,61064,Compile Time Error,pending
+A,61064,Compile Time Error,pending
+A,61064,Runtime Error,pending
+A,61064,Runtime Error,pending
+A,61064,Runtime Error,pending
+A,61064,Runtime Error,pending
+A,61064,Runtime Error,pending
+A,61064,Runtime Error,pending
+A,61064,Runtime Error,pending
+A,61098,Accepted,final
+A,61099,Accepted,final
+A,61115,Accepted,final
+A,61131,Accepted,final
+A,61131,Compile Time Error,pending
+A,61131,Presentation Error,pending
+A,61131,Runtime Error,pending
+A,61158,Accepted,final
+A,61161,Accepted,final
+A,61163,Accepted,final
+A,61171,Accepted,final
+A,61171,Compile Time Error,pending
+A,61207,Accepted,final
+A,61207,Runtime Error,pending
+A,61207,Runtime Error,pending
+A,61207,Wrong Answer,pending
+A,61207,Wrong Answer,pending
+A,61213,Accepted,final
+A,61246,Accepted,final
+A,61246,Compile Time Error,pending
+A,61246,Compile Time Error,pending
+A,61246,Runtime Error,pending
+A,61246,Runtime Error,pending
+A,62182,Accepted,final
+A,62182,Compile Time Error,pending
+A,62182,Runtime Error,pending
+A,62182,Runtime Error,pending
+A,62182,Runtime Error,pending
+A,62182,Runtime Error,pending
+A,62182,Runtime Error,pending
+A,62182,Wrong Answer,pending
+A,62287,Accepted,final
+A,62460,Accepted,final
+A,62461,Accepted,final
+A,62905,Accepted,final
+A,62905,Compile Time Error,pending
+A,62905,Compile Time Error,pending
+A,63158,Accepted,final
+A,63971,Accepted,final
+A,64007,Accepted,final
+A,64014,Accepted,final
+A,64014,Wrong Answer,pending
+A,64506,Accepted,final
+A,64506,Accepted,pending
+A,64506,Wrong Answer,pending
+A,64507,Accepted,final
+A,64512,Accepted,final
+A,64512,Wrong Answer,pending
+A,64512,Wrong Answer,pending
+A,64532,Accepted,final
+A,64534,Accepted,final
+A,64536,Accepted,final
+A,64536,Compile Time Error,pending
+A,64536,Compile Time Error,pending
+A,64536,Compile Time Error,pending
+A,64536,Wrong Answer,pending
+A,64536,Wrong Answer,pending
+A,64536,Wrong Answer,pending
+A,64536,Wrong Answer,pending
+A,64538,Accepted,final
+A,64538,Wrong Answer,pending
+A,64543,Accepted,pending
+A,64545,Accepted,final
+A,64545,Accepted,pending
+A,64546,Accepted,final
+A,64557,Accepted,final
+A,64560,Accepted,final
+A,64561,Accepted,final
+A,64563,Accepted,pending
+A,64563,Compile Time Error,pending
+A,64563,Compile Time Error,pending
+A,64563,Runtime Error,pending
+A,64566,Accepted,final
+A,64566,Accepted,pending
+A,64566,Runtime Error,pending
+A,64570,Accepted,final
+A,64570,Accepted,pending
+A,64570,Runtime Error,pending
+A,64586,Accepted,final
+A,64586,Compile Time Error,pending
+A,64586,Runtime Error,pending
+A,64586,Runtime Error,pending
+A,64591,Accepted,final
+A,64592,Accepted,final
+A,64592,Compile Time Error,pending
+A,64592,Wrong Answer,pending
+A,64592,Wrong Answer,pending
+A,64603,Accepted,final
+A,64603,Compile Time Error,pending
+A,64603,Compile Time Error,pending
+A,64603,Wrong Answer,final
+A,64603,Wrong Answer,pending
+A,64603,Wrong Answer,pending
+A,64603,Wrong Answer,pending
+A,64612,Accepted,final
+A,64614,Accepted,final
+A,64614,Runtime Error,pending
+A,64614,Runtime Error,pending
+A,64614,Runtime Error,pending
+A,64626,Accepted,final
+A,64626,Accepted,pending
+A,64626,Compile Time Error,pending
+A,64627,Accepted,final
+A,64627,Wrong Answer,pending
+A,64644,Accepted,final
+A,64644,Wrong Answer,final
+A,64650,Accepted,final
+A,65620,Accepted,final
+A,65620,Compile Time Error,pending
+A,65620,Compile Time Error,pending
+A,65620,Runtime Error,pending
+A,65620,Runtime Error,pending
+A,65620,Runtime Error,pending
+A,65620,Runtime Error,pending
+A,65620,Runtime Error,pending
+A,65638,Accepted,final
+A,65638,Runtime Error,final
+A,65638,Runtime Error,pending
+A,65638,Wrong Answer,pending
+A,65651,Accepted,final
+A,67289,Runtime Error,pending
+A,Ana_Rocha_63971,Accepted,pending
+A,POO1920P1G7,Runtime Error,pending
+A,Shani_du_Plessis_63158,Accepted,final
+A,Teresa_Goela_62460,Accepted,pending
+A,Teresa_Goela_62460,Runtime Error,pending
+A,had,Accepted,pending
+B,44340,Accepted,final
+B,44340,Compile Time Error,pending
+B,44340,Compile Time Error,pending
+B,44340,Compile Time Error,pending
+B,44340,Runtime Error,pending
+B,44340,Wrong Answer,pending
+B,48204,Accepted,final
+B,48204,Accepted,pending
+B,48204,Runtime Error,pending
+B,49551,Accepted,final
+B,49551,Wrong Answer,pending
+B,50455,Accepted,final
+B,50455,Runtime Error,pending
+B,50455,Runtime Error,pending
+B,52080,Accepted,pending
+B,52080,Runtime Error,pending
+B,52163,Accepted,final
+B,52770,Accepted,final
+B,52770,Compile Time Error,pending
+B,52770,Wrong Answer,pending
+B,54352,Accepted,final
+B,54430,Accepted,final
+B,54430,Runtime Error,pending
+B,54430,Wrong Answer,pending
+B,54430,Wrong Answer,pending
+B,54430,Wrong Answer,pending
+B,54436,Accepted,final
+B,54436,Accepted,pending
+B,54436,Accepted,pending
+B,54436,Wrong Answer,pending
+B,54436,Wrong Answer,pending
+B,54436,Wrong Answer,pending
+B,54436,Wrong Answer,pending
+B,54436,Wrong Answer,pending
+B,54436,Wrong Answer,pending
+B,55618,Accepted,final
+B,55618,Wrong Answer,pending
+B,57348,Accepted,final
+B,57348,Runtime Error,pending
+B,57572,Accepted,final
+B,57572,Presentation Error,pending
+B,57579,Compile Time Error,pending
+B,57588,Accepted,final
+B,57592,Accepted,final
+B,57592,Accepted,pending
+B,57593,Accepted,final
+B,57596,Accepted,final
+B,57596,Runtime Error,pending
+B,57596,Wrong Answer,pending
+B,57600,Accepted,final
+B,57620,Accepted,pending
+B,57620,Accepted,pending
+B,57620,Runtime Error,pending
+B,57620,Runtime Error,pending
+B,57637,Accepted,pending
+B,57652,Accepted,final
+B,57652,Accepted,pending
+B,57652,Accepted,pending
+B,57652,Accepted,pending
+B,57652,Wrong Answer,pending
+B,57652,Wrong Answer,pending
+B,57652,Wrong Answer,pending
+B,57652,Wrong Answer,pending
+B,58595,Accepted,final
+B,58604,Accepted,final
+B,59826,Accepted,final
+B,59826,Accepted,pending
+B,61018,Accepted,final
+B,61024,Accepted,final
+B,61024,Presentation Error,pending
+B,61039,Accepted,final
+B,61039,Accepted,pending
+B,61064,Accepted,final
+B,61064,Accepted,pending
+B,61064,Accepted,pending
+B,61064,Runtime Error,pending
+B,61064,Runtime Error,pending
+B,61064,Runtime Error,pending
+B,61098,Accepted,final
+B,61098,Accepted,pending
+B,61098,Runtime Error,pending
+B,61098,Wrong Answer,pending
+B,61099,Accepted,final
+B,61115,Accepted,final
+B,61115,Runtime Error,pending
+B,61115,Runtime Error,pending
+B,61115,Runtime Error,pending
+B,61131,Accepted,final
+B,61131,Compile Time Error,pending
+B,61131,Compile Time Error,pending
+B,61131,Runtime Error,pending
+B,61131,Runtime Error,pending
+B,61158,Accepted,final
+B,61158,Runtime Error,pending
+B,61158,Runtime Error,pending
+B,61161,Accepted,final
+B,61161,Accepted,pending
+B,61161,Runtime Error,pending
+B,61161,Runtime Error,pending
+B,61161,Runtime Error,pending
+B,61163,Accepted,final
+B,61163,Runtime Error,pending
+B,61171,Accepted,final
+B,61207,Accepted,final
+B,61213,Accepted,final
+B,61213,Accepted,pending
+B,61246,Accepted,final
+B,62182,Accepted,final
+B,62182,Runtime Error,pending
+B,62182,Runtime Error,pending
+B,62182,Runtime Error,pending
+B,62182,Runtime Error,pending
+B,62182,Runtime Error,pending
+B,62182,Runtime Error,pending
+B,62182,Wrong Answer,pending
+B,62287,Accepted,final
+B,62287,Accepted,pending
+B,62287,Compile Time Error,pending
+B,62287,Compile Time Error,pending
+B,62287,Runtime Error,pending
+B,62287,Runtime Error,pending
+B,62287,Runtime Error,pending
+B,62460,Accepted,final
+B,62460,Wrong Answer,pending
+B,62460,Wrong Answer,pending
+B,62461,Accepted,final
+B,62461,Accepted,pending
+B,62461,Accepted,pending
+B,62461,Runtime Error,pending
+B,62461,Runtime Error,pending
+B,62461,Runtime Error,pending
+B,62461,Runtime Error,pending
+B,62461,Runtime Error,pending
+B,62905,Accepted,final
+B,62905,Accepted,pending
+B,62905,Runtime Error,pending
+B,62905,Runtime Error,pending
+B,63158,Accepted,final
+B,63971,Accepted,final
+B,63971,Wrong Answer,pending
+B,64007,Accepted,final
+B,64007,Accepted,final
+B,64014,Accepted,final
+B,64014,Wrong Answer,pending
+B,64506,Accepted,final
+B,64506,Accepted,pending
+B,64507,Accepted,final
+B,64507,Compile Time Error,pending
+B,64507,Wrong Answer,pending
+B,64507,Wrong Answer,pending
+B,64507,Wrong Answer,pending
+B,64507,Wrong Answer,pending
+B,64512,Accepted,final
+B,64532,Accepted,final
+B,64532,Accepted,pending
+B,64532,Accepted,pending
+B,64534,Accepted,final
+B,64534,Accepted,pending
+B,64534,Wrong Answer,pending
+B,64534,Wrong Answer,pending
+B,64534,Wrong Answer,pending
+B,64534,Wrong Answer,pending
+B,64534,Wrong Answer,pending
+B,64534,Wrong Answer,pending
+B,64534,Wrong Answer,pending
+B,64536,Accepted,final
+B,64536,Compile Time Error,pending
+B,64536,Compile Time Error,pending
+B,64536,Compile Time Error,pending
+B,64536,Compile Time Error,pending
+B,64536,Compile Time Error,pending
+B,64536,Compile Time Error,pending
+B,64538,Accepted,final
+B,64538,Compile Time Error,pending
+B,64538,Runtime Error,pending
+B,64538,Wrong Answer,pending
+B,64538,Wrong Answer,pending
+B,64543,Accepted,pending
+B,64545,Accepted,final
+B,64545,Accepted,pending
+B,64546,Accepted,final
+B,64546,Wrong Answer,pending
+B,64546,Wrong Answer,pending
+B,64546,Wrong Answer,pending
+B,64546,Wrong Answer,pending
+B,64546,Wrong Answer,pending
+B,64557,Accepted,final
+B,64557,Accepted,pending
+B,64557,Accepted,pending
+B,64557,Wrong Answer,pending
+B,64560,Accepted,final
+B,64560,Accepted,pending
+B,64560,Accepted,pending
+B,64561,Accepted,final
+B,64563,Accepted,pending
+B,64566,Accepted,final
+B,64570,Accepted,final
+B,64570,Accepted,pending
+B,64586,Accepted,final
+B,64586,Runtime Error,pending
+B,64586,Runtime Error,pending
+B,64586,Runtime Error,pending
+B,64591,Accepted,final
+B,64592,Accepted,final
+B,64603,Accepted,final
+B,64603,Presentation Error,pending
+B,64603,Presentation Error,pending
+B,64603,Wrong Answer,pending
+B,64603,Wrong Answer,pending
+B,64612,Accepted,final
+B,64614,Accepted,final
+B,64614,Accepted,pending
+B,64626,Accepted,final
+B,64626,Accepted,pending
+B,64626,Accepted,pending
+B,64626,Accepted,pending
+B,64627,Accepted,final
+B,64627,Accepted,pending
+B,64644,Accepted,final
+B,64650,Accepted,final
+B,64650,Compile Time Error,pending
+B,64650,Runtime Error,pending
+B,65620,Accepted,final
+B,65620,Accepted,pending
+B,65620,Compile Time Error,pending
+B,65620,Runtime Error,pending
+B,65620,Runtime Error,pending
+B,65620,Runtime Error,pending
+B,65620,Runtime Error,pending
+B,65638,Accepted,final
+B,65638,Runtime Error,pending
+B,65638,Runtime Error,pending
+B,65638,Runtime Error,pending
+B,65651,Accepted,final
+B,65651,Runtime Error,pending
+B,65651,Wrong Answer,pending
+B,Shani_du_Plessis_63158,Accepted,final
+B,had,Accepted,pending
+B,had,Runtime Error,pending
+C,44340,Accepted,final
+C,44340,Accepted,pending
+C,44340,Accepted,pending
+C,44340,Accepted,pending
+C,44340,Compile Time Error,pending
+C,44340,Compile Time Error,pending
+C,44340,Wrong Answer,pending
+C,44340,Wrong Answer,pending
+C,48204,Accepted,final
+C,49551,Accepted,final
+C,49551,Accepted,pending
+C,49551,Accepted,pending
+C,50455,Accepted,final
+C,50455,Accepted,final
+C,50455,Accepted,final
+C,50455,Accepted,pending
+C,50455,Compile Time Error,pending
+C,52163,Accepted,final
+C,52163,Compile Time Error,pending
+C,52770,Accepted,final
+C,52770,Accepted,pending
+C,52770,Compile Time Error,pending
+C,52770,Compile Time Error,pending
+C,52770,Compile Time Error,pending
+C,52770,Compile Time Error,pending
+C,52770,Compile Time Error,pending
+C,52770,Compile Time Error,pending
+C,52770,Compile Time Error,pending
+C,52770,Wrong Answer,pending
+C,52770,Wrong Answer,pending
+C,54397,Accepted,final
+C,54430,Accepted,final
+C,54436,Accepted,final
+C,54436,Program Size Exceeded,pending
+C,54436,Runtime Error,pending
+C,54436,Runtime Error,pending
+C,54436,Runtime Error,pending
+C,54436,Runtime Error,pending
+C,55618,Accepted,final
+C,57348,Accepted,final
+C,57348,Wrong Answer,pending
+C,57348,Wrong Answer,pending
+C,57348,Wrong Answer,pending
+C,57348,Wrong Answer,pending
+C,57572,Accepted,final
+C,57572,Accepted,pending
+C,57572,Accepted,pending
+C,57572,Accepted,pending
+C,57572,Wrong Answer,pending
+C,57579,Accepted,pending
+C,57579,Compile Time Error,pending
+C,57588,Accepted,final
+C,57588,Runtime Error,pending
+C,57592,Accepted,final
+C,57592,Runtime Error,pending
+C,57592,Runtime Error,pending
+C,57592,Runtime Error,pending
+C,57592,Wrong Answer,pending
+C,57592,Wrong Answer,pending
+C,57596,Accepted,final
+C,57596,Accepted,pending
+C,57596,Accepted,pending
+C,57600,Accepted,final
+C,57600,Accepted,pending
+C,57620,Accepted,pending
+C,57620,Wrong Answer,pending
+C,57652,Accepted,final
+C,57652,Accepted,pending
+C,57652,Runtime Error,pending
+C,58595,Accepted,final
+C,58604,Accepted,final
+C,58604,Accepted,pending
+C,58604,Accepted,pending
+C,58604,Accepted,pending
+C,58604,Accepted,pending
+C,58604,Accepted,pending
+C,58604,Compile Time Error,pending
+C,59826,Accepted,final
+C,59826,Accepted,pending
+C,59826,Accepted,pending
+C,59826,Compile Time Error,pending
+C,61018,Accepted,final
+C,61018,Accepted,pending
+C,61018,Accepted,pending
+C,61024,Accepted,final
+C,61024,Compile Time Error,pending
+C,61024,Presentation Error,pending
+C,61024,Wrong Answer,pending
+C,61039,Accepted,final
+C,61039,Compile Time Error,pending
+C,61039,Compile Time Error,pending
+C,61039,Compile Time Error,pending
+C,61039,Presentation Error,pending
+C,61039,Runtime Error,pending
+C,61064,Accepted,final
+C,61064,Accepted,pending
+C,61064,Runtime Error,pending
+C,61064,Runtime Error,pending
+C,61064,Runtime Error,pending
+C,61098,Accepted,final
+C,61098,Accepted,pending
+C,61098,Accepted,pending
+C,61098,Accepted,pending
+C,61098,Wrong Answer,pending
+C,61098,Wrong Answer,pending
+C,61098,Wrong Answer,pending
+C,61098,Wrong Answer,pending
+C,61098,Wrong Answer,pending
+C,61098,Wrong Answer,pending
+C,61099,Accepted,final
+C,61099,Accepted,pending
+C,61099,Compile Time Error,pending
+C,61115,Accepted,final
+C,61131,Accepted,final
+C,61131,Accepted,pending
+C,61158,Accepted,final
+C,61158,Compile Time Error,pending
+C,61158,Wrong Answer,pending
+C,61158,Wrong Answer,pending
+C,61158,Wrong Answer,pending
+C,61158,Wrong Answer,pending
+C,61161,Accepted,final
+C,61161,Accepted,pending
+C,61161,Presentation Error,pending
+C,61163,Accepted,final
+C,61163,Accepted,pending
+C,61163,Accepted,pending
+C,61171,Accepted,final
+C,61171,Accepted,pending
+C,61171,Accepted,pending
+C,61171,Accepted,pending
+C,61207,Accepted,final
+C,61207,Accepted,pending
+C,61213,Accepted,final
+C,61213,Accepted,pending
+C,61213,Presentation Error,pending
+C,61213,Wrong Answer,pending
+C,61213,Wrong Answer,pending
+C,61213,Wrong Answer,pending
+C,61213,Wrong Answer,pending
+C,61213,Wrong Answer,pending
+C,61246,Accepted,final
+C,61246,Runtime Error,pending
+C,61246,Wrong Answer,pending
+C,62182,Accepted,final
+C,62287,Accepted,final
+C,62287,Accepted,pending
+C,62287,Accepted,pending
+C,62287,Compile Time Error,pending
+C,62287,Runtime Error,pending
+C,62287,Runtime Error,pending
+C,62287,Wrong Answer,pending
+C,62287,Wrong Answer,pending
+C,62460,Accepted,final
+C,62461,Accepted,final
+C,62461,Accepted,pending
+C,62461,Accepted,pending
+C,62905,Accepted,final
+C,62905,Accepted,pending
+C,62905,Runtime Error,pending
+C,63158,Accepted,final
+C,63158,Runtime Error,pending
+C,63158,Runtime Error,pending
+C,63158,Wrong Answer,pending
+C,63158,Wrong Answer,pending
+C,63971,Accepted,final
+C,63971,Accepted,pending
+C,64007,Accepted,final
+C,64007,Accepted,pending
+C,64007,Runtime Error,pending
+C,64014,Accepted,final
+C,64506,Accepted,final
+C,64507,Accepted,final
+C,64507,Accepted,pending
+C,64507,Presentation Error,pending
+C,64507,Runtime Error,pending
+C,64507,Runtime Error,pending
+C,64507,Wrong Answer,pending
+C,64507,Wrong Answer,pending
+C,64512,Accepted,final
+C,64512,Accepted,pending
+C,64512,Compile Time Error,pending
+C,64512,Runtime Error,pending
+C,64512,Wrong Answer,pending
+C,64512,Wrong Answer,pending
+C,64512,Wrong Answer,pending
+C,64532,Accepted,final
+C,64532,Accepted,pending
+C,64532,Wrong Answer,pending
+C,64534,Accepted,final
+C,64534,Accepted,pending
+C,64536,Accepted,final
+C,64536,Runtime Error,pending
+C,64536,Wrong Answer,pending
+C,64538,Accepted,final
+C,64543,Accepted,pending
+C,64543,Accepted,pending
+C,64543,Compile Time Error,pending
+C,64543,Presentation Error,pending
+C,64545,Accepted,final
+C,64545,Accepted,pending
+C,64545,Accepted,pending
+C,64545,Accepted,pending
+C,64545,Compile Time Error,pending
+C,64545,Compile Time Error,pending
+C,64545,Compile Time Error,pending
+C,64545,Compile Time Error,pending
+C,64545,Runtime Error,pending
+C,64545,Runtime Error,pending
+C,64546,Accepted,final
+C,64546,Accepted,pending
+C,64546,Presentation Error,pending
+C,64546,Presentation Error,pending
+C,64546,Wrong Answer,pending
+C,64546,Wrong Answer,pending
+C,64557,Accepted,final
+C,64557,Runtime Error,pending
+C,64557,Runtime Error,pending
+C,64560,Accepted,final
+C,64560,Wrong Answer,pending
+C,64560,Wrong Answer,pending
+C,64560,Wrong Answer,pending
+C,64560,Wrong Answer,pending
+C,64560,Wrong Answer,pending
+C,64560,Wrong Answer,pending
+C,64563,Accepted,pending
+C,64563,Runtime Error,pending
+C,64566,Accepted,final
+C,64566,Accepted,pending
+C,64566,Compile Time Error,pending
+C,64566,Wrong Answer,pending
+C,64566,Wrong Answer,pending
+C,64570,Accepted,pending
+C,64570,Runtime Error,pending
+C,64586,Accepted,pending
+C,64586,Accepted,pending
+C,64586,Wrong Answer,pending
+C,64586,Wrong Answer,pending
+C,64586,Wrong Answer,pending
+C,64591,Accepted,final
+C,64591,Accepted,pending
+C,64591,Wrong Answer,pending
+C,64592,Accepted,final
+C,64592,Runtime Error,pending
+C,64603,Accepted,final
+C,64612,Accepted,final
+C,64612,Accepted,pending
+C,64614,Accepted,final
+C,64614,Accepted,pending
+C,64614,Compile Time Error,pending
+C,64614,Wrong Answer,pending
+C,64626,Accepted,final
+C,64627,Accepted,final
+C,64627,Accepted,pending
+C,64627,Accepted,pending
+C,64644,Accepted,final
+C,64650,Accepted,final
+C,65620,Accepted,final
+C,65620,Runtime Error,pending
+C,65620,Runtime Error,pending
+C,65620,Runtime Error,pending
+C,65620,Runtime Error,pending
+C,65620,Runtime Error,pending
+C,65620,Runtime Error,pending
+C,65638,Accepted,final
+C,65638,Accepted,pending
+C,65638,Accepted,pending
+C,65638,Wrong Answer,pending
+C,65651,Accepted,final
+C,65651,Presentation Error,pending
+C,65651,Wrong Answer,pending
+C,had,Accepted,pending
+D,44340,Accepted,final
+D,44340,Compile Time Error,pending
+D,44340,Compile Time Error,pending
+D,44340,Compile Time Error,pending
+D,44340,Compile Time Error,pending
+D,48204,Accepted,final
+D,49551,Accepted,final
+D,49551,Accepted,pending
+D,49551,Wrong Answer,pending
+D,50455,Accepted,final
+D,50455,Accepted,pending
+D,50455,Accepted,pending
+D,52163,Accepted,final
+D,52770,Accepted,final
+D,52770,Wrong Answer,pending
+D,52770,Wrong Answer,pending
+D,52770,Wrong Answer,pending
+D,52770,Wrong Answer,pending
+D,54430,Accepted,final
+D,54430,Accepted,pending
+D,54430,Accepted,pending
+D,54436,Accepted,final
+D,54436,Compile Time Error,pending
+D,54436,Wrong Answer,pending
+D,57348,Accepted,final
+D,57348,Runtime Error,pending
+D,57348,Runtime Error,pending
+D,57348,Runtime Error,pending
+D,57348,Runtime Error,pending
+D,57348,Runtime Error,pending
+D,57348,Runtime Error,pending
+D,57348,Wrong Answer,pending
+D,57572,Accepted,final
+D,57588,Accepted,final
+D,57588,Runtime Error,pending
+D,57588,Wrong Answer,pending
+D,57588,Wrong Answer,pending
+D,57588,Wrong Answer,pending
+D,57588,Wrong Answer,pending
+D,57588,Wrong Answer,pending
+D,57592,Accepted,final
+D,57592,Accepted,pending
+D,57592,Accepted,pending
+D,57592,Accepted,pending
+D,57592,Accepted,pending
+D,57592,Compile Time Error,pending
+D,57592,Wrong Answer,pending
+D,57592,Wrong Answer,pending
+D,57592,Wrong Answer,pending
+D,57592,Wrong Answer,pending
+D,57592,Wrong Answer,pending
+D,57592,Wrong Answer,pending
+D,57592,Wrong Answer,pending
+D,57592,Wrong Answer,pending
+D,57596,Accepted,final
+D,57600,Accepted,final
+D,57600,Accepted,pending
+D,57600,Accepted,pending
+D,57600,Wrong Answer,pending
+D,57600,Wrong Answer,pending
+D,57600,Wrong Answer,pending
+D,57600,Wrong Answer,pending
+D,57600,Wrong Answer,pending
+D,57600,Wrong Answer,pending
+D,57600,Wrong Answer,pending
+D,57600,Wrong Answer,pending
+D,57600,Wrong Answer,pending
+D,57600,Wrong Answer,pending
+D,57600,Wrong Answer,pending
+D,57620,Accepted,pending
+D,57620,Accepted,pending
+D,57652,Accepted,final
+D,57652,Accepted,pending
+D,58595,Accepted,final
+D,58604,Accepted,final
+D,58604,Accepted,pending
+D,58604,Compile Time Error,pending
+D,59826,Accepted,final
+D,59826,Accepted,pending
+D,59826,Wrong Answer,pending
+D,61018,Accepted,final
+D,61018,Accepted,pending
+D,61024,Accepted,final
+D,61024,Wrong Answer,pending
+D,61024,Wrong Answer,pending
+D,61024,Wrong Answer,pending
+D,61024,Wrong Answer,pending
+D,61064,Accepted,final
+D,61064,Accepted,pending
+D,61098,Accepted,final
+D,61098,Accepted,pending
+D,61098,Compile Time Error,pending
+D,61098,Wrong Answer,pending
+D,61098,Wrong Answer,pending
+D,61099,Accepted,final
+D,61099,Accepted,pending
+D,61099,Compile Time Error,pending
+D,61115,Accepted,final
+D,61115,Compile Time Error,pending
+D,61158,Accepted,final
+D,61161,Accepted,final
+D,61161,Accepted,pending
+D,61161,Wrong Answer,pending
+D,61161,Wrong Answer,pending
+D,61163,Accepted,final
+D,61163,Accepted,pending
+D,61163,Compile Time Error,pending
+D,61171,Accepted,final
+D,61171,Accepted,pending
+D,61171,Accepted,pending
+D,61171,Compile Time Error,pending
+D,61171,Wrong Answer,pending
+D,61207,Accepted,final
+D,61213,Accepted,final
+D,61213,Accepted,pending
+D,61246,Accepted,final
+D,62182,Accepted,final
+D,62182,Compile Time Error,pending
+D,62182,Compile Time Error,pending
+D,62287,Accepted,final
+D,62287,Accepted,pending
+D,62287,Compile Time Error,pending
+D,62287,Compile Time Error,pending
+D,62287,Compile Time Error,pending
+D,62287,Compile Time Error,pending
+D,62287,Compile Time Error,pending
+D,62287,Runtime Error,pending
+D,62287,Runtime Error,pending
+D,62287,Runtime Error,pending
+D,62287,Runtime Error,pending
+D,62460,Accepted,final
+D,62461,Accepted,final
+D,62461,Accepted,pending
+D,62461,Accepted,pending
+D,62905,Accepted,final
+D,63158,Accepted,final
+D,63971,Accepted,final
+D,64007,Accepted,final
+D,64007,Accepted,pending
+D,64007,Wrong Answer,pending
+D,64007,Wrong Answer,pending
+D,64014,Accepted,final
+D,64014,Wrong Answer,pending
+D,64014,Wrong Answer,pending
+D,64506,Accepted,final
+D,64506,Accepted,pending
+D,64507,Accepted,final
+D,64507,Accepted,pending
+D,64507,Wrong Answer,pending
+D,64507,Wrong Answer,pending
+D,64512,Wrong Answer,pending
+D,64512,Wrong Answer,pending
+D,64512,Wrong Answer,pending
+D,64512,Wrong Answer,pending
+D,64512,Wrong Answer,pending
+D,64512,Wrong Answer,pending
+D,64512,Wrong Answer,pending
+D,64512,Wrong Answer,pending
+D,64512,Wrong Answer,pending
+D,64532,Accepted,final
+D,64532,Accepted,pending
+D,64532,Accepted,pending
+D,64532,Accepted,pending
+D,64532,Accepted,pending
+D,64532,Runtime Error,pending
+D,64532,Runtime Error,pending
+D,64532,Runtime Error,pending
+D,64532,Wrong Answer,pending
+D,64532,Wrong Answer,pending
+D,64532,Wrong Answer,pending
+D,64534,Accepted,final
+D,64534,Accepted,pending
+D,64534,Accepted,pending
+D,64534,Accepted,pending
+D,64534,Runtime Error,pending
+D,64534,Runtime Error,pending
+D,64534,Wrong Answer,pending
+D,64534,Wrong Answer,pending
+D,64534,Wrong Answer,pending
+D,64534,Wrong Answer,pending
+D,64538,Accepted,final
+D,64538,Compile Time Error,pending
+D,64543,Accepted,pending
+D,64545,Accepted,final
+D,64545,Accepted,pending
+D,64545,Accepted,pending
+D,64545,Accepted,pending
+D,64545,Wrong Answer,pending
+D,64546,Accepted,final
+D,64546,Runtime Error,pending
+D,64546,Wrong Answer,pending
+D,64546,Wrong Answer,pending
+D,64546,Wrong Answer,pending
+D,64546,Wrong Answer,pending
+D,64546,Wrong Answer,pending
+D,64546,Wrong Answer,pending
+D,64546,Wrong Answer,pending
+D,64546,Wrong Answer,pending
+D,64546,Wrong Answer,pending
+D,64546,Wrong Answer,pending
+D,64546,Wrong Answer,pending
+D,64546,Wrong Answer,pending
+D,64546,Wrong Answer,pending
+D,64546,Wrong Answer,pending
+D,64546,Wrong Answer,pending
+D,64557,Accepted,final
+D,64557,Accepted,pending
+D,64557,Accepted,pending
+D,64557,Accepted,pending
+D,64557,Accepted,pending
+D,64557,Wrong Answer,pending
+D,64557,Wrong Answer,pending
+D,64557,Wrong Answer,pending
+D,64560,Accepted,final
+D,64560,Accepted,pending
+D,64560,Compile Time Error,pending
+D,64560,Runtime Error,pending
+D,64560,Wrong Answer,pending
+D,64560,Wrong Answer,pending
+D,64560,Wrong Answer,pending
+D,64560,Wrong Answer,pending
+D,64560,Wrong Answer,pending
+D,64560,Wrong Answer,pending
+D,64560,Wrong Answer,pending
+D,64560,Wrong Answer,pending
+D,64560,Wrong Answer,pending
+D,64560,Wrong Answer,pending
+D,64560,Wrong Answer,pending
+D,64560,Wrong Answer,pending
+D,64560,Wrong Answer,pending
+D,64560,Wrong Answer,pending
+D,64560,Wrong Answer,pending
+D,64560,Wrong Answer,pending
+D,64560,Wrong Answer,pending
+D,64560,Wrong Answer,pending
+D,64560,Wrong Answer,pending
+D,64560,Wrong Answer,pending
+D,64560,Wrong Answer,pending
+D,64560,Wrong Answer,pending
+D,64561,Accepted,pending
+D,64563,Accepted,pending
+D,64566,Accepted,final
+D,64566,Accepted,pending
+D,64566,Compile Time Error,pending
+D,64591,Accepted,final
+D,64591,Accepted,pending
+D,64591,Compile Time Error,pending
+D,64591,Compile Time Error,pending
+D,64592,Accepted,final
+D,64592,Accepted,pending
+D,64592,Wrong Answer,pending
+D,64603,Accepted,final
+D,64603,Wrong Answer,pending
+D,64612,Accepted,final
+D,64614,Accepted,final
+D,64614,Accepted,pending
+D,64614,Wrong Answer,pending
+D,64626,Accepted,final
+D,64626,Accepted,pending
+D,64626,Accepted,pending
+D,64627,Accepted,final
+D,64627,Wrong Answer,pending
+D,64650,Accepted,final
+D,64650,Accepted,pending
+D,64650,Accepted,pending
+D,65620,Accepted,final
+D,65620,Wrong Answer,pending
+D,65620,Wrong Answer,pending
+D,65620,Wrong Answer,pending
+D,65638,Accepted,final
+D,65638,Wrong Answer,pending
+D,65638,Wrong Answer,pending
+D,65638,Wrong Answer,pending
+D,65638,Wrong Answer,pending
+D,65651,Accepted,final
+D,65651,Accepted,pending
+D,had,Accepted,pending
+E,44340,Accepted,final
+E,44340,Compile Time Error,pending
+E,48204,Accepted,final
+E,48204,Compile Time Error,pending
+E,49551,Accepted,final
+E,49551,Accepted,pending
+E,49551,Compile Time Error,pending
+E,50455,Accepted,final
+E,50455,Accepted,pending
+E,52163,Accepted,final
+E,52163,Compile Time Error,pending
+E,52770,Accepted,final
+E,52770,Compile Time Error,pending
+E,52770,Compile Time Error,pending
+E,52770,Compile Time Error,pending
+E,52770,Compile Time Error,pending
+E,52770,Compile Time Error,pending
+E,52770,Compile Time Error,pending
+E,52770,Compile Time Error,pending
+E,52770,Compile Time Error,pending
+E,52770,Compile Time Error,pending
+E,52770,Compile Time Error,pending
+E,52770,Compile Time Error,pending
+E,52770,Compile Time Error,pending
+E,54397,Accepted,final
+E,54430,Accepted,final
+E,54430,Compile Time Error,pending
+E,54436,Accepted,pending
+E,54436,Compile Time Error,pending
+E,54436,Compile Time Error,pending
+E,54436,Runtime Error,pending
+E,54436,Runtime Error,pending
+E,54436,Runtime Error,pending
+E,55618,Accepted,final
+E,55618,Compile Time Error,pending
+E,57348,Accepted,final
+E,57348,Compile Time Error,pending
+E,57572,Accepted,final
+E,57572,Compile Time Error,pending
+E,57572,Compile Time Error,pending
+E,57572,Compile Time Error,pending
+E,57588,Accepted,final
+E,57588,Compile Time Error,pending
+E,57588,Compile Time Error,pending
+E,57592,Accepted,final
+E,57592,Runtime Error,pending
+E,57596,Accepted,final
+E,57600,Accepted,final
+E,57620,Accepted,pending
+E,57620,Compile Time Error,pending
+E,57652,Accepted,final
+E,57652,Compile Time Error,pending
+E,57710,Accepted,pending
+E,57710,Compile Time Error,pending
+E,58595,Accepted,final
+E,58595,Compile Time Error,pending
+E,58595,Compile Time Error,pending
+E,58595,Compile Time Error,pending
+E,58604,Accepted,final
+E,58604,Accepted,pending
+E,58604,Compile Time Error,pending
+E,59826,Accepted,final
+E,59826,Accepted,pending
+E,59826,Compile Time Error,pending
+E,61018,Accepted,final
+E,61018,Wrong Answer,pending
+E,61024,Accepted,final
+E,61024,Wrong Answer,pending
+E,61024,Wrong Answer,pending
+E,61039,Accepted,final
+E,61039,Compile Time Error,pending
+E,61039,Compile Time Error,pending
+E,61039,Compile Time Error,pending
+E,61039,Compile Time Error,pending
+E,61039,Compile Time Error,pending
+E,61039,Compile Time Error,pending
+E,61039,Compile Time Error,pending
+E,61039,Compile Time Error,pending
+E,61039,Runtime Error,pending
+E,61039,Runtime Error,pending
+E,61064,Accepted,final
+E,61064,Compile Time Error,pending
+E,61098,Accepted,final
+E,61098,Runtime Error,pending
+E,61098,Runtime Error,pending
+E,61098,Runtime Error,pending
+E,61099,Accepted,final
+E,61099,Compile Time Error,pending
+E,61115,Accepted,final
+E,61131,Accepted,final
+E,61158,Accepted,final
+E,61158,Compile Time Error,pending
+E,61161,Accepted,final
+E,61161,Compile Time Error,pending
+E,61161,Compile Time Error,pending
+E,61163,Accepted,final
+E,61163,Compile Time Error,pending
+E,61171,Accepted,final
+E,61207,Accepted,final
+E,61207,Accepted,pending
+E,61207,Accepted,pending
+E,61207,Accepted,pending
+E,61207,Compile Time Error,pending
+E,61213,Accepted,final
+E,61213,Compile Time Error,pending
+E,61246,Accepted,final
+E,61246,Accepted,pending
+E,61246,Compile Time Error,pending
+E,61246,Compile Time Error,pending
+E,62182,Accepted,final
+E,62182,Accepted,pending
+E,62287,Accepted,final
+E,62287,Runtime Error,pending
+E,62287,Runtime Error,pending
+E,62460,Accepted,final
+E,62461,Accepted,final
+E,62905,Accepted,final
+E,62905,Compile Time Error,pending
+E,62905,Compile Time Error,pending
+E,62905,Compile Time Error,pending
+E,63158,Accepted,final
+E,63971,Accepted,final
+E,63971,Compile Time Error,pending
+E,64007,Accepted,final
+E,64007,Accepted,pending
+E,64007,Wrong Answer,pending
+E,64014,Accepted,final
+E,64014,Compile Time Error,pending
+E,64014,Compile Time Error,pending
+E,64506,Accepted,final
+E,64506,Compile Time Error,pending
+E,64507,Accepted,final
+E,64507,Compile Time Error,pending
+E,64512,Accepted,final
+E,64512,Compile Time Error,pending
+E,64532,Accepted,final
+E,64532,Compile Time Error,pending
+E,64534,Accepted,final
+E,64534,Compile Time Error,pending
+E,64534,Compile Time Error,pending
+E,64534,Compile Time Error,pending
+E,64536,Accepted,final
+E,64536,Compile Time Error,pending
+E,64538,Accepted,final
+E,64538,Accepted,pending
+E,64538,Compile Time Error,pending
+E,64538,Compile Time Error,pending
+E,64545,Accepted,final
+E,64545,Compile Time Error,pending
+E,64545,Compile Time Error,pending
+E,64546,Accepted,final
+E,64546,Compile Time Error,pending
+E,64557,Accepted,final
+E,64557,Compile Time Error,pending
+E,64560,Accepted,final
+E,64560,Compile Time Error,pending
+E,64563,Accepted,pending
+E,64566,Accepted,final
+E,64570,Compile Time Error,pending
+E,64570,Compile Time Error,pending
+E,64586,Accepted,pending
+E,64586,Compile Time Error,pending
+E,64586,Runtime Error,pending
+E,64586,Wrong Answer,pending
+E,64586,Wrong Answer,pending
+E,64586,Wrong Answer,pending
+E,64591,Accepted,final
+E,64591,Compile Time Error,pending
+E,64591,Compile Time Error,pending
+E,64592,Accepted,final
+E,64592,Compile Time Error,pending
+E,64592,Compile Time Error,pending
+E,64592,Runtime Error,pending
+E,64603,Accepted,final
+E,64603,Compile Time Error,pending
+E,64603,Compile Time Error,pending
+E,64612,Accepted,final
+E,64614,Accepted,final
+E,64614,Compile Time Error,pending
+E,64626,Accepted,final
+E,64626,Compile Time Error,pending
+E,64627,Accepted,final
+E,64627,Compile Time Error,pending
+E,64627,Wrong Answer,pending
+E,64644,Accepted,final
+E,64650,Accepted,final
+E,64650,Wrong Answer,pending
+E,64650,Wrong Answer,pending
+E,65620,Accepted,final
+E,65620,Accepted,pending
+E,65620,Compile Time Error,pending
+E,65620,Wrong Answer,pending
+E,65651,Accepted,final
+E,65651,Compile Time Error,pending
+F,44340,Accepted,final
+F,44340,Compile Time Error,pending
+F,44340,Runtime Error,pending
+F,48204,Accepted,final
+F,48204,Accepted,pending
+F,48204,Compile Time Error,pending
+F,49551,Accepted,final
+F,49551,Accepted,pending
+F,50455,Accepted,final
+F,50455,Accepted,pending
+F,50455,Accepted,pending
+F,50455,Accepted,pending
+F,50455,Accepted,pending
+F,50455,Compile Time Error,pending
+F,50455,Wrong Answer,pending
+F,52163,Accepted,final
+F,52163,Compile Time Error,pending
+F,52163,Wrong Answer,pending
+F,52770,Accepted,final
+F,54397,Accepted,final
+F,54397,Compile Time Error,pending
+F,54430,Accepted,final
+F,54430,Accepted,pending
+F,54430,Accepted,pending
+F,54430,Accepted,pending
+F,54430,Compile Time Error,pending
+F,54430,Runtime Error,pending
+F,54430,Runtime Error,pending
+F,54430,Runtime Error,pending
+F,55618,Accepted,final
+F,55618,Compile Time Error,pending
+F,57348,Accepted,final
+F,57572,Accepted,final
+F,57572,Accepted,pending
+F,57572,Compile Time Error,pending
+F,57572,Runtime Error,pending
+F,57572,Runtime Error,pending
+F,57572,Runtime Error,pending
+F,57588,Accepted,final
+F,57592,Accepted,final
+F,57596,Accepted,final
+F,57596,Compile Time Error,pending
+F,57652,Accepted,final
+F,57652,Accepted,pending
+F,57652,Compile Time Error,pending
+F,58595,Accepted,final
+F,58604,Accepted,final
+F,58604,Accepted,pending
+F,58604,Accepted,pending
+F,59826,Accepted,final
+F,59826,Accepted,pending
+F,59826,Accepted,pending
+F,59826,Compile Time Error,pending
+F,59826,Compile Time Error,pending
+F,61018,Accepted,final
+F,61018,Accepted,pending
+F,61024,Accepted,final
+F,61024,Wrong Answer,pending
+F,61064,Accepted,final
+F,61098,Accepted,final
+F,61098,Compile Time Error,pending
+F,61098,Compile Time Error,pending
+F,61098,Runtime Error,pending
+F,61098,Runtime Error,pending
+F,61099,Accepted,final
+F,61099,Compile Time Error,pending
+F,61115,Accepted,final
+F,61158,Accepted,final
+F,61163,Accepted,final
+F,61163,Accepted,pending
+F,61163,Compile Time Error,pending
+F,61171,Accepted,final
+F,61171,Compile Time Error,pending
+F,61207,Accepted,final
+F,61207,Accepted,pending
+F,61207,Accepted,pending
+F,61207,Accepted,pending
+F,61207,Accepted,pending
+F,61207,Runtime Error,pending
+F,61207,Runtime Error,pending
+F,61207,Wrong Answer,pending
+F,61246,Accepted,final
+F,62287,Accepted,final
+F,62460,Accepted,final
+F,62460,Wrong Answer,pending
+F,62460,Wrong Answer,pending
+F,62461,Accepted,final
+F,62461,Accepted,pending
+F,62905,Accepted,final
+F,63158,Accepted,final
+F,63158,Accepted,pending
+F,63158,Runtime Error,pending
+F,63971,Accepted,final
+F,63971,Compile Time Error,pending
+F,64007,Accepted,final
+F,64007,Accepted,pending
+F,64007,Compile Time Error,pending
+F,64007,Runtime Error,pending
+F,64007,Runtime Error,pending
+F,64007,Runtime Error,pending
+F,64007,Wrong Answer,pending
+F,64014,Accepted,final
+F,64014,Accepted,pending
+F,64014,Accepted,pending
+F,64014,Compile Time Error,pending
+F,64507,Accepted,final
+F,64507,Accepted,pending
+F,64507,Accepted,pending
+F,64512,Accepted,final
+F,64512,Presentation Error,pending
+F,64512,Runtime Error,pending
+F,64532,Accepted,final
+F,64532,Accepted,pending
+F,64532,Accepted,pending
+F,64532,Accepted,pending
+F,64532,Accepted,pending
+F,64532,Accepted,pending
+F,64532,Accepted,pending
+F,64532,Compile Time Error,pending
+F,64532,Runtime Error,pending
+F,64534,Accepted,final
+F,64534,Compile Time Error,pending
+F,64534,Wrong Answer,pending
+F,64534,Wrong Answer,pending
+F,64534,Wrong Answer,pending
+F,64536,Accepted,final
+F,64536,Compile Time Error,pending
+F,64536,Compile Time Error,pending
+F,64538,Accepted,final
+F,64538,Compile Time Error,pending
+F,64538,Runtime Error,pending
+F,64538,Runtime Error,pending
+F,64545,Accepted,final
+F,64546,Accepted,final
+F,64546,Accepted,pending
+F,64546,Compile Time Error,pending
+F,64546,Presentation Error,pending
+F,64546,Runtime Error,pending
+F,64546,Runtime Error,pending
+F,64546,Runtime Error,pending
+F,64546,Runtime Error,pending
+F,64546,Runtime Error,pending
+F,64546,Runtime Error,pending
+F,64546,Wrong Answer,pending
+F,64546,Wrong Answer,pending
+F,64546,Wrong Answer,pending
+F,64546,Wrong Answer,pending
+F,64546,Wrong Answer,pending
+F,64546,Wrong Answer,pending
+F,64546,Wrong Answer,pending
+F,64546,Wrong Answer,pending
+F,64546,Wrong Answer,pending
+F,64546,Wrong Answer,pending
+F,64546,Wrong Answer,pending
+F,64557,Accepted,final
+F,64557,Accepted,pending
+F,64557,Compile Time Error,pending
+F,64557,Compile Time Error,pending
+F,64560,Accepted,final
+F,64560,Accepted,pending
+F,64560,Accepted,pending
+F,64560,Accepted,pending
+F,64563,Accepted,pending
+F,64563,Accepted,pending
+F,64566,Accepted,final
+F,64566,Accepted,pending
+F,64586,Accepted,pending
+F,64586,Accepted,pending
+F,64586,Accepted,pending
+F,64591,Accepted,final
+F,64591,Accepted,pending
+F,64591,Compile Time Error,pending
+F,64591,Wrong Answer,pending
+F,64591,Wrong Answer,pending
+F,64592,Accepted,final
+F,64592,Accepted,pending
+F,64592,Accepted,pending
+F,64592,Compile Time Error,pending
+F,64592,Compile Time Error,pending
+F,64603,Accepted,final
+F,64603,Accepted,pending
+F,64603,Compile Time Error,pending
+F,64603,Compile Time Error,pending
+F,64603,Compile Time Error,pending
+F,64612,Accepted,final
+F,64614,Accepted,final
+F,64626,Accepted,final
+F,64626,Runtime Error,pending
+F,64627,Accepted,final
+F,64627,Accepted,pending
+F,64627,Accepted,pending
+F,64644,Accepted,final
+F,64650,Accepted,final
+F,64650,Accepted,pending
+F,64650,Accepted,pending
+F,64650,Accepted,pending
+F,64650,Accepted,pending
+F,64650,Accepted,pending
+F,64650,Accepted,pending
+F,64650,Compile Time Error,pending
+F,64650,Wrong Answer,pending
+F,64650,Wrong Answer,pending
+F,65620,Accepted,final
+F,65620,Accepted,pending
+F,65620,Accepted,pending
+F,65620,Accepted,pending
+F,65620,Compile Time Error,pending
+F,65620,Compile Time Error,pending
+F,65651,Accepted,final
+F,65651,Compile Time Error,pending
+F,65651,Runtime Error,pending
+F,65651,Wrong Answer,pending
+G,57596,Accepted,pending
+G,57652,Accepted,pending
+G,57652,Accepted,pending
+G,63971,Accepted,pending
+G,63971,Compile Time Error,pending
+G,63971,Compile Time Error,pending
+G,64566,Compile Time Error,pending
+G,POO1920P1G1,Accepted,final
+G,POO1920P1G1,Accepted,pending
+G,POO1920P1G1,Accepted,pending
+G,POO1920P1G1,Accepted,pending
+G,POO1920P1G1,Compile Time Error,pending
+G,POO1920P1G15,Accepted,final
+G,POO1920P1G15,Accepted,pending
+G,POO1920P1G15,Compile Time Error,pending
+G,POO1920P1G15,Compile Time Error,pending
+G,POO1920P1G2,Accepted,final
+G,POO1920P1G2,Accepted,pending
+G,POO1920P1G2,Accepted,pending
+G,POO1920P1G7,Accepted,final
+G,POO1920P1G7,Accepted,pending
+G,POO1920P1G7,Accepted,pending
+G,POO1920P1G7,Accepted,pending
+G,POO1920P1G7,Accepted,pending
+G,POO1920P1G7,Compile Time Error,pending
+G,POO1920P1G7,Compile Time Error,pending
+G,POO1920P1G7,Compile Time Error,pending
+G,POO1920P1G7,Wrong Answer,pending
+G,POO1920P1G9,Accepted,final
+G,POO1920P1G9,Accepted,pending
+G,POO1920P1G9,Wrong Answer,pending
+G,POO1920P1G9,Wrong Answer,pending
+G,POO1920P2G5,Accepted,final
+G,POO1920P2G5,Accepted,pending
+G,POO1920P2G5,Accepted,pending
+G,POO1920P2G5,Compile Time Error,pending
+G,POO1920P3G4,Accepted,final
+G,POO1920P3G4,Compile Time Error,pending
+G,POO1920P3G8,Accepted,final
+G,POO1920P3G8,Compile Time Error,pending
+G,POO1920P3G8,Compile Time Error,pending
+G,POO1920p1G10,Accepted,final
+G,POO1920p1G10,Accepted,pending
+G,POO1920p1G10,Compile Time Error,pending
+G,POO1920p1G10,Wrong Answer,pending
+G,POO1920p1G10,Wrong Answer,pending
+G,POO1920p1G11,Accepted,final
+G,POO1920p1G11,Runtime Error,pending
+G,POO1920p1G12,Accepted,final
+G,POO1920p1G12,Accepted,pending
+G,POO1920p1G12,Runtime Error,pending
+G,POO1920p1G12,Wrong Answer,pending
+G,POO1920p1G12,Wrong Answer,pending
+G,POO1920p1G12,Wrong Answer,pending
+G,POO1920p1G13,Accepted,final
+G,POO1920p1G13,Runtime Error,pending
+G,POO1920p1G14,Accepted,final
+G,POO1920p1G14,Compile Time Error,pending
+G,POO1920p1G14,Runtime Error,pending
+G,POO1920p1G4,Accepted,final
+G,POO1920p1G4,Accepted,pending
+G,POO1920p1G4,Compile Time Error,pending
+G,POO1920p1G5,Accepted,final
+G,POO1920p1G5,Presentation Error,pending
+G,POO1920p1G6,Accepted,final
+G,POO1920p1G6,Accepted,pending
+G,POO1920p1G6,Accepted,pending
+G,POO1920p1G6,Accepted,pending
+G,POO1920p1G8,Accepted,final
+G,POO1920p1G8,Accepted,pending
+G,POO1920p1G8,Accepted,pending
+G,POO1920p1G8,Presentation Error,pending
+G,POO1920p1G8,Presentation Error,pending
+G,POO1920p1g3,Accepted,final
+G,POO1920p1g3,Accepted,pending
+G,POO1920p1g3,Accepted,pending
+G,POO1920p1g3,Accepted,pending
+G,POO1920p2G1,Accepted,final
+G,POO1920p2G2,Accepted,final
+G,POO1920p2G2,Accepted,pending
+G,POO1920p2G2,Wrong Answer,pending
+G,POO1920p2G3,Accepted,final
+G,POO1920p2G3,Accepted,pending
+G,POO1920p2G3,Compile Time Error,pending
+G,POO1920p2G3,Compile Time Error,pending
+G,POO1920p2G3,Compile Time Error,pending
+G,POO1920p2G4,Accepted,final
+G,POO1920p2G6,Accepted,final
+G,POO1920p2G6,Wrong Answer,pending
+G,POO1920p2G6,Wrong Answer,pending
+G,POO1920p3G1,Accepted,final
+G,POO1920p3G1,Accepted,pending
+G,POO1920p3G1,Accepted,pending
+G,POO1920p3G13,Accepted,final
+G,POO1920p3G13,Accepted,pending
+G,POO1920p3G13,Accepted,pending
+G,POO1920p3G13,Compile Time Error,pending
+G,POO1920p3G2,Accepted,final
+G,POO1920p3G2,Accepted,pending
+G,POO1920p3G2,Runtime Error,pending
+G,POO1920p3G3,Accepted,final
+G,POO1920p3G3,Accepted,pending
+G,POO1920p3G3,Accepted,pending
+G,POO1920p3G3,Compile Time Error,pending
+G,POO1920p3G6,Accepted,final
+G,POO1920p3G6,Accepted,pending
+G,POO1920p3G6,Compile Time Error,pending
+G,POO1920p3G7,Accepted,final
+G,POO1920p3G7,Accepted,pending
+G,POO1920p3G7,Accepted,pending
+G,POO1920p3G7,Accepted,pending
+G,POO1920p3G7,Accepted,pending
+G,POO1920p3G9,Accepted,final
+G,POO1920p3G9,Accepted,pending
+G,POO1920p3G9,Wrong Answer,pending
+G,POO1920p3G9,Wrong Answer,pending
+G,had,Accepted,pending
+H,57596,Compile Time Error,pending
+H,POO1920P1G1,Accepted,final
+H,POO1920P1G1,Accepted,pending
+H,POO1920P1G1,Accepted,pending
+H,POO1920P1G1,Accepted,pending
+H,POO1920P1G1,Accepted,pending
+H,POO1920P1G1,Accepted,pending
+H,POO1920P1G1,Presentation Error,pending
+H,POO1920P1G1,Presentation Error,pending
+H,POO1920P1G15,Accepted,final
+H,POO1920P1G15,Accepted,pending
+H,POO1920P1G15,Runtime Error,pending
+H,POO1920P1G15,Runtime Error,pending
+H,POO1920P1G2,Accepted,final
+H,POO1920P1G2,Compile Time Error,final
+H,POO1920P1G2,Compile Time Error,pending
+H,POO1920P1G2,Compile Time Error,pending
+H,POO1920P1G2,Runtime Error,pending
+H,POO1920P1G2,Wrong Answer,pending
+H,POO1920P1G2,Wrong Answer,pending
+H,POO1920P1G7,Accepted,final
+H,POO1920P1G7,Accepted,pending
+H,POO1920P1G7,Accepted,pending
+H,POO1920P1G7,Presentation Error,pending
+H,POO1920P1G9,Accepted,final
+H,POO1920P1G9,Accepted,pending
+H,POO1920P1G9,Accepted,pending
+H,POO1920P1G9,Accepted,pending
+H,POO1920P1G9,Presentation Error,pending
+H,POO1920P2G5,Accepted,final
+H,POO1920P2G5,Accepted,pending
+H,POO1920P2G5,Accepted,pending
+H,POO1920P2G5,Presentation Error,pending
+H,POO1920P2G5,Presentation Error,pending
+H,POO1920P3G4,Accepted,final
+H,POO1920P3G4,Compile Time Error,pending
+H,POO1920P3G4,Wrong Answer,pending
+H,POO1920P3G8,Compile Time Error,pending
+H,POO1920p1G10,Wrong Answer,pending
+H,POO1920p1G11,Compile Time Error,pending
+H,POO1920p1G11,Compile Time Error,pending
+H,POO1920p1G11,Compile Time Error,pending
+H,POO1920p1G11,Compile Time Error,pending
+H,POO1920p1G11,Compile Time Error,pending
+H,POO1920p1G11,Compile Time Error,pending
+H,POO1920p1G11,Wrong Answer,pending
+H,POO1920p1G13,Wrong Answer,pending
+H,POO1920p1G14,Accepted,final
+H,POO1920p1G14,Compile Time Error,pending
+H,POO1920p1G14,Compile Time Error,pending
+H,POO1920p1G14,Compile Time Error,pending
+H,POO1920p1G14,Compile Time Error,pending
+H,POO1920p1G14,Compile Time Error,pending
+H,POO1920p1G14,Compile Time Error,pending
+H,POO1920p1G14,Compile Time Error,pending
+H,POO1920p1G14,Presentation Error,pending
+H,POO1920p1G4,Accepted,final
+H,POO1920p1G4,Accepted,pending
+H,POO1920p1G4,Compile Time Error,pending
+H,POO1920p1G4,Program Size Exceeded,pending
+H,POO1920p1G4,Runtime Error,pending
+H,POO1920p1G5,Accepted,final
+H,POO1920p1G5,Accepted,pending
+H,POO1920p1G5,Compile Time Error,pending
+H,POO1920p1G5,Compile Time Error,pending
+H,POO1920p1G5,Compile Time Error,pending
+H,POO1920p1G5,Presentation Error,pending
+H,POO1920p1G6,Accepted,final
+H,POO1920p1G6,Accepted,pending
+H,POO1920p1G6,Compile Time Error,pending
+H,POO1920p1G6,Compile Time Error,pending
+H,POO1920p1G6,Compile Time Error,pending
+H,POO1920p1G6,Compile Time Error,pending
+H,POO1920p1G6,Compile Time Error,pending
+H,POO1920p1G6,Wrong Answer,pending
+H,POO1920p1G8,Accepted,final
+H,POO1920p1g3,Accepted,final
+H,POO1920p1g3,Accepted,pending
+H,POO1920p1g3,Accepted,pending
+H,POO1920p1g3,Wrong Answer,pending
+H,POO1920p1g3,Wrong Answer,pending
+H,POO1920p2G1,Accepted,final
+H,POO1920p2G1,Accepted,pending
+H,POO1920p2G1,Compile Time Error,pending
+H,POO1920p2G1,Compile Time Error,pending
+H,POO1920p2G1,Compile Time Error,pending
+H,POO1920p2G1,Wrong Answer,pending
+H,POO1920p2G1,Wrong Answer,pending
+H,POO1920p2G1,Wrong Answer,pending
+H,POO1920p2G2,Accepted,final
+H,POO1920p2G2,Accepted,pending
+H,POO1920p2G2,Accepted,pending
+H,POO1920p2G2,Compile Time Error,pending
+H,POO1920p2G2,Presentation Error,pending
+H,POO1920p2G3,Compile Time Error,final
+H,POO1920p2G3,Compile Time Error,pending
+H,POO1920p2G4,Accepted,final
+H,POO1920p2G4,Accepted,pending
+H,POO1920p2G4,Presentation Error,pending
+H,POO1920p2G4,Presentation Error,pending
+H,POO1920p2G6,Compile Time Error,pending
+H,POO1920p2G6,Wrong Answer,pending
+H,POO1920p3G1,Accepted,final
+H,POO1920p3G1,Accepted,pending
+H,POO1920p3G1,Accepted,pending
+H,POO1920p3G1,Accepted,pending
+H,POO1920p3G1,Wrong Answer,pending
+H,POO1920p3G13,Accepted,final
+H,POO1920p3G13,Presentation Error,pending
+H,POO1920p3G2,Accepted,final
+H,POO1920p3G2,Wrong Answer,pending
+H,POO1920p3G2,Wrong Answer,pending
+H,POO1920p3G3,Compile Time Error,pending
+H,POO1920p3G3,Compile Time Error,pending
+H,POO1920p3G6,Compile Time Error,pending
+H,POO1920p3G7,Accepted,final
+H,POO1920p3G7,Accepted,pending
+H,POO1920p3G7,Presentation Error,pending
+H,had,Accepted,pending

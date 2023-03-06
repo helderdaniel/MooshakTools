@@ -3,7 +3,7 @@ set         Time 64447
 set      Problem P1
 set         Team a58604
 set     Classify Accepted
-set         Mark 0
+set         Mark 100
 set         Size 552
 set Observations {}
 set    Execution -1

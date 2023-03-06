@@ -15,14 +15,15 @@ TEST_CASE( "Mooshak Submission", "[Submission]" ) {
 	SECTION("Constructor") {
 		const int cases = 4;
 		const string  p[] = { "", "A", "X", "B" };
-		const string  t[] = { "", "Team0", "Team1", "John Smith" };
-		const Classifications c[] = { RequiresReevaluation, Accepted, WrongAnswer, RuntimeError };
+        const string  m[] = { "20", "10", "30", "-10" };
+        const string  t[] = { "", "Team0", "Team1", "John Smith" };
+        const Classifications c[] = { RequiresReevaluation, Accepted, WrongAnswer, RuntimeError };
 		const States  s[] = { Pending, Pending, Final, Final };
 		const Submission subs[] = {
 			Submission(),  //for testing default construtor
-			Submission(p[1], t[1], c[1], s[1]),
-			Submission(p[2], t[2], c[2], s[2]),
-			Submission(p[3], t[3], "Runtime Error", "final"),
+			Submission(p[1], t[1], c[1], m[1], s[1]),
+			Submission(p[2], t[2], c[2], m[2], s[2]),
+			Submission(p[3], t[3], "Runtime Error", m[3], "final"),
 		};
 
 		const string ec[] = { "Requires Reevaluation", "Accepted", "Wrong Answer", "Runtime Error" };
@@ -30,10 +31,10 @@ TEST_CASE( "Mooshak Submission", "[Submission]" ) {
 		const bool   ef[] = { false, false, true, true };
 		const bool   eFail[] = { true, false, true, true };
 		const string estr[] = {
-				",,Requires Reevaluation,pending",
-				"A,Team0,Accepted,pending",
-				"X,Team1,Wrong Answer,final",
-				"B,John Smith,Runtime Error,final"
+				",,,Requires Reevaluation,pending",
+				"A,Team0,10,Accepted,pending",
+				"X,Team1,30,Wrong Answer,final",
+				"B,John Smith,-10,Runtime Error,final"
 				};
 
 		for (int i = 0; i < cases; ++i) {
@@ -63,13 +64,13 @@ TEST_CASE( "Mooshak Submission", "[Submission]" ) {
 
     SECTION("Relational operators") {
         Submission s0;
-        Submission s1("A", "a12345", Accepted, Final );
-        Submission s2("A", "a12345", Accepted, Final );
-        Submission s3("A", "a12346", Accepted, Final );
-        Submission s4("A", "a12345", Evaluating, Final );
-        Submission s5("A", "a12345", Accepted, Pending );
-        Submission s6("B", "a12345", Accepted, Final );
-        Submission s7("A", "a00000", Accepted, Final );
+        Submission s2("A", "a12345", Accepted, "20", Final );
+        Submission s3("A", "a12346", Accepted, "20", Final );
+        Submission s4("A", "a12345", Evaluating, "20", Final );
+        Submission s5("A", "a12345", Accepted, "20", Pending );
+        Submission s1("A", "a12345", Accepted, "20", Final );
+        Submission s6("B", "a12345", Accepted, "20", Final );
+        Submission s7("A", "a00000", Accepted, "20", Final );
 
         //Relational operators and CompareSubmissionPointers predicate
         REQUIRE(s0==s0);

@@ -115,7 +115,7 @@ namespace mooshak {
          *	Fills submission vector with every submission in contest
          */
         void _getSubmissions() {
-            string file, buf, pname, team, classify, state;
+            string file, buf, pname, team, classify, mark, state;
             ulong idx;
 
             auto subfiles = File::search(submissionsFolder, datafile, 1);
@@ -134,11 +134,13 @@ namespace mooshak {
 
                 //Add team
                 idx = String::firstSubstring(file, Submission::Team, "\n", team, idx);
-
                 if (filterNames) _filter(team);
 
                 //Add classification
                 idx = String::firstSubstring(file, Submission::Classify, "\n", classify, idx);
+
+                //Add mark
+                idx = String::firstSubstring(file, Submission::Mark, "\n", mark, idx);
 
                 //Add state
                 String::firstSubstring(file, Submission::ClassifyFinal, "\n", state, idx);
@@ -146,7 +148,7 @@ namespace mooshak {
                 //Add submission
                 //const here does NOT give better performance
                 //compiler should optimize it anyway
-                const Submission sub(pname, team, classify, state);
+                const Submission sub(pname, team, classify, mark, state);
                 submissions.emplace_back(sub);
                 //using std::move() does not give better performance
                 //since using const&
@@ -433,7 +435,7 @@ namespace mooshak {
                     if (!cmp(s0, s)) {
                         //Only print if count > 0, last failed accounted submission
                         //Does NOT print at first iteration
-                        if (count > 0) ins(os, s0, count, sep);
+                        if (count > 0) ins(os, s0, count, false, sep);
                         count = 1;
                         s0 = s;
                     }
@@ -441,7 +443,7 @@ namespace mooshak {
                     else count++;
                 }
             //If there was any failed accounted submission, print it
-            if (count > 0) ins(os, s0, count, sep);
+            if (count > 0) ins(os, s0, count, false, sep);
             return os;
         }
 
@@ -481,6 +483,7 @@ namespace mooshak {
          * @param sep   field, separator
          */
         static void insFailed(ostream &os, const Submission &sub, const int count,
+                              const bool mark = false,
                               const char sep = defaultCsvSeparator) {
             os << sub.problem() << sep << sub.team() << sep
                << sub.classificationStr() << sep << count << '\n';
@@ -500,8 +503,11 @@ namespace mooshak {
          * @param sep   field, separator
          */
         static void insFailedType(ostream &os, const Submission &sub, const int count,
+                                  const bool mark = false,
                                   const char sep = defaultCsvSeparator) {
-            os << sub.problem() << sep << sub.team() << sep << count << '\n';
+            os << sub.problem() << sep << sub.team() << sep << count;
+            if (mark) os << sep << sub.mark();
+            os << '\n';
         }
 
     public:
@@ -526,10 +532,12 @@ namespace mooshak {
         /**
          * @param os   stream to insert
          * @param sep  field separator
+         * @param mark if true insert mark
          * @return     a stream with the count of failed submissions, group for problem
          * 			   and team, only for teams that have the problem marked as Accepted
          */
-        ostream &FailedTypeAccepted(ostream &os, const char sep = defaultCsvSeparator) const {
+        ostream &FailedTypeAccepted(ostream &os, const bool mark=false,
+                                    const char sep = defaultCsvSeparator) const {
             int count = -1;
             Submission sub;
 
@@ -537,7 +545,7 @@ namespace mooshak {
                 if (!cmpFailedType(sub, s)) {
                     //Add to stream only if count >= 0, last failed accounted submission
                     //Does NOT print at first iteration
-                    if (count >= 0) insFailedType(os, sub, count, sep);
+                    if (count >= 0) insFailedType(os, sub, count, mark, sep);
 
                     if (s.classification() == mooshak::Accepted && s.isFinal()) {
                         count = 0;
@@ -546,7 +554,7 @@ namespace mooshak {
                 } else if (s.isFailure()) count++;
 
             //If there was any failed accounted submission, print it
-            if (count >= 0) insFailedType(os, sub, count, sep);
+            if (count >= 0) insFailedType(os, sub, count, mark, sep);
             return os;
         }
 

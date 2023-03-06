@@ -54,6 +54,7 @@ namespace mooshak {
 
         string _problem;
         string _team;
+        string _mark;
         States _state;
         Classifications _classification;
         //there are more data about Mooshak submissions
@@ -63,6 +64,7 @@ namespace mooshak {
         static const set<Classifications> noFailSet;
         static inline string Problem = "Problem ";
         static inline string Team = "Team ";
+        static inline string Mark = "Mark ";
         static inline string Classify = "Classify ";
         static inline string ClassifyFinal = "State ";
 
@@ -79,54 +81,49 @@ namespace mooshak {
 
 
         //Allow default constructor
-        Submission() : _problem(""), _team(""), _classification(RequiresReevaluation), _state(Pending) {}
+        Submission() : _problem(""), _team(""), _classification(RequiresReevaluation), _mark(""), _state(Pending) {}
 
         Submission(const string &problem,
                    const string &team,
                    Classifications classification,
+                   const string &mark,
                    States state) :
                 _problem(problem),
                 _team(team),
                 _classification(classification),
+                _mark(mark),
                 _state(state) {}
 
         Submission(const string &problem,
                    const string &team,
                    const string &classification,
+                   const string &mark,
                    const string &state) :
                 _problem(problem),
                 _team(team),
                 _classification(classificationFromString(classification)),
+                _mark(mark),
                 _state(stateFromString(state)) {}
 
         const string &problem() const { return _problem; }
-
         const string &team() const { return _team; }
-
+        const string &mark() const { return _mark; }
         const Classifications classification() const { return _classification; }
-
         const string classificationStr() const { return classificationsMap.at(_classification); }
-
         const States state() const { return _state; }
-
         const string stateStr() const { return statesMap.at(_state); }
-
         const bool isFailure() const { return noFailSet.find(_classification) == noFailSet.end(); }
-
         const bool isFinal() const { return _state == Final; }
-
         static const string &classificationStr(Classifications c) { return classificationsTbl.value(c); }
-
         static const Classifications &classifications(const string &s) { return classificationsTbl.key(s); }
-
         static const string &stateStr(States c) { return statesTbl.value(c); }
-
         static const States &states(const string &s) { return statesTbl.key(s); }
 
         friend string to_string(const Submission &s, const char sep = Submission::defaultSeparator) {
             string ret;
             ret += s._problem + sep;
             ret += s._team + sep;
+            ret += s._mark + sep;
             ret += classificationsTbl.value(s._classification) + sep;
             ret += statesTbl.value(s._state);
             return ret;
@@ -137,14 +134,14 @@ namespace mooshak {
         //https://en.cppreference.com/w/cpp/language/operators
         //https://stackoverflow.com/questions/11312448/operator-comparing-multiple-fields
         friend bool operator<(const Submission &lhs, const Submission &rhs) {
-            return tie(lhs._problem, lhs._team, lhs._classification, lhs._state) <
-                   tie(rhs._problem, rhs._team, rhs._classification, rhs._state);
+            return tie(lhs._problem, lhs._team, lhs._mark, lhs._classification, lhs._state) <
+                   tie(rhs._problem, rhs._team, rhs._mark, rhs._classification, rhs._state);
         }
 
 
         friend bool operator==(const Submission &lhs, const Submission &rhs) {
-            return tie(lhs._problem, lhs._team, lhs._classification, lhs._state) ==
-                   tie(rhs._problem, rhs._team, rhs._classification, rhs._state);
+            return tie(lhs._problem, lhs._team, lhs._mark, lhs._classification, lhs._state) ==
+                   tie(rhs._problem, rhs._team, rhs._mark, rhs._classification, rhs._state);
         }
 
         friend bool operator!=(const Submission &lhs, const Submission &rhs) {

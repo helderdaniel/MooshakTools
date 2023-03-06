@@ -32,6 +32,7 @@ AcceptedFailType  list failed submissions grouped by type, only if team as one "
                   (used to get info from Mooshak to assessment sheets)
 mapAll            map counter of all submissions classification for each problem
 mapFinal          map counter of all submissions classification for each problem, marked as "final"
+mapUnique         map counter of different persons that have submitted, have accepted and have accepted marked as \"final\"\n";
 ```
 
 For operations: "All", "Accepted" and "AcceptedFinal", list is formatted as sample below and sorted alphabetically.
@@ -153,16 +154,19 @@ int subsmain(int argc, char* argv[], istream& in, ostream& out) {
 		out << "Usage: submissions <contest path> <operation> [<filter path>]\n\n";
 		out <<
 		"Operation:\n"
-        "Accepted          list only \"Accepted\" submissions\n"
-        "AcceptedFinal     list only \"Accepted\" and \"final\" submissions\n"
-        "All               list all submissions\n"
-        "Fail              list failed submissions\n"
-        "FailType          list failed submissions grouped by type\n"
-        "AcceptedFailType  list failed submissions grouped by type, only if team as one \"Accepted\" submission to the problem\n"
-        "                  (used to get info from Mooshak to assessment sheets)\n"
-        "mapAll            map counter of all submissions classification for each problem\n"
-        "mapFinal          map counter of all submissions classification for each problem, marked as \"final\"\n"
-        "mapCountUnique         map counter of different persons that have submitted, have accepted and have accepted marked as \"final\"\n";
+        "Accepted               list only \"Accepted\" submissions\n"
+        "AcceptedFinal          list only \"Accepted\" and \"final\" submissions\n"
+        "All                    list all submissions\n"
+        "Fail                   list failed submissions\n"
+        "FailType               list failed submissions grouped by type\n"
+        "AcceptedFailType       list failed submissions grouped by type, only if team as one \"Accepted\" submission to the problem\n"
+        "                       (used to get info from Mooshak to assessment sheets)\n"
+        "AcceptedFailTypeMark   list failed submissions grouped by type, only if team as one \"Accepted\" submission to the problem\n"
+        "                       (as above but shows also Mark, needs Mooshak contest type: Exam)"
+        "                       (also used to get info from Mooshak to assessment sheets)\n"
+        "mapAll                 map counter of all submissions classification for each problem\n"
+        "mapFinal               map counter of all submissions classification for each problem, marked as \"final\"\n"
+        "mapUnique              map counter of different persons that have submitted, have accepted and have accepted marked as \"final\"\n";
 
 		return 0;
 	}
@@ -180,6 +184,7 @@ int subsmain(int argc, char* argv[], istream& in, ostream& out) {
 	else if (operation == "Fail")      			subs.Failed(out);
 	else if (operation == "FailType")     		subs.FailedType(out);
 	else if (operation == "AcceptedFailType")   subs.FailedTypeAccepted(out);
+    else if (operation == "AcceptedFailTypeMark") subs.FailedTypeAccepted(out, true);
 	else if (operation == "mapAll") 			subs.reportAll(out);
 	else if (operation == "mapFinal")   		subs.reportFinal(out);
     else if (operation == "mapUnique")   		subs.reportUnique(out);
@@ -190,6 +195,7 @@ int subsmain(int argc, char* argv[], istream& in, ostream& out) {
 				 "Fail\n"
 				 "FailType\n"
 				 "AcceptedFailType\n"
+                 "AcceptedFailTypeMark\n"
 				 "mapAll\n"
 				 "mapFinal\n"
                  "mapUnique\n";
